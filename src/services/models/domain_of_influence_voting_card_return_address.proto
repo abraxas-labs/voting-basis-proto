@@ -1,0 +1,18 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "rules/rules.proto";
+
+message DomainOfInfluenceVotingCardReturnAddress {
+  string address_line_1 = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string address_line_2 = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true, allow_empty: true }];
+  string street = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string address_addition = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true, allow_empty: true }];
+  string zip_code = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true }];
+  string city = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  string country = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+}

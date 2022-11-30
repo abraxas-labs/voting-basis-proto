@@ -1,0 +1,29 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "shared/domain_of_influence.proto";
+
+message DomainOfInfluenceEventData {
+  string id = 1;
+  string name = 2;
+  string short_name = 3;
+  string authority_name = 4;
+  string secure_connect_id = 5;
+  shared.v1.DomainOfInfluenceType type = 6;
+  string parent_id = 7;
+  shared.v1.DomainOfInfluenceCanton canton = 8;
+  bool responsible_for_voting_cards = 9;
+  string bfs = 10;
+  string code = 11;
+  int32 sort_number = 12;
+  string name_for_protocol = 13;
+}
+
+message DomainOfInfluenceCountingCircleEntriesEventData {
+  string id = 1;
+  repeated string counting_circle_ids = 2;
+}

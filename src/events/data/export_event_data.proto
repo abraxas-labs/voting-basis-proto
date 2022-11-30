@@ -1,0 +1,14 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+message ExportConfigurationEventData {
+  string id = 1;
+  string domain_of_influence_id = 2;
+  string description = 3;
+  string eai_message_type = 4;
+  repeated string export_keys = 5;
+}

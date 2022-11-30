@@ -1,0 +1,35 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "google/protobuf/timestamp.proto";
+import "shared/contest.proto";
+
+message ContestEventData {
+  string id = 1;
+  google.protobuf.Timestamp date = 2;
+  map<string, string> description = 3;
+  google.protobuf.Timestamp end_of_testing_phase = 4;
+  string domain_of_influence_id = 5;
+  bool e_voting = 6;
+  google.protobuf.Timestamp e_voting_from = 7;
+  google.protobuf.Timestamp e_voting_to = 8;
+  shared.v1.ContestState state = 9;
+  string previous_contest_id = 10;
+}
+
+message PreconfiguredContestDatesEventData {
+  repeated PreconfiguredContestDateEventData preconfigured_contest_dates = 1;
+}
+
+message PreconfiguredContestDateEventData {
+  google.protobuf.Timestamp date = 1;
+}
+
+message ContestCountingCircleOptionEventData {
+  string counting_circle_id = 1;
+  bool e_voting = 2;
+}

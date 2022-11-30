@@ -1,0 +1,34 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "shared/canton_settings.proto";
+import "shared/domain_of_influence.proto";
+import "shared/political_business_union.proto";
+import "shared/proportional_election.proto";
+import "shared/voting_channel.proto";
+
+message CantonSettingsEventData {
+  string id = 1;
+  shared.v1.DomainOfInfluenceCanton canton = 2;
+  string authority_name = 3;
+  string secure_connect_id = 4;
+  repeated shared.v1.ProportionalElectionMandateAlgorithm proportional_election_mandate_algorithms = 5;
+  shared.v1.CantonMajorityElectionAbsoluteMajorityAlgorithm majority_election_absolute_majority_algorithm = 6;
+  bool majority_election_invalid_votes = 7;
+  shared.v1.SwissAbroadVotingRight swiss_abroad_voting_right = 8;
+  repeated shared.v1.DomainOfInfluenceType swiss_abroad_voting_right_domain_of_influence_types = 9;
+  repeated shared.v1.PoliticalBusinessUnionType enabled_political_business_union_types = 10;
+  repeated CantonSettingsVotingCardChannelEventData enabled_voting_card_channels = 11;
+  string voting_documents_e_voting_eai_message_type = 12;
+  shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 13;
+  shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 14;
+}
+
+message CantonSettingsVotingCardChannelEventData {
+  bool valid = 1;
+  shared.v1.VotingChannel voting_channel = 2;
+}

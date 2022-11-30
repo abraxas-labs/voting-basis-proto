@@ -1,0 +1,102 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "models/contact_person.proto";
+import "models/counting_circle.proto";
+import "rules/rules.proto";
+
+message CreateCountingCircleRequest {
+  string name = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string bfs = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  models.Authority responsible_authority = 3 [(validation.v1.rules).object.required = true];
+  models.ContactPerson contact_person_during_event = 4 [(validation.v1.rules).object.required = true];
+  bool contact_person_same_during_event_as_after = 5;
+  models.ContactPerson contact_person_after_event = 6;
+  string code = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
+  string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+}
+
+message GetCountingCircleRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListCountingCircleRequest {
+}
+
+message ListAssignedCountingCircleRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListAssignableCountingCircleRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateCountingCircleRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string bfs = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  models.Authority responsible_authority = 4 [(validation.v1.rules).object.required = true];
+  models.ContactPerson contact_person_during_event = 5 [(validation.v1.rules).object.required = true];
+  bool contact_person_same_during_event_as_after = 6;
+  models.ContactPerson contact_person_after_event = 7;
+  string code = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
+  string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+}
+
+message DeleteCountingCircleRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListCountingCircleSnapshotRequest {
+  google.protobuf.Timestamp date_time = 1;
+  bool include_deleted = 2;
+}
+
+message ListAssignedCountingCircleSnapshotRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date_time = 2;
+}
+
+message ScheduleCountingCirclesMergerRequest {
+  string name = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string bfs = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string code = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  models.Authority responsible_authority = 4 [(validation.v1.rules).object.required = true];
+  repeated string merged_counting_circle_ids = 5 [(validation.v1.rules).string.guid = true];
+  string copy_from_counting_circle_id = 6 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp active_from = 7 [(validation.v1.rules).object.required = true];
+  int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
+  string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+}
+
+message UpdateScheduledCountingCirclesMergerRequest {
+  string new_counting_circle_id = 1 [(validation.v1.rules).string.guid = true];
+  string name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string bfs = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string code = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  models.Authority responsible_authority = 5 [(validation.v1.rules).object.required = true];
+  repeated string merged_counting_circle_ids = 6 [(validation.v1.rules).string.guid = true];
+  string copy_from_counting_circle_id = 7 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp active_from = 8 [(validation.v1.rules).object.required = true];
+  int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
+  string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+}
+
+message DeleteScheduledCountingCirclesMergerRequest {
+  string new_counting_circle_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListCountingCirclesMergersRequest {
+  // if not set all mergers are returned (scheduled and active)
+  // if true, only active mergers are returned (mergers that happend in the past)
+  // if false, only scheduled mergers are returned
+  google.protobuf.BoolValue merged = 1;
+}

@@ -1,0 +1,13 @@
+{
+    "name": "@abraxas/voting-basis-service-proto",
+    "version": "0.0.0-development",
+    "description": "Abraxas Dokumente project containing protobuf code for Voting.Basis",
+    "keywords": [
+      "protobuf",
+      "Abraxas",
+      "Voting",
+      "proto"
+    ],
+    "author": "Abraxas Informatik AG"
+  }
+  

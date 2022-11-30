@@ -1,0 +1,22 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "rules/rules.proto";
+
+message Pageable {
+  int32 page = 1 [(validation.v1.rules).integer = { min_value: 1, max_value: 1000000}];
+  int32 page_size = 2 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message Page {
+  int32 current_page = 1;
+  int32 page_size = 2;
+  int32 total_pages = 3;
+  int32 total_items_count = 4;
+  bool has_previous_page = 5;
+  bool has_next_page = 6;
+}

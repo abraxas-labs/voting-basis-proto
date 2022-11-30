@@ -1,0 +1,71 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1;
+
+import "data/vote_event_data.proto";
+import "data/event_info.proto";
+
+message VoteCreated {
+  data.EventInfo event_info = 1;
+  data.VoteEventData vote = 2;
+}
+
+message VoteUpdated {
+  data.EventInfo event_info = 1;
+  data.VoteEventData vote = 2;
+}
+
+message VoteActiveStateUpdated {
+  data.EventInfo event_info = 1;
+  string vote_id = 2;
+  bool active = 3;
+}
+
+message VoteDeleted {
+  data.EventInfo event_info = 1;
+  string vote_id = 2;
+}
+
+message VoteToNewContestMoved {
+  data.EventInfo event_info = 1;
+  string vote_id = 2;
+  string new_contest_id = 3;
+}
+
+message BallotCreated {
+  data.EventInfo event_info = 1;
+  data.BallotEventData ballot = 2;
+}
+
+message BallotUpdated {
+  data.EventInfo event_info = 1;
+  data.BallotEventData ballot = 2;
+}
+
+message BallotDeleted {
+  data.EventInfo event_info = 1;
+  string ballot_id = 2;
+  string vote_id = 3;
+}
+
+message VoteAfterTestingPhaseUpdated {
+  data.EventInfo event_info = 1;
+  string id = 2;
+  string political_business_number = 3;
+  map<string, string> official_description = 4;
+  map<string, string> short_description = 5;
+  string internal_description = 6;
+  int32 report_domain_of_influence_level = 7;
+}
+
+message BallotAfterTestingPhaseUpdated {
+  data.EventInfo event_info = 1;
+  string id = 2;
+  map<string, string> description = 3;
+  repeated data.BallotQuestionEventData ballot_questions = 4;
+  repeated data.TieBreakQuestionEventData tie_break_questions = 5;
+  string vote_id = 6;
+}

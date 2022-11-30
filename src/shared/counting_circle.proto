@@ -1,0 +1,15 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum CountingCircleState {
+  COUNTING_CIRCLE_STATE_UNSPECIFIED = 0;
+  COUNTING_CIRCLE_STATE_ACTIVE = 1;
+  COUNTING_CIRCLE_STATE_DELETED = 2;
+  COUNTING_CIRCLE_STATE_MERGED = 3;
+  // a counting circle is inactive when it is created by merge but not active yet.
+  COUNTING_CIRCLE_STATE_INACTIVE = 4;
+}

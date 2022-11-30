@@ -1,0 +1,50 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/id_value.proto";
+import "models/majority_election.proto";
+import "requests/majority_election_requests.proto";
+
+service MajorityElectionService {
+  rpc Create(requests.CreateMajorityElectionRequest) returns (models.IdValue);
+  rpc Get(requests.GetMajorityElectionRequest) returns (models.MajorityElection);
+  rpc List(requests.ListMajorityElectionRequest) returns (models.MajorityElections);
+  rpc Update(requests.UpdateMajorityElectionRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteMajorityElectionRequest) returns (google.protobuf.Empty);
+  rpc UpdateActiveState(requests.UpdateMajorityElectionActiveStateRequest) returns (google.protobuf.Empty);
+
+  rpc CreateCandidate(requests.CreateMajorityElectionCandidateRequest) returns (models.IdValue);
+  rpc GetCandidate(requests.GetMajorityElectionCandidateRequest) returns (models.MajorityElectionCandidate);
+  rpc ListCandidates(requests.ListMajorityElectionCandidatesRequest) returns (models.MajorityElectionCandidates);
+  rpc UpdateCandidate(requests.UpdateMajorityElectionCandidateRequest) returns (google.protobuf.Empty);
+  rpc ReorderCandidates(requests.ReorderMajorityElectionCandidatesRequest) returns (google.protobuf.Empty);
+  rpc DeleteCandidate(requests.DeleteMajorityElectionCandidateRequest) returns (google.protobuf.Empty);
+
+  rpc CreateSecondaryMajorityElection(requests.CreateSecondaryMajorityElectionRequest) returns (models.IdValue);
+  rpc ListSecondaryMajorityElections(requests.ListSecondaryMajorityElectionsRequest) returns (models.SecondaryMajorityElections);
+  rpc GetSecondaryMajorityElection(requests.GetSecondaryMajorityElectionRequest) returns (models.SecondaryMajorityElection);
+  rpc UpdateSecondaryMajorityElection(requests.UpdateSecondaryMajorityElectionRequest) returns (google.protobuf.Empty);
+  rpc DeleteSecondaryMajorityElection(requests.DeleteSecondaryMajorityElectionRequest) returns (google.protobuf.Empty);
+  rpc UpdateSecondaryMajorityElectionActiveState(requests.UpdateSecondaryMajorityElectionActiveStateRequest) returns (google.protobuf.Empty);
+
+  rpc ListSecondaryMajorityElectionCandidates(requests.ListSecondaryMajorityElectionCandidatesRequest) returns (models.SecondaryMajorityElectionCandidates);
+  rpc ReorderSecondaryMajorityElectionCandidates(requests.ReorderSecondaryMajorityElectionCandidatesRequest) returns (google.protobuf.Empty);
+  rpc CreateSecondaryMajorityElectionCandidate(requests.CreateSecondaryMajorityElectionCandidateRequest) returns (models.IdValue);
+  rpc UpdateSecondaryMajorityElectionCandidate(requests.UpdateSecondaryMajorityElectionCandidateRequest) returns (google.protobuf.Empty);
+  rpc DeleteSecondaryMajorityElectionCandidate(requests.DeleteSecondaryMajorityElectionCandidateRequest) returns (google.protobuf.Empty);
+  rpc CreateMajorityElectionCandidateReference(requests.CreateMajorityElectionCandidateReferenceRequest) returns (models.IdValue);
+  rpc UpdateMajorityElectionCandidateReference(requests.UpdateMajorityElectionCandidateReferenceRequest) returns (google.protobuf.Empty);
+  rpc DeleteMajorityElectionCandidateReference(requests.DeleteMajorityElectionCandidateReferenceRequest) returns (google.protobuf.Empty);
+
+  rpc CreateBallotGroup(requests.CreateMajorityElectionBallotGroupRequest) returns (models.MajorityElectionBallotGroup);
+  rpc ListBallotGroups(requests.ListMajorityElectionBallotGroupsRequest) returns (models.MajorityElectionBallotGroups);
+  rpc UpdateBallotGroup(requests.UpdateMajorityElectionBallotGroupRequest) returns (models.MajorityElectionBallotGroup);
+  rpc DeleteBallotGroup(requests.DeleteMajorityElectionBallotGroupRequest) returns (google.protobuf.Empty);
+  rpc ListBallotGroupCandidates(requests.ListMajorityElectionBallotGroupCandidatesRequest) returns (models.MajorityElectionBallotGroupCandidates);
+  rpc UpdateBallotGroupCandidates(requests.UpdateMajorityElectionBallotGroupCandidatesRequest) returns (google.protobuf.Empty);
+}

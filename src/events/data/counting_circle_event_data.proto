@@ -1,0 +1,40 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "data/contact_person_event_data.proto";
+import "google/protobuf/timestamp.proto";
+
+message CountingCircleEventData {
+  string id = 1;
+  string name = 2;
+  string bfs = 3;
+  AuthorityEventData responsible_authority = 4;
+  ContactPersonEventData contact_person_during_event = 5;
+  bool contact_person_same_during_event_as_after = 6;
+  ContactPersonEventData contact_person_after_event = 7;
+  string code = 8;
+  int32 sort_number = 9;
+  string name_for_protocol = 10;
+}
+
+message CountingCirclesMergerEventData {
+  string id = 1;
+  CountingCircleEventData new_counting_circle = 2;
+  repeated string merged_counting_circle_ids = 3;
+  string copy_from_counting_circle_id = 4;
+  google.protobuf.Timestamp active_from = 5;
+}
+
+message AuthorityEventData {
+  string secure_connect_id = 1;
+  string name = 2;
+  string street = 3;
+  string zip = 4;
+  string city = 5;
+  string phone = 6;
+  string email = 7;
+}

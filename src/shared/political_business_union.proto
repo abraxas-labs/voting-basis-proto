@@ -1,0 +1,12 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum PoliticalBusinessUnionType {
+  POLITICAL_BUSINESS_UNION_UNSPECIFIED = 0;
+  POLITICAL_BUSINESS_UNION_PROPORTIONAL_ELECTION = 1;
+  POLITICAL_BUSINESS_UNION_MAJORITY_ELECTION = 2;
+}

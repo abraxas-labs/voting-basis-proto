@@ -1,0 +1,18 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum VotingChannel {
+  VOTING_CHANNEL_UNSPECIFIED = 0;
+  // Urne
+  VOTING_CHANNEL_BALLOT_BOX = 1;
+  // Brieflich
+  VOTING_CHANNEL_BY_MAIL = 2;
+  // elektronisch
+  VOTING_CHANNEL_E_VOTING = 3;
+  // Papier / vorzeitig
+  VOTING_CHANNEL_PAPER = 4;
+}

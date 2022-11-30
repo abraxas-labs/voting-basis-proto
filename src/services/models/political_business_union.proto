@@ -1,0 +1,23 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "models/entity_state.proto";
+import "rules/rules.proto";
+import "shared/political_business_union.proto";
+
+message PoliticalBusinessUnion {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string contest_id = 2 [(validation.v1.rules).string.guid = true];
+  string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string secure_connect_id = 4 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
+  shared.v1.PoliticalBusinessUnionType type = 5 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message PoliticalBusinessUnionMessage {
+  PoliticalBusinessUnion data = 1;
+  EntityState new_entity_state = 2;
+}

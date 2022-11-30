@@ -1,0 +1,89 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "models/vote.proto";
+import "shared/vote.proto";
+import "rules/rules.proto";
+
+message CreateVoteRequest {
+  string political_business_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 4 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  string domain_of_influence_id = 5 [(validation.v1.rules).string.guid = true];
+  string contest_id = 6 [(validation.v1.rules).string.guid = true];
+  bool active = 7;
+  int32 report_domain_of_influence_level = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 10}];
+  shared.v1.VoteResultAlgorithm result_algorithm = 9 [(validation.v1.rules).enum.exact_enum = true];
+  shared.v1.VoteResultEntry result_entry = 10 [(validation.v1.rules).enum.exact_enum = true];
+  int32 ballot_bundle_sample_size_percent = 11 [(validation.v1.rules).integer = { min_value: 0, max_value: 100 }];
+  bool automatic_ballot_bundle_number_generation = 12;
+  bool enforce_result_entry_for_counting_circles = 13;
+  shared.v1.VoteReviewProcedure review_procedure = 14 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_review_procedure_for_counting_circles = 15;
+}
+
+message UpdateVoteRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  string domain_of_influence_id = 6 [(validation.v1.rules).string.guid = true];
+  string contest_id = 7 [(validation.v1.rules).string.guid = true];
+  bool active = 8;
+  int32 report_domain_of_influence_level = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 10}];
+  shared.v1.VoteResultAlgorithm result_algorithm = 10 [(validation.v1.rules).enum.exact_enum = true];
+  shared.v1.VoteResultEntry result_entry = 11 [(validation.v1.rules).enum.exact_enum = true];
+  int32 ballot_bundle_sample_size_percent = 12 [(validation.v1.rules).integer = { min_value: 0, max_value: 100 }];
+  bool automatic_ballot_bundle_number_generation = 13;
+  bool enforce_result_entry_for_counting_circles = 14;
+  shared.v1.VoteReviewProcedure review_procedure = 15 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_review_procedure_for_counting_circles = 16;
+}
+
+message UpdateVoteActiveStateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  bool active = 2;
+}
+
+message GetVoteRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteVoteRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message CreateBallotRequest {
+  string vote_id = 1 [(validation.v1.rules).string.guid = true];
+  int32 position = 2 [(validation.v1.rules).integer = { min_value: 1, max_value: 1}];
+  shared.v1.BallotType ballot_type = 3 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
+  repeated models.BallotQuestion ballot_questions = 5;
+
+  // tie break questions are only available for VARIANTS_BALLOT
+  bool has_tie_break_questions = 6;
+  repeated models.TieBreakQuestion tie_break_questions = 7;
+}
+
+message UpdateBallotRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string vote_id = 2 [(validation.v1.rules).string.guid = true];
+  shared.v1.BallotType ballot_type = 3 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
+  repeated models.BallotQuestion ballot_questions = 5;
+
+  // tie break questions are only available for VARIANTS_BALLOT
+  bool has_tie_break_questions = 6;
+  repeated models.TieBreakQuestion tie_break_questions = 7;
+}
+
+message DeleteBallotRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string vote_id = 2 [(validation.v1.rules).string.guid = true];
+}

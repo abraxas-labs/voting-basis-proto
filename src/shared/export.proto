@@ -1,0 +1,27 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum ExportEntityType {
+  EXPORT_ENTITY_TYPE_UNSPECIFIED = 0;
+  EXPORT_ENTITY_TYPE_CONTEST = 1;
+  EXPORT_ENTITY_TYPE_VOTE = 2;
+  EXPORT_ENTITY_TYPE_MAJORITY_ELECTION = 3;
+  EXPORT_ENTITY_TYPE_PROPORTIONAL_ELECTION = 4;
+}
+
+enum ExportFileFormat {
+  EXPORT_FILE_FORMAT_UNSPECIFIED = 0;
+  EXPORT_FILE_FORMAT_CSV = 1;
+  EXPORT_FILE_FORMAT_PDF = 2;
+  EXPORT_FILE_FORMAT_XML = 3;
+}
+
+enum ExportGenerator {
+  EXPORT_GENERATOR_UNSPECIFIED = 0;
+  EXPORT_GENERATOR_VOTING_BASIS = 1;
+  EXPORT_GENERATOR_VOTING_AUSMITTLUNG = 2;
+}

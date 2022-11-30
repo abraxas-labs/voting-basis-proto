@@ -1,0 +1,25 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1;
+
+import "data/export_event_data.proto";
+import "data/event_info.proto";
+
+message ExportConfigurationCreated {
+  data.EventInfo event_info = 1;
+  data.ExportConfigurationEventData configuration = 2;
+}
+
+message ExportConfigurationUpdated {
+  data.EventInfo event_info = 1;
+  data.ExportConfigurationEventData configuration = 2;
+}
+
+message ExportConfigurationDeleted {
+  data.EventInfo event_info = 1;
+  string configuration_id = 2;
+  string domain_of_influence_id = 3;
+}

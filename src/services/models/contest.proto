@@ -1,0 +1,97 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "models/counting_circle.proto";
+import "models/domain_of_influence.proto";
+import "models/entity_state.proto";
+import "models/election_group.proto";
+import "models/political_business.proto";
+import "models/political_business_union.proto";
+import "shared/contest.proto";
+import "shared/domain_of_influence.proto";
+import "rules/rules.proto";
+
+message Contests {
+  repeated Contest contests = 1;
+}
+
+message Contest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date = 2 [(validation.v1.rules).object.required = true];
+  map<string, string> description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  google.protobuf.Timestamp end_of_testing_phase = 4 [(validation.v1.rules).object.required = true];
+  string domain_of_influence_id = 5 [(validation.v1.rules).string.guid = true];
+  DomainOfInfluence domain_of_influence = 12;
+  bool e_voting = 6;
+  google.protobuf.Timestamp e_voting_from = 7;
+  google.protobuf.Timestamp e_voting_to = 8;
+  repeated PoliticalBusiness political_businesses = 9;
+  repeated PoliticalBusinessUnion political_business_unions = 10;
+  shared.v1.ContestState state = 11 [(validation.v1.rules).enum.exact_enum = true];
+  string previous_contest_id = 13 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+}
+
+message PreconfiguredContestDates {
+  repeated PreconfiguredContestDate preconfigured_contest_dates = 1;
+}
+
+message PreconfiguredContestDate {
+  google.protobuf.Timestamp date = 1;
+}
+
+message ContestSummaries {
+  repeated ContestSummary contest_summaries = 1;
+}
+
+message ContestSummary {
+  string id = 1;
+  google.protobuf.Timestamp date = 2;
+  map<string, string> description = 3;
+  google.protobuf.Timestamp end_of_testing_phase = 4;
+  DomainOfInfluence domain_of_influence = 5;
+  bool e_voting = 6;
+  google.protobuf.Timestamp e_voting_from = 7;
+  google.protobuf.Timestamp e_voting_to = 8;
+  repeated ContestSummaryEntryDetails contest_entries_details = 9;
+  shared.v1.ContestState state = 10;
+  google.protobuf.Timestamp archive_per = 11;
+}
+
+message ContestSummaryEntryDetails {
+  shared.v1.DomainOfInfluenceType domain_of_influence_type = 1;
+  int32 contest_entries_count = 2;
+}
+
+message ContestCountingCircleOptions {
+  repeated ContestCountingCircleOption options = 1;
+}
+
+message ContestCountingCircleOption {
+  string contest_id = 1;
+  CountingCircle counting_circle = 2;
+  bool e_voting = 3;
+}
+
+message ContestAvailability {
+  shared.v1.ContestDateAvailability availability = 1;
+}
+
+message ContestOverviewChangeMessage {
+  ContestMessage contest = 1;
+}
+
+message ContestDetailsChangeMessage {
+  PoliticalBusinessMessage political_business = 1;
+  PoliticalBusinessUnionMessage political_business_union = 2;
+  ElectionGroupMessage election_group = 3;
+}
+
+message ContestMessage {
+  Contest data = 1;
+  EntityState new_entity_state = 2;
+}

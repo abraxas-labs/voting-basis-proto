@@ -1,0 +1,15 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "shared/voting_card_shipping.proto";
+import "rules/rules.proto";
+
+message DomainOfInfluenceVotingCardPrintData {
+  shared.v1.VotingCardShippingFranking shipping_away = 1 [(validation.v1.rules).enum = { exact_enum: true }];
+  shared.v1.VotingCardShippingFranking shipping_return = 2 [(validation.v1.rules).enum = { exact_enum: true }];
+  shared.v1.VotingCardShippingMethod shipping_method = 3 [(validation.v1.rules).enum = { exact_enum: true }];
+}

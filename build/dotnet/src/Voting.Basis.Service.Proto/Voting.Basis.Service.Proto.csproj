@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Voting.Basis.Service.Proto</PackageId>
+    <Title>Voting.Basis.Service.Proto Protofiles</Title>
+    <Description>Abraxas Voting Project with service protofiles for Dok.Voting.Basis</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Voting.Lib.Validation.Proto" Version="1.1.0" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../../../src/services/**/*.proto" ProtoRoot="../../../../src/services" AdditionalImportDirs="../../../../src;$(PkgVoting_Lib_Validation_Proto)/content/proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Voting.Basis.Shared.Proto/Voting.Basis.Shared.Proto.csproj" />
+  </ItemGroup>
+
+</Project>

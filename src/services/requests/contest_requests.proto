@@ -1,0 +1,127 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "google/protobuf/timestamp.proto";
+import "shared/contest.proto";
+import "rules/rules.proto";
+
+/*
+  description: Urnengang erstellen.
+*/
+message CreateContestRequest {
+  google.protobuf.Timestamp date = 1 [(validation.v1.rules).object.required = true];
+  map<string, string> description = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  google.protobuf.Timestamp end_of_testing_phase = 3 [(validation.v1.rules).object.required = true];
+  string domain_of_influence_id = 4 [(validation.v1.rules).string.guid = true];
+  bool e_voting = 5;
+  google.protobuf.Timestamp e_voting_from = 6;
+  google.protobuf.Timestamp e_voting_to = 7;
+  string previous_contest_id = 8 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+}
+
+/*
+  description: Urnengang aktualisieren.
+*/
+message UpdateContestRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date = 2 [(validation.v1.rules).object.required = true];
+  map<string, string> description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  google.protobuf.Timestamp end_of_testing_phase = 4 [(validation.v1.rules).object.required = true];
+  string domain_of_influence_id = 5 [(validation.v1.rules).string.guid = true];
+  bool e_voting = 6;
+  google.protobuf.Timestamp e_voting_from = 7;
+  google.protobuf.Timestamp e_voting_to = 8;
+  string previous_contest_id = 9 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+}
+
+/*
+  description: Prüfung auf Überschneidungen mit einem Blanko-Abstimmungstermin.
+*/
+message CheckAvailabilityRequest {
+  google.protobuf.Timestamp date = 1 [(validation.v1.rules).object.required = true];
+  string domain_of_influence_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Urnengang abfragen.
+*/
+message GetContestRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Urnengänge nach Status abfragen.
+*/
+message ListContestSummariesRequest {
+  repeated shared.v1.ContestState states = 1 [(validation.v1.rules).enum = { exact_enum: true }];
+}
+
+message ListFuturePreconfiguredDatesRequest {
+}
+
+/*
+  description: Vergangene Urnengänge abfragen.
+*/
+message ListContestPastRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date = 2;
+}
+
+/*
+  description: Urnengäng löschen (nur während Testphase)
+*/
+message DeleteContestRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Urnengäng entsperren.
+*/
+message PastUnlockContestRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Urnengäng archivieren.
+*/
+message ArchiveContestRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+
+  // if not set it is archived directly.
+  // has to be in future and after the date of the contest if set.
+  google.protobuf.Timestamp archive_per = 2;
+}
+
+/*
+  description: Dem Wahlkreis zugewiesene Auszählungskreise für Urnengang abfragen.
+*/
+message ListCountingCircleOptionsRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Einstellungen zu Auszählungskreisen aktualisieren.
+*/
+message UpdateCountingCircleOptionsRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  repeated UpdateCountingCircleOptionRequest options = 2;
+}
+
+/*
+  description: Einstellungen zu Auszählungskreis aktualisieren.
+*/
+message UpdateCountingCircleOptionRequest {
+  string counting_circle_id = 1 [(validation.v1.rules).string.guid = true];
+  bool e_voting = 2;
+}
+
+message GetContestOverviewChangesRequest {
+}
+
+message GetContestDetailsChangesRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}

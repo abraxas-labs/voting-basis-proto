@@ -1,0 +1,35 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "models/page.proto";
+
+message EventLogsPage {
+  Page page = 1;
+  EventLogs event_logs = 2;
+}
+
+message EventLogs {
+  repeated EventLog event_logs = 1;
+}
+
+message EventLog {
+  string event_name = 1;
+  string event_content = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  EventLogUser event_user = 4;
+  EventLogTenant event_tenant = 5;
+}
+
+message EventLogUser {
+  string first_name = 1;
+  string last_name = 2;
+}
+
+message EventLogTenant {
+  string tenant_name = 1;
+}

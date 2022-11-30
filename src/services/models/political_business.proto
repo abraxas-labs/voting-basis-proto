@@ -1,0 +1,31 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "models/domain_of_influence.proto";
+import "models/entity_state.proto";
+import "rules/rules.proto";
+import "shared/political_business.proto";
+
+message PoliticalBusinesses {
+  repeated PoliticalBusiness political_businesses = 1;
+}
+
+message PoliticalBusiness {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  DomainOfInfluence domain_of_influence = 6 [(validation.v1.rules).object.required = true];
+  shared.v1.PoliticalBusinessType political_business_type = 7 [(validation.v1.rules).enum.exact_enum = true];
+  bool active = 8;
+}
+
+message PoliticalBusinessMessage {
+  PoliticalBusiness data = 1;
+  EntityState new_entity_state = 2;
+}

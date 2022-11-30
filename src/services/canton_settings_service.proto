@@ -1,0 +1,18 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/canton_settings.proto";
+import "models/id_value.proto";
+import "requests/canton_settings_requests.proto";
+
+service CantonSettingsService {
+  rpc Create(requests.CreateCantonSettingsRequest) returns (models.IdValue);
+  rpc Update(requests.UpdateCantonSettingsRequest) returns (google.protobuf.Empty);
+  rpc List(requests.ListCantonSettingsRequest) returns (models.CantonSettingsList);
+  rpc Get (requests.GetCantonSettingsRequest) returns (models.CantonSettings);
+}

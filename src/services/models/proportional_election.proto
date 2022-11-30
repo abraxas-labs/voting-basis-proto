@@ -1,0 +1,108 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "models/domain_of_influence_party.proto";
+import "shared/ballot_number_generation.proto";
+import "shared/proportional_election.proto";
+import "shared/sex.proto";
+import "rules/rules.proto";
+
+message ProportionalElections {
+  repeated ProportionalElection proportional_elections = 1;
+}
+
+message ProportionalElection {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  int32 number_of_mandates = 6 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  shared.v1.ProportionalElectionMandateAlgorithm mandate_algorithm = 7 [(validation.v1.rules).enum.exact_enum = true];
+  bool candidate_check_digit = 8;
+  int32 ballot_bundle_size = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
+  bool automatic_ballot_bundle_number_generation = 10;
+  shared.v1.BallotNumberGeneration ballot_number_generation = 11 [(validation.v1.rules).enum.exact_enum = true];
+  bool automatic_empty_vote_counting = 12;
+  bool enforce_empty_vote_counting_for_counting_circles = 13;
+  string domain_of_influence_id = 14 [(validation.v1.rules).string.guid = true];
+  string contest_id = 15 [(validation.v1.rules).string.guid = true];
+  bool active = 16;
+  int32 ballot_bundle_sample_size = 17 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
+  shared.v1.ProportionalElectionReviewProcedure review_procedure = 18 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_review_procedure_for_counting_circles = 19;
+}
+
+message ProportionalElectionLists {
+  repeated ProportionalElectionList lists = 1;
+}
+
+message ProportionalElectionList {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string proportional_election_id = 2 [(validation.v1.rules).string.guid = true];
+  string order_number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 6, alpha_num_white: true }];
+  map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 20, complex_sl_text: true }}}];
+  int32 blank_row_count = 5 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
+  int32 position = 6 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  map<string, string> description = 7 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  int32 count_of_candidates = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
+  bool candidate_count_ok = 9;
+  map<string, string> list_union_description = 10  [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
+  map<string, string> sub_list_union_description = 11  [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
+}
+
+message ProportionalElectionListUnions {
+  repeated ProportionalElectionListUnion proportional_election_list_unions = 1;
+}
+
+message ProportionalElectionListUnion {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string proportional_election_id = 2 [(validation.v1.rules).string.guid = true];
+  map<string, string> description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
+  int32 position = 4 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  string proportional_election_root_list_union_id = 5 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  repeated ProportionalElectionListUnion proportional_election_sub_list_unions = 6;
+  repeated string proportional_election_list_ids = 7 [(validation.v1.rules).string.guid = true];
+  string proportional_election_main_list_id = 8 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+}
+
+message ProportionalElectionListUnionEntries {
+  string proportional_election_list_union_id = 1;
+  repeated string proportional_election_list_ids = 2;
+}
+
+message ProportionalElectionListUnionMainList {
+  string proportional_election_list_union_id = 1;
+  string proportional_election_main_list_id = 2;
+}
+
+message ProportionalElectionCandidates {
+  repeated ProportionalElectionCandidate candidates = 1;
+}
+
+message ProportionalElectionCandidate {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string proportional_election_list_id = 2 [(validation.v1.rules).string.guid = true];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 8 [(validation.v1.rules).object.required = true];
+  shared.v1.SexType sex = 9 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> occupation = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  string title = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
+  map<string, string> occupation_title = 12 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  bool incumbent = 13;
+  string zip_code = 14 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
+  string locality = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  int32 position = 16 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  bool accumulated = 17;
+  int32 accumulated_position = 18;
+  DomainOfInfluenceParty party = 19;
+}

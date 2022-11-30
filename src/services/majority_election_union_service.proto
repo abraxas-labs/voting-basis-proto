@@ -1,0 +1,22 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/election_candidate.proto";
+import "models/id_value.proto";
+import "models/political_business.proto";
+import "requests/majority_election_union_requests.proto";
+
+service MajorityElectionUnionService {
+  rpc Create(requests.CreateMajorityElectionUnionRequest) returns (models.IdValue);
+  rpc Update(requests.UpdateMajorityElectionUnionRequest) returns (google.protobuf.Empty);
+  rpc UpdateEntries(requests.UpdateMajorityElectionUnionEntriesRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteMajorityElectionUnionRequest) returns (google.protobuf.Empty);
+
+  rpc GetPoliticalBusinesses(requests.GetMajorityElectionUnionPoliticalBusinessesRequest) returns (models.PoliticalBusinesses);
+  rpc GetCandidates(requests.GetMajorityElectionUnionCandidatesRequest) returns (models.ElectionCandidates);
+}

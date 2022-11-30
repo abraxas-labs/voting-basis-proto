@@ -1,0 +1,39 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "rules/rules.proto";
+
+message CreateProportionalElectionUnionRequest {
+  string contest_id = 1 [(validation.v1.rules).string.guid = true];
+  string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+}
+
+message UpdateProportionalElectionUnionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+}
+
+message DeleteProportionalElectionUnionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateProportionalElectionUnionEntriesRequest {
+  string proportional_election_union_id = 1 [(validation.v1.rules).string.guid = true];
+  repeated string proportional_election_ids = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message GetProportionalElectionUnionPoliticalBusinessesRequest {
+  string proportional_election_union_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetProportionalElectionUnionCandidatesRequest {
+  string proportional_election_union_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetProportionalElectionUnionListsRequest {
+  string proportional_election_union_id = 1 [(validation.v1.rules).string.guid = true];
+}

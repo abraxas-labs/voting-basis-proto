@@ -1,0 +1,73 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "models/contact_person.proto";
+import "models/entity_info.proto";
+import "shared/counting_circle.proto";
+import "rules/rules.proto";
+
+message CountingCircles {
+  repeated CountingCircle counting_circles = 1;
+}
+
+message CountingCircle {
+  string id = 1;
+  string name = 2;
+  string bfs = 3;
+  Authority responsible_authority = 4;
+  ContactPerson contact_person_during_event = 5;
+  bool contact_person_same_during_event_as_after = 6;
+  ContactPerson contact_person_after_event = 7;
+  shared.v1.CountingCircleState state = 8;
+  EntityInfo info = 9;
+  string code = 10;
+  int32 sort_number = 11;
+  string name_for_protocol = 12;
+}
+
+message Authority {
+  string secure_connect_id = 1 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
+  string name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true, allow_empty: true }];
+  string street = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true, allow_empty: true }];
+  string zip = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
+  string city = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
+  string phone = 6 [(validation.v1.rules).string = { phone: true, allow_empty: true }];
+  string email = 7 [(validation.v1.rules).string = { email: true, allow_empty: true }];
+}
+
+message DomainOfInfluenceCountingCircles {
+  repeated DomainOfInfluenceCountingCircle counting_circles = 1;
+}
+
+message DomainOfInfluenceCountingCircle {
+  string id = 1;
+  string name = 2;
+  string bfs = 3;
+  Authority responsible_authority = 4;
+  ContactPerson contact_person_during_event = 5;
+  bool contact_person_same_during_event_as_after = 6;
+  ContactPerson contact_person_after_event = 7;
+  bool inherited = 8;
+  shared.v1.CountingCircleState state = 9; // TODO: state here necessary?
+  string code = 10;
+  int32 sort_number = 11;
+  string name_for_protocol = 12;
+}
+
+message CountingCirclesMergers {
+  repeated CountingCirclesMerger mergers = 1;
+}
+
+message CountingCirclesMerger {
+  string id = 1;
+  CountingCircle new_counting_circle = 2;
+  repeated CountingCircle merged_counting_circles = 3;
+  string copy_from_counting_circle_id = 4;
+  google.protobuf.Timestamp active_from = 5;
+  bool merged = 6;
+}

@@ -1,0 +1,78 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1;
+
+import "data/contest_event_data.proto";
+import "data/event_info.proto";
+import "google/protobuf/timestamp.proto";
+
+message ContestCreated {
+  data.EventInfo event_info = 1;
+  data.ContestEventData contest = 2;
+}
+
+message ContestUpdated {
+  data.EventInfo event_info = 1;
+  data.ContestEventData contest = 2;
+}
+
+message ContestDeleted {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message ContestsMerged {
+  data.EventInfo event_info = 1;
+  string merged_id = 2;
+  repeated string old_ids = 3;
+}
+
+message ContestTestingPhaseEnded {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message PreconfiguredContestDateCreated {
+  data.EventInfo event_info = 1;
+  data.PreconfiguredContestDateEventData preconfigured_contest_date = 2;
+}
+
+message ContestImportStarted {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message PoliticalBusinessesImportStarted {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message ContestPastLocked {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message ContestArchived {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message ContestPastUnlocked {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+}
+
+message ContestArchiveDateUpdated {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+  google.protobuf.Timestamp archive_per = 8;
+}
+
+message ContestCountingCircleOptionsUpdated {
+  data.EventInfo event_info = 1;
+  string contest_id = 2;
+  repeated data.ContestCountingCircleOptionEventData options = 3;
+}

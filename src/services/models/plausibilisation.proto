@@ -1,0 +1,41 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/wrappers.proto";
+import "shared/domain_of_influence.proto";
+import "shared/plausibilisation.proto";
+import "shared/voting_channel.proto";
+import "rules/rules.proto";
+
+message PlausibilisationConfiguration {
+  google.protobuf.DoubleValue comparison_valid_voting_cards_with_accounted_ballots_threshold_percent = 1 [(validation.v1.rules).double = { min_value: 0, max_value: 100}];
+  repeated ComparisonVoterParticipationConfiguration comparison_voter_participation_configurations = 2;
+  repeated ComparisonVotingChannelConfiguration comparison_voting_channel_configurations = 3;
+  repeated ComparisonCountOfVotersConfiguration comparison_count_of_voters_configurations = 4;
+  repeated ComparisonCountOfVotersCountingCircleEntry comparison_count_of_voters_counting_circle_entries = 5;
+}
+
+message ComparisonVoterParticipationConfiguration {
+  shared.v1.DomainOfInfluenceType main_level = 1 [(validation.v1.rules).enum.exact_enum = true];
+  shared.v1.DomainOfInfluenceType comparison_level = 2 [(validation.v1.rules).enum.exact_enum = true];
+  google.protobuf.DoubleValue threshold_percent = 3 [(validation.v1.rules).double = { min_value: 0, max_value: 100}];
+}
+
+message ComparisonVotingChannelConfiguration {
+  shared.v1.VotingChannel voting_channel = 1 [(validation.v1.rules).enum.exact_enum = true];
+  google.protobuf.DoubleValue threshold_percent = 2 [(validation.v1.rules).double = { min_value: 0, max_value: 100}];
+}
+
+message ComparisonCountOfVotersConfiguration {
+  shared.v1.ComparisonCountOfVotersCategory category = 1 [(validation.v1.rules).enum.exact_enum = true];
+  google.protobuf.DoubleValue threshold_percent = 2 [(validation.v1.rules).double = { min_value: 0, max_value: 100}];
+}
+
+message ComparisonCountOfVotersCountingCircleEntry {
+  shared.v1.ComparisonCountOfVotersCategory category = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string counting_circle_id = 2 [(validation.v1.rules).string = { guid: true }];
+}

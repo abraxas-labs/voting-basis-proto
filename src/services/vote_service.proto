@@ -1,0 +1,22 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/id_value.proto";
+import "models/vote.proto";
+import "requests/vote_requests.proto";
+
+service VoteService {
+  rpc Create(requests.CreateVoteRequest) returns (models.IdValue);
+  rpc Get(requests.GetVoteRequest) returns (models.Vote);
+  rpc Update(requests.UpdateVoteRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteVoteRequest) returns (google.protobuf.Empty);
+  rpc UpdateActiveState(requests.UpdateVoteActiveStateRequest) returns (google.protobuf.Empty);
+  rpc CreateBallot(requests.CreateBallotRequest) returns (models.IdValue);
+  rpc UpdateBallot(requests.UpdateBallotRequest) returns (google.protobuf.Empty);
+  rpc DeleteBallot(requests.DeleteBallotRequest) returns (google.protobuf.Empty);
+}

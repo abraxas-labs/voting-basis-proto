@@ -1,0 +1,35 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/canton_settings.proto";
+import "models/domain_of_influence.proto";
+import "models/domain_of_influence_party.proto";
+import "models/id_value.proto";
+import "requests/domain_of_influence_requests.proto";
+
+
+service DomainOfInfluenceService {
+  rpc Create(requests.CreateDomainOfInfluenceRequest) returns (models.IdValue);
+  rpc Get(requests.GetDomainOfInfluenceRequest) returns (models.DomainOfInfluence);
+  rpc List(requests.ListDomainOfInfluenceRequest) returns (models.DomainOfInfluences);
+  rpc ListTree(requests.ListTreeDomainOfInfluenceRequest) returns (models.DomainOfInfluences);
+  rpc Update(requests.UpdateDomainOfInfluenceRequest) returns (google.protobuf.Empty);
+  rpc UpdateCountingCircleEntries(requests.UpdateDomainOfInfluenceCountingCircleEntriesRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteDomainOfInfluenceRequest) returns (google.protobuf.Empty);
+
+  rpc ListSnapshot(requests.ListDomainOfInfluenceSnapshotRequest) returns (models.DomainOfInfluences);
+  rpc ListTreeSnapshot(requests.ListTreeDomainOfInfluenceSnapshotRequest) returns (models.DomainOfInfluences);
+
+  rpc GetCantonDefaults(requests.GetDomainOfInfluenceCantonDefaultsRequest) returns (models.DomainOfInfluenceCantonDefaults);
+
+  // logo upload is done via rest.
+  rpc GetLogo(requests.GetDomainOfInfluenceLogoRequest) returns (models.DomainOfInfluenceLogo);
+  rpc DeleteLogo(requests.DeleteDomainOfInfluenceLogoRequest) returns (google.protobuf.Empty);
+
+  rpc ListParties(requests.ListDomainOfInfluencePartiesRequest) returns (models.DomainOfInfluenceParties);
+}

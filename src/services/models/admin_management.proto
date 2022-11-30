@@ -1,0 +1,24 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "shared/domain_of_influence.proto";
+
+message PoliticalDomainOfInfluenceHierarchies {
+  repeated PoliticalDomainOfInfluence political_domain_of_influences = 1;
+}
+
+message PoliticalDomainOfInfluence {
+  string id = 1;
+  string parent_id = 2;
+  repeated PoliticalDomainOfInfluence children = 3;
+  string name = 4;
+  string bfs = 5;
+  string tenant_name = 6;
+  string tenant_id = 7;
+  shared.v1.DomainOfInfluenceType type = 8;
+  shared.v1.DomainOfInfluenceCanton canton = 9;
+}

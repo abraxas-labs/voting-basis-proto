@@ -1,0 +1,13 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum ComparisonCountOfVotersCategory {
+  COMPARISON_COUNT_OF_VOTERS_CATEGORY_UNSPECIFIED = 0;
+  COMPARISON_COUNT_OF_VOTERS_CATEGORY_A = 1;
+  COMPARISON_COUNT_OF_VOTERS_CATEGORY_B = 2;
+  COMPARISON_COUNT_OF_VOTERS_CATEGORY_C = 3;
+}

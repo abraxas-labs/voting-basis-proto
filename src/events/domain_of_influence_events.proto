@@ -1,0 +1,83 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1;
+
+import "data/contact_person_event_data.proto";
+import "data/domain_of_influence_event_data.proto";
+import "data/domain_of_influence_party_event_data.proto";
+import "data/domain_of_influence_voting_card_print_data_event_data.proto";
+import "data/domain_of_influence_voting_card_return_address_event_data.proto";
+import "data/plausibilisation_event_data.proto";
+import "data/event_info.proto";
+
+message DomainOfInfluenceCreated {
+  data.EventInfo event_info = 1;
+  data.DomainOfInfluenceEventData domain_of_influence = 2;
+}
+
+message DomainOfInfluenceUpdated {
+  data.EventInfo event_info = 1;
+  data.DomainOfInfluenceEventData domain_of_influence = 2;
+}
+
+message DomainOfInfluenceDeleted {
+  data.EventInfo event_info = 1;
+  string domain_of_influence_id = 2;
+}
+
+message DomainOfInfluenceLogoUpdated {
+  data.EventInfo event_info = 1;
+  string domain_of_influence_id = 2;
+  string logo_ref = 3;
+}
+
+message DomainOfInfluenceLogoDeleted {
+  data.EventInfo event_info = 1;
+  string domain_of_influence_id = 2;
+  string logo_ref = 3;
+}
+
+message DomainOfInfluenceCountingCircleEntriesUpdated {
+  data.EventInfo event_info = 1;
+  data.DomainOfInfluenceCountingCircleEntriesEventData domain_of_influence_counting_circle_entries = 2;
+}
+
+message DomainOfInfluenceContactPersonUpdated {
+  data.EventInfo event_info = 1;
+  string domain_of_influence_id = 2;
+  data.ContactPersonEventData contact_person = 3;
+}
+
+message DomainOfInfluenceVotingCardDataUpdated {
+  data.EventInfo event_info = 1;
+  string domain_of_influence_id = 2;
+  data.DomainOfInfluenceVotingCardReturnAddressEventData return_address = 3;
+  data.DomainOfInfluenceVotingCardPrintDataEventData print_data = 4;
+  bool external_printing_center = 5;
+  string external_printing_center_eai_message_type = 6;
+}
+
+message DomainOfInfluencePlausibilisationConfigurationUpdated {
+  data.EventInfo event_info = 1;
+  string domain_of_influence_id = 2;
+  data.PlausibilisationConfigurationEventData plausibilisation_configuration = 3;
+}
+
+message DomainOfInfluencePartyCreated {
+  data.EventInfo event_info = 1;
+  data.DomainOfInfluencePartyEventData party = 2;
+}
+
+message DomainOfInfluencePartyUpdated {
+  data.EventInfo event_info = 1;
+  data.DomainOfInfluencePartyEventData party = 2;
+}
+
+message DomainOfInfluencePartyDeleted {
+  data.EventInfo event_info = 1;
+  string id = 2;
+  string domain_of_influence_id = 3;
+}

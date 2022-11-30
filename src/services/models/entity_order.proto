@@ -1,0 +1,17 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "rules/rules.proto";
+
+message EntityOrders {
+  repeated EntityOrder orders = 1;
+}
+
+message EntityOrder {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  int32 position = 2 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}

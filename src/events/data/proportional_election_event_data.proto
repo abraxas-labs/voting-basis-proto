@@ -1,0 +1,83 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "google/protobuf/timestamp.proto";
+import "shared/ballot_number_generation.proto";
+import "shared/proportional_election.proto";
+import "shared/sex.proto";
+
+message ProportionalElectionEventData {
+  string id = 1;
+  string political_business_number = 2;
+  map<string, string> official_description = 3;
+  map<string, string> short_description = 4;
+  string internal_description = 5;
+  int32 number_of_mandates = 6;
+  shared.v1.ProportionalElectionMandateAlgorithm mandate_algorithm = 7;
+  bool candidate_check_digit = 8;
+  int32 ballot_bundle_size = 9;
+  bool automatic_ballot_bundle_number_generation = 10;
+  shared.v1.BallotNumberGeneration ballot_number_generation = 11;
+  bool automatic_empty_vote_counting = 12;
+  bool enforce_empty_vote_counting_for_counting_circles = 13;
+  string domain_of_influence_id = 14;
+  string contest_id = 15;
+  bool active = 16;
+  int32 ballot_bundle_sample_size = 17;
+  shared.v1.ProportionalElectionReviewProcedure review_procedure = 18;
+  bool enforce_review_procedure_for_counting_circles = 19;
+}
+
+message ProportionalElectionListEventData {
+  string id = 1;
+  string proportional_election_id = 2;
+  string order_number = 3;
+  map<string, string> short_description = 4;
+  int32 blank_row_count = 5;
+  int32 position = 6;
+  map<string, string> description = 7;
+}
+
+message ProportionalElectionListUnionEventData {
+  string id = 1;
+  string proportional_election_id = 2;
+  map<string, string> description = 3;
+  int32 position = 4;
+  string proportional_election_root_list_union_id = 5;
+}
+
+message ProportionalElectionListUnionEntriesEventData {
+  string proportional_election_list_union_id = 1;
+  repeated string proportional_election_list_ids = 2;
+  string proportional_election_id = 3;
+}
+
+message ProportionalElectionCandidateEventData {
+  string id = 1;
+  string proportional_election_list_id = 2;
+  string number = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string political_first_name = 6;
+  string political_last_name = 7;
+  google.protobuf.Timestamp date_of_birth = 8;
+  shared.v1.SexType sex = 9;
+  // "Beruf"
+  map<string, string> occupation = 10;
+  // Title of the candidate, ex. "Dr."
+  string title = 11;
+  // "Titel und Berufsbezeichnung", occupation together with the title
+  map<string, string> occupation_title = 12;
+  bool incumbent = 13;
+  string zip_code = 14;
+  string locality = 15;
+  int32 position = 16;
+  bool accumulated = 17;
+  int32 accumulated_position = 18;
+  string party_id = 19;
+  string proportional_election_id = 20;
+}

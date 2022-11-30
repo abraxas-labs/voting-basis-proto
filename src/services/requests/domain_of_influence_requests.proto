@@ -1,0 +1,132 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "google/protobuf/timestamp.proto";
+
+import "models/canton_settings.proto";
+import "models/contact_person.proto";
+import "models/domain_of_influence_party.proto";
+import "models/domain_of_influence_voting_card_print_data.proto";
+import "models/domain_of_influence_voting_card_return_address.proto";
+import "models/export.proto";
+import "models/plausibilisation.proto";
+import "shared/domain_of_influence.proto";
+import "rules/rules.proto";
+
+message CreateDomainOfInfluenceRequest {
+  string name = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string short_name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string authority_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string secure_connect_id = 4 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
+  shared.v1.DomainOfInfluenceType type = 5 [(validation.v1.rules).enum.exact_enum = true];
+  string parent_id = 6 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  shared.v1.DomainOfInfluenceCanton canton = 7 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  models.ContactPerson contact_person = 8 [(validation.v1.rules).object.required = true];
+  bool responsible_for_voting_cards = 9;
+  string bfs = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true, allow_empty: true }];
+  string code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  int32 sort_number = 12 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
+  repeated models.ExportConfiguration export_configurations = 13;
+  models.DomainOfInfluenceVotingCardReturnAddress return_address = 14;
+  models.DomainOfInfluenceVotingCardPrintData print_data = 15;
+  models.PlausibilisationConfiguration plausibilisation_configuration = 16 [(validation.v1.rules).object.required = true];
+  repeated models.DomainOfInfluenceParty parties = 17;
+  bool external_printing_center = 18;
+  string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
+  string name_for_protocol = 20 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+}
+
+message GetDomainOfInfluenceRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListDomainOfInfluenceRequest {
+  oneof filter {
+    string counting_circle_id = 1 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+    string secure_connect_id = 2 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true, allow_empty: true }];
+    string contest_domain_of_influence_id = 3 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  }
+}
+
+message ListTreeDomainOfInfluenceRequest {
+}
+
+message UpdateDomainOfInfluenceRequest {
+  oneof admin_or_election_admin_request {
+    UpdateDomainOfInfluenceForAdminRequest admin_request = 1;
+    UpdateDomainOfInfluenceForElectionAdminRequest election_admin_request = 2;
+  }
+}
+
+message DeleteDomainOfInfluenceRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateDomainOfInfluenceCountingCircleEntriesRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  repeated string counting_circle_ids = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message ListTreeDomainOfInfluenceSnapshotRequest {
+  google.protobuf.Timestamp date_time = 1;
+  bool include_deleted = 2;
+}
+
+message ListDomainOfInfluenceSnapshotRequest {
+  string counting_circle_id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date_time = 2;
+}
+
+message GetDomainOfInfluenceCantonDefaultsRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetDomainOfInfluenceLogoRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteDomainOfInfluenceLogoRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListDomainOfInfluencePartiesRequest {
+  string domain_of_influence_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateDomainOfInfluenceForAdminRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string short_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string authority_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string secure_connect_id = 5 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
+  shared.v1.DomainOfInfluenceType type = 6 [(validation.v1.rules).enum.exact_enum = true];
+  shared.v1.DomainOfInfluenceCanton canton = 7 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  models.ContactPerson contact_person = 8 [(validation.v1.rules).object.required = true];
+  bool responsible_for_voting_cards = 9;
+  string bfs = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true, allow_empty: true }];
+  string code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  int32 sort_number = 12 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
+  repeated models.ExportConfiguration export_configurations = 13;
+  models.DomainOfInfluenceVotingCardReturnAddress return_address = 14;
+  models.DomainOfInfluenceVotingCardPrintData print_data = 15;
+  models.PlausibilisationConfiguration plausibilisation_configuration = 16 [(validation.v1.rules).object.required = true];
+  repeated models.DomainOfInfluenceParty parties = 17;
+  bool external_printing_center = 18;
+  string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
+  string name_for_protocol = 20 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+}
+
+message UpdateDomainOfInfluenceForElectionAdminRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  models.ContactPerson contact_person = 2 [(validation.v1.rules).object.required = true];
+  models.DomainOfInfluenceVotingCardReturnAddress return_address = 3;
+  models.DomainOfInfluenceVotingCardPrintData print_data = 4;
+  models.PlausibilisationConfiguration plausibilisation_configuration = 5 [(validation.v1.rules).object.required = true];
+  repeated models.DomainOfInfluenceParty parties = 6;
+  bool external_printing_center = 7;
+  string external_printing_center_eai_message_type = 8 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
+}

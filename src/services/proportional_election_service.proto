@@ -1,0 +1,43 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/id_value.proto";
+import "models/proportional_election.proto";
+import "requests/proportional_election_requests.proto";
+
+service ProportionalElectionService {
+  rpc Create(requests.CreateProportionalElectionRequest) returns (models.IdValue);
+  rpc Get(requests.GetProportionalElectionRequest) returns (models.ProportionalElection);
+  rpc List(requests.ListProportionalElectionRequest) returns (models.ProportionalElections);
+  rpc Update(requests.UpdateProportionalElectionRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteProportionalElectionRequest) returns (google.protobuf.Empty);
+  rpc UpdateActiveState(requests.UpdateProportionalElectionActiveStateRequest) returns (google.protobuf.Empty);
+
+  rpc CreateList(requests.CreateProportionalElectionListRequest) returns (models.IdValue);
+  rpc GetList(requests.GetProportionalElectionListRequest) returns (models.ProportionalElectionList);
+  rpc GetLists(requests.GetProportionalElectionListsRequest) returns (models.ProportionalElectionLists);
+  rpc UpdateList(requests.UpdateProportionalElectionListRequest) returns (google.protobuf.Empty);
+  rpc ReorderLists(requests.ReorderProportionalElectionListsRequest) returns (google.protobuf.Empty);
+  rpc DeleteList(requests.DeleteProportionalElectionListRequest) returns (google.protobuf.Empty);
+
+  rpc CreateListUnion(requests.CreateProportionalElectionListUnionRequest) returns (models.IdValue);
+  rpc GetListUnion(requests.GetProportionalElectionListUnionRequest) returns (models.ProportionalElectionListUnion);
+  rpc GetListUnions(requests.GetProportionalElectionListUnionsRequest) returns (models.ProportionalElectionListUnions);
+  rpc UpdateListUnion(requests.UpdateProportionalElectionListUnionRequest) returns (google.protobuf.Empty);
+  rpc ReorderListUnions(requests.ReorderProportionalElectionListUnionsRequest) returns (google.protobuf.Empty);
+  rpc DeleteListUnion(requests.DeleteProportionalElectionListUnionRequest) returns (google.protobuf.Empty);
+  rpc UpdateListUnionEntries(requests.UpdateProportionalElectionListUnionEntriesRequest) returns (google.protobuf.Empty);
+  rpc UpdateListUnionMainList(requests.UpdateProportionalElectionListUnionMainListRequest) returns (google.protobuf.Empty);
+
+  rpc CreateCandidate(requests.CreateProportionalElectionCandidateRequest) returns (models.IdValue);
+  rpc GetCandidate(requests.GetProportionalElectionCandidateRequest) returns (models.ProportionalElectionCandidate);
+  rpc GetCandidates(requests.GetProportionalElectionCandidatesRequest) returns (models.ProportionalElectionCandidates);
+  rpc UpdateCandidate(requests.UpdateProportionalElectionCandidateRequest) returns (google.protobuf.Empty);
+  rpc ReorderCandidates(requests.ReorderProportionalElectionCandidatesRequest) returns (google.protobuf.Empty);
+  rpc DeleteCandidate(requests.DeleteProportionalElectionCandidateRequest) returns (google.protobuf.Empty);
+}

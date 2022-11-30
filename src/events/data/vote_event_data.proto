@@ -1,0 +1,52 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "shared/vote.proto";
+
+message VoteEventData {
+  string id = 1;
+  string political_business_number = 2;
+  map<string, string> official_description = 3;
+  map<string, string> short_description = 4;
+  string internal_description = 5;
+  string domain_of_influence_id = 6;
+  string contest_id = 7;
+  bool active = 8;
+  int32 report_domain_of_influence_level = 9;
+  shared.v1.VoteResultAlgorithm result_algorithm = 10;
+  shared.v1.VoteResultEntry result_entry = 11;
+  int32 ballot_bundle_sample_size_percent = 12;
+  bool automatic_ballot_bundle_number_generation = 13;
+  bool enforce_result_entry_for_counting_circles = 14;
+  shared.v1.VoteReviewProcedure review_procedure = 15;
+  bool enforce_review_procedure_for_counting_circles = 16;
+}
+
+message BallotEventData {
+  string id = 1;
+  int32 position = 2;
+  shared.v1.BallotType ballot_type = 3;
+  map<string, string> description = 4;
+  repeated BallotQuestionEventData ballot_questions = 5;
+  string vote_id = 6;
+
+  // tie break questions are only available for VARIANTS_BALLOT
+  bool has_tie_break_questions = 7;
+  repeated TieBreakQuestionEventData tie_break_questions = 8;
+}
+
+message BallotQuestionEventData {
+  int32 number = 1;
+  map<string, string> question = 2;
+}
+
+message TieBreakQuestionEventData {
+  int32 number = 1;
+  map<string, string> question = 2;
+  int32 question_1_number = 3;
+  int32 question_2_number = 4;
+}

@@ -1,0 +1,30 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/counting_circle.proto";
+import "models/id_value.proto";
+import "requests/counting_circle_requests.proto";
+
+service CountingCircleService {
+  rpc Create(requests.CreateCountingCircleRequest) returns (models.IdValue);
+  rpc Get(requests.GetCountingCircleRequest) returns (models.CountingCircle);
+  rpc List(requests.ListCountingCircleRequest) returns (models.CountingCircles);
+  rpc ListAssigned(requests.ListAssignedCountingCircleRequest) returns (models.DomainOfInfluenceCountingCircles);
+  rpc ListAssignable(requests.ListAssignableCountingCircleRequest) returns (models.CountingCircles);
+  rpc Update(requests.UpdateCountingCircleRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteCountingCircleRequest) returns (google.protobuf.Empty);
+
+  rpc ListSnapshot(requests.ListCountingCircleSnapshotRequest) returns (models.CountingCircles);
+  rpc ListAssignedSnapshot(requests.ListAssignedCountingCircleSnapshotRequest) returns (models.DomainOfInfluenceCountingCircles);
+
+  rpc ScheduleMerger(requests.ScheduleCountingCirclesMergerRequest) returns (models.IdValue);
+  rpc UpdateScheduledMerger(requests.UpdateScheduledCountingCirclesMergerRequest) returns (google.protobuf.Empty);
+  rpc DeleteScheduledMerger(requests.DeleteScheduledCountingCirclesMergerRequest) returns (google.protobuf.Empty);
+  rpc ListMergers(requests.ListCountingCirclesMergersRequest) returns (models.CountingCirclesMergers);
+}
+

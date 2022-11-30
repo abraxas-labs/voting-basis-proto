@@ -1,0 +1,287 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "google/protobuf/timestamp.proto";
+import "models/entity_order.proto";
+import "models/majority_election.proto";
+import "shared/ballot_number_generation.proto";
+import "shared/majority_election.proto";
+import "shared/sex.proto";
+import "rules/rules.proto";
+
+message CreateMajorityElectionRequest {
+  string political_business_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 4 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  int32 number_of_mandates = 5 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  shared.v1.MajorityElectionMandateAlgorithm mandate_algorithm = 6 [(validation.v1.rules).enum.exact_enum = true];
+  bool individual_empty_ballots_allowed = 7;
+  bool candidate_check_digit = 8;
+  int32 ballot_bundle_size = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
+  int32 ballot_bundle_sample_size = 10 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
+  bool automatic_ballot_bundle_number_generation = 11;
+  shared.v1.BallotNumberGeneration ballot_number_generation = 12 [(validation.v1.rules).enum.exact_enum = true];
+  bool automatic_empty_vote_counting = 13;
+  bool enforce_empty_vote_counting_for_counting_circles = 14;
+  shared.v1.MajorityElectionResultEntry result_entry = 15 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_result_entry_for_counting_circles = 16;
+  string domain_of_influence_id = 17 [(validation.v1.rules).string.guid = true];
+  string contest_id = 18 [(validation.v1.rules).string.guid = true];
+  bool active = 19;
+  bool invalid_votes = 20;
+  int32 report_domain_of_influence_level = 21 [(validation.v1.rules).integer = { min_value: 0, max_value: 10}];
+  shared.v1.MajorityElectionReviewProcedure review_procedure = 22 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_review_procedure_for_counting_circles = 23;
+}
+
+message UpdateMajorityElectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  int32 number_of_mandates = 6 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  shared.v1.MajorityElectionMandateAlgorithm mandate_algorithm = 7 [(validation.v1.rules).enum.exact_enum = true];
+  bool individual_empty_ballots_allowed = 8;
+  bool candidate_check_digit = 9;
+  int32 ballot_bundle_size = 10 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
+  int32 ballot_bundle_sample_size = 11 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
+  bool automatic_ballot_bundle_number_generation = 12;
+  shared.v1.BallotNumberGeneration ballot_number_generation = 13 [(validation.v1.rules).enum.exact_enum = true];
+  bool automatic_empty_vote_counting = 14;
+  bool enforce_empty_vote_counting_for_counting_circles = 15;
+  shared.v1.MajorityElectionResultEntry result_entry = 16 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_result_entry_for_counting_circles = 17;
+  string domain_of_influence_id = 18 [(validation.v1.rules).string.guid = true];
+  string contest_id = 19 [(validation.v1.rules).string.guid = true];
+  bool active = 20;
+  bool invalid_votes = 21;
+  int32 report_domain_of_influence_level = 22 [(validation.v1.rules).integer = { min_value: 0, max_value: 10}];
+  shared.v1.MajorityElectionReviewProcedure review_procedure = 23 [(validation.v1.rules).enum.exact_enum = true];
+  bool enforce_review_procedure_for_counting_circles = 24;
+}
+
+message GetMajorityElectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListMajorityElectionRequest {
+  string contest_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteMajorityElectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateMajorityElectionActiveStateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  bool active = 2;
+}
+
+message CreateMajorityElectionCandidateRequest {
+  string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_first_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 7 [(validation.v1.rules).object.required = true];
+  shared.v1.SexType sex = 8 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> occupation = 9 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  string title = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
+  map<string, string> occupation_title = 11 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  map<string, string> party = 12 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 12, complex_sl_text: true }}}];
+  bool incumbent = 13;
+  string zip_code = 14 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
+  string locality = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  int32 position = 16 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message GetMajorityElectionCandidateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListMajorityElectionCandidatesRequest {
+  string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateMajorityElectionCandidateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string majority_election_id = 2 [(validation.v1.rules).string.guid = true];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 8 [(validation.v1.rules).object.required = true];
+  shared.v1.SexType sex = 9 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> occupation = 10[(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  string title = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
+  map<string, string> occupation_title = 12 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  map<string, string> party = 13 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 12, complex_sl_text: true }}}];
+  bool incumbent = 14;
+  string zip_code = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
+  string locality = 16 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  int32 position = 17 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message ReorderMajorityElectionCandidatesRequest {
+  string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+  models.EntityOrders orders = 2;
+}
+
+message DeleteMajorityElectionCandidateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+
+message CreateSecondaryMajorityElectionRequest {
+  string political_business_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 4 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  int32 number_of_mandates = 5 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 6 [(validation.v1.rules).enum.exact_enum = true];
+  string primary_majority_election_id = 7 [(validation.v1.rules).string.guid = true];
+  bool active = 8;
+}
+
+message ListSecondaryMajorityElectionsRequest {
+  string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetSecondaryMajorityElectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateSecondaryMajorityElectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
+  map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  int32 number_of_mandates = 6 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 7 [(validation.v1.rules).enum.exact_enum = true];
+  string primary_majority_election_id = 8 [(validation.v1.rules).string.guid = true];
+  bool active = 9;
+}
+
+message DeleteSecondaryMajorityElectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateSecondaryMajorityElectionActiveStateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  bool active = 2;
+}
+
+message ListSecondaryMajorityElectionCandidatesRequest {
+  string secondary_majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ReorderSecondaryMajorityElectionCandidatesRequest {
+  string secondary_majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+  models.EntityOrders orders = 2;
+}
+
+message CreateSecondaryMajorityElectionCandidateRequest {
+  string secondary_majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_first_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 7 [(validation.v1.rules).object.required = true];
+  shared.v1.SexType sex = 8 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> occupation = 9[(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  string title = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
+  map<string, string> occupation_title = 11 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  map<string, string> party = 12 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 12, complex_sl_text: true }}}];
+  bool incumbent = 13;
+  string zip_code = 14 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
+  string locality = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  int32 position = 16 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message UpdateSecondaryMajorityElectionCandidateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string secondary_majority_election_id = 2 [(validation.v1.rules).string.guid = true];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 8 [(validation.v1.rules).object.required = true];
+  shared.v1.SexType sex = 9 [(validation.v1.rules).enum.exact_enum = true];
+  map<string, string> occupation = 10[(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  string title = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
+  map<string, string> occupation_title = 12 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
+  map<string, string> party = 13 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 12, complex_sl_text: true }}}];
+  bool incumbent = 14;
+  string zip_code = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
+  string locality = 16 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  int32 position = 17 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message DeleteSecondaryMajorityElectionCandidateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message CreateMajorityElectionCandidateReferenceRequest {
+  string secondary_majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+  string candidate_id = 2 [(validation.v1.rules).string.guid = true];
+  bool incumbent = 3;
+  int32 position = 4 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message UpdateMajorityElectionCandidateReferenceRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string secondary_majority_election_id = 2 [(validation.v1.rules).string.guid = true];
+  string candidate_id = 3 [(validation.v1.rules).string.guid = true];
+  bool incumbent = 4;
+  int32 position = 5 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+}
+
+message DeleteMajorityElectionCandidateReferenceRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message CreateMajorityElectionBallotGroupRequest {
+  string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+  string short_description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 500, complex_ml_text: true }];
+  int32 position = 4 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  repeated models.MajorityElectionBallotGroupEntry entries = 5;
+}
+
+message ListMajorityElectionBallotGroupsRequest {
+  string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateMajorityElectionBallotGroupRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string majority_election_id = 2 [(validation.v1.rules).string.guid = true];
+  string short_description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string description = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 500, complex_ml_text: true }];
+  int32 position = 5 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  repeated models.MajorityElectionBallotGroupEntry entries = 6;
+}
+
+message DeleteMajorityElectionBallotGroupRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListMajorityElectionBallotGroupCandidatesRequest {
+  string ballot_group_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateMajorityElectionBallotGroupCandidatesRequest {
+  string ballot_group_id = 1 [(validation.v1.rules).string.guid = true];
+  repeated models.MajorityElectionBallotGroupEntryCandidates entry_candidates = 2;
+  int32 individual_candidates_vote_count = 3 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
+}

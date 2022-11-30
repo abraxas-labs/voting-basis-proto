@@ -1,0 +1,15 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+
+message EntityInfo {
+  google.protobuf.Timestamp created_on = 1 [(validation.v1.rules).object.required = true];
+  google.protobuf.Timestamp modified_on = 2 [(validation.v1.rules).object.required = true];
+  google.protobuf.Timestamp deleted_on = 3;
+}

@@ -1,0 +1,27 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "models/majority_election.proto";
+import "models/entity_state.proto";
+
+message ElectionGroups {
+  repeated ElectionGroup election_groups = 1;
+}
+
+message ElectionGroup {
+  string id = 1;
+  MajorityElection primary_majority_election = 2;
+  string description = 3;
+  int32 number = 4;
+  repeated string secondary_election_ids = 5;
+  repeated string secondary_political_business_numbers = 6;
+}
+
+message ElectionGroupMessage {
+  ElectionGroup data = 1;
+  EntityState new_entity_state = 2;
+}

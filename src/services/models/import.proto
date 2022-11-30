@@ -1,0 +1,39 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "models/contest.proto";
+import "models/majority_election.proto";
+import "models/proportional_election.proto";
+import "models/vote.proto";
+import "rules/rules.proto";
+
+message ContestImport {
+  Contest contest = 1 [(validation.v1.rules).object.required = true];
+  repeated MajorityElectionImport majority_elections = 2;
+  repeated ProportionalElectionImport proportional_elections = 3;
+  repeated VoteImport votes = 4;
+}
+
+message MajorityElectionImport {
+  MajorityElection election = 1 [(validation.v1.rules).object.required = true];
+  repeated MajorityElectionCandidate candidates = 2;
+}
+
+message ProportionalElectionImport {
+  ProportionalElection election = 1 [(validation.v1.rules).object.required = true];
+  repeated ProportionalElectionListImport lists = 2;
+  repeated ProportionalElectionListUnion list_unions = 3;
+}
+
+message ProportionalElectionListImport {
+  ProportionalElectionList list = 1 [(validation.v1.rules).object.required = true];
+  repeated ProportionalElectionCandidate candidates = 2;
+}
+
+message VoteImport {
+  Vote vote = 1 [(validation.v1.rules).object.required = true];
+}

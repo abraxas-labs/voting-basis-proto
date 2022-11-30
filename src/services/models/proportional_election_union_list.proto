@@ -1,0 +1,17 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+message ProportionalElectionUnionLists {
+  repeated ProportionalElectionUnionList proportional_election_union_lists = 1;
+}
+
+message ProportionalElectionUnionList {
+  string order_number = 1;
+  map<string, string> short_description = 2;
+  string political_business_numbers = 3;
+  int32 list_count = 4;
+}

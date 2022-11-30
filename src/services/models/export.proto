@@ -1,0 +1,28 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "shared/export.proto";
+import "rules/rules.proto";
+
+message ExportConfiguration {
+  string id = 1 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  string domain_of_influence_id = 2 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  string description = 3 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
+  string eai_message_type = 4 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true }];
+  repeated string export_keys = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+}
+
+message ExportTemplates {
+  repeated ExportTemplate export_templates = 1;
+}
+
+message ExportTemplate {
+  string key = 1;
+  string description = 2;
+  shared.v1.ExportEntityType entity_type = 3;
+  shared.v1.ExportFileFormat format = 4;
+}

@@ -1,0 +1,35 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum ContestDateAvailability {
+  CONTEST_DATE_AVAILABILITY_UNSPECIFIED = 0;
+  // the contest date is available
+  CONTEST_DATE_AVAILABILITY_AVAILABLE = 1;
+  // the contest date is available, but another contest is scheduled close to this date
+  CONTEST_DATE_AVAILABILITY_CLOSE_TO_OTHER_CONTEST_DATE = 2;
+  // a contest on this date already exists on our own or a parent tenant
+  CONTEST_DATE_AVAILABILITY_ALREADY_EXISTS = 3;
+  // a contest on this date exists on a child tenant
+  CONTEST_DATE_AVAILABILITY_EXISTS_ON_CHILD_TENANT = 4;
+  // a preconfigured date exists on the same date
+  CONTEST_DATE_AVAILABILITY_SAME_AS_PRE_CONFIGURED_DATE = 5;
+}
+
+enum ContestState {
+  // the proto default value, should never be used
+  CONTEST_STATE_UNSPECIFIED = 0;
+  // contest is in testing phase
+  CONTEST_STATE_TESTING_PHASE = 1;
+  // contest takes place in the future or today, but is not in the testing phase anymore.
+  CONTEST_STATE_ACTIVE = 2;
+  // contest has taken place in the past and is locked
+  CONTEST_STATE_PAST_LOCKED = 3;
+  // contest has taken place in the past and is unlocked and will automatically get locked after the day ends.
+  CONTEST_STATE_PAST_UNLOCKED = 4;
+  // contest is archived
+  CONTEST_STATE_ARCHIVED = 5;
+}

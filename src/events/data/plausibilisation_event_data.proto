@@ -1,0 +1,40 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+import "google/protobuf/wrappers.proto";
+import "shared/domain_of_influence.proto";
+import "shared/plausibilisation.proto";
+import "shared/voting_channel.proto";
+
+message PlausibilisationConfigurationEventData {
+  google.protobuf.DoubleValue comparison_valid_voting_cards_with_accounted_ballots_threshold_percent = 1;
+  repeated ComparisonVoterParticipationConfigurationEventData comparison_voter_participation_configurations = 2;
+  repeated ComparisonVotingChannelConfigurationEventData comparison_voting_channel_configurations = 3;
+  repeated ComparisonCountOfVotersConfigurationEventData comparison_count_of_voters_configurations = 4;
+  repeated ComparisonCountOfVotersCountingCircleEntryEventData comparison_count_of_voters_counting_circle_entries = 5;
+}
+
+message ComparisonVoterParticipationConfigurationEventData {
+  shared.v1.DomainOfInfluenceType main_level = 1;
+  shared.v1.DomainOfInfluenceType comparison_level = 2;
+  google.protobuf.DoubleValue threshold_percent = 3;
+}
+
+message ComparisonVotingChannelConfigurationEventData {
+  shared.v1.VotingChannel voting_channel = 1;
+  google.protobuf.DoubleValue threshold_percent = 2;
+}
+
+message ComparisonCountOfVotersConfigurationEventData {
+  shared.v1.ComparisonCountOfVotersCategory category = 1;
+  google.protobuf.DoubleValue threshold_percent = 2;
+}
+
+message ComparisonCountOfVotersCountingCircleEntryEventData {
+  shared.v1.ComparisonCountOfVotersCategory category = 1;
+  string counting_circle_id = 2;
+}

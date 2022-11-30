@@ -1,0 +1,16 @@
+// (c) Copyright 2022 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1.data;
+
+message DomainOfInfluenceVotingCardReturnAddressEventData {
+  string address_line_1 = 1;
+  string address_line_2 = 2;
+  string street = 3;
+  string address_addition = 4;
+  string zip_code = 5;
+  string city = 6;
+  string country = 7;
+}
