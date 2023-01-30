@@ -125,6 +125,7 @@ message ProportionalElectionAfterTestingPhaseUpdated {
   string political_business_number = 3;
   map<string, string> official_description = 4;
   map<string, string> short_description = 5;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 6;
   bool enforce_empty_vote_counting_for_counting_circles = 7;
 }
@@ -154,4 +155,5 @@ message ProportionalElectionCandidateAfterTestingPhaseUpdated {
   string locality = 14;
   string proportional_election_id = 15;
   string proportional_election_list_id = 16;
+  string origin = 17;
 }

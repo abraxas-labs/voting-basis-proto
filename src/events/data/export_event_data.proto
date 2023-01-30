@@ -5,10 +5,13 @@ syntax = "proto3";
 
 package abraxas.voting.basis.events.v1.data;
 
+import "shared/export.proto";
+
 message ExportConfigurationEventData {
   string id = 1;
   string domain_of_influence_id = 2;
   string description = 3;
   string eai_message_type = 4;
   repeated string export_keys = 5;
+  shared.v1.ExportProvider provider = 6;
 }

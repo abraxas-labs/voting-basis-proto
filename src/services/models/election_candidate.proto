@@ -23,4 +23,5 @@ message ElectionCandidate {
   bool incumbent = 8;
   string zip_code = 9;
   string locality = 10;
+  string origin = 11;
 }

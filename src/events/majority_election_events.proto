@@ -153,6 +153,7 @@ message MajorityElectionAfterTestingPhaseUpdated {
   string political_business_number = 3;
   map<string, string> official_description = 4;
   map<string, string> short_description = 5;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 6;
   bool enforce_empty_vote_counting_for_counting_circles = 7;
   bool enforce_result_entry_for_counting_circles = 8;
@@ -176,6 +177,7 @@ message MajorityElectionCandidateAfterTestingPhaseUpdated {
   string zip_code = 14;
   string locality = 15;
   string majority_election_id = 16;
+  string origin = 17;
 }
 
 message SecondaryMajorityElectionAfterTestingPhaseUpdated {
@@ -183,6 +185,7 @@ message SecondaryMajorityElectionAfterTestingPhaseUpdated {
   string id = 2;
   map<string, string> official_description = 3;
   map<string, string> short_description = 4;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 5;
   string primary_majority_election_id = 6;
   string political_business_number = 7;
@@ -206,4 +209,5 @@ message SecondaryMajorityElectionCandidateAfterTestingPhaseUpdated {
   string locality = 15;
   string secondary_majority_election_id = 16;
   string primary_majority_election_id = 17;
+  string origin = 18;
 }

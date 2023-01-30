@@ -15,6 +15,7 @@ message ProportionalElectionEventData {
   string political_business_number = 2;
   map<string, string> official_description = 3;
   map<string, string> short_description = 4;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 5;
   int32 number_of_mandates = 6;
   shared.v1.ProportionalElectionMandateAlgorithm mandate_algorithm = 7;
@@ -80,4 +81,5 @@ message ProportionalElectionCandidateEventData {
   int32 accumulated_position = 18;
   string party_id = 19;
   string proportional_election_id = 20;
+  string origin = 21;
 }

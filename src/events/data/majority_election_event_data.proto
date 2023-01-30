@@ -15,9 +15,11 @@ message MajorityElectionEventData {
   string political_business_number = 2;
   map<string, string> official_description = 3;
   map<string, string> short_description = 4;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 5;
   int32 number_of_mandates = 6;
   shared.v1.MajorityElectionMandateAlgorithm mandate_algorithm = 7;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   bool individual_empty_ballots_allowed = 8;
   bool candidate_check_digit = 9;
   int32 ballot_bundle_size = 10;
@@ -31,6 +33,7 @@ message MajorityElectionEventData {
   string domain_of_influence_id = 18;
   string contest_id = 19;
   bool active = 20;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   bool invalid_votes = 21;
   int32 report_domain_of_influence_level = 22;
   shared.v1.MajorityElectionReviewProcedure review_procedure = 23;
@@ -58,6 +61,7 @@ message MajorityElectionCandidateEventData {
   string zip_code = 15;
   string locality = 16;
   int32 position = 17;
+  string origin = 18;
 }
 
 message SecondaryMajorityElectionEventData {
@@ -65,6 +69,7 @@ message SecondaryMajorityElectionEventData {
   string political_business_number = 2;
   map<string, string> official_description = 3;
   map<string, string> short_description = 4;
+  // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 5;
   int32 number_of_mandates = 6;
   shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 7;

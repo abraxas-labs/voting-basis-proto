@@ -17,11 +17,12 @@ message ProportionalElections {
 }
 
 message ProportionalElection {
+  reserved 5;
+  reserved "internal_description";
   string id = 1 [(validation.v1.rules).string.guid = true];
   string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
   map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
-  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
   int32 number_of_mandates = 6 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
   shared.v1.ProportionalElectionMandateAlgorithm mandate_algorithm = 7 [(validation.v1.rules).enum.exact_enum = true];
   bool candidate_check_digit = 8;
@@ -100,9 +101,10 @@ message ProportionalElectionCandidate {
   map<string, string> occupation_title = 12 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
   bool incumbent = 13;
   string zip_code = 14 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
-  string locality = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
+  string locality = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
   int32 position = 16 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
   bool accumulated = 17;
   int32 accumulated_position = 18;
   DomainOfInfluenceParty party = 19;
+  string origin = 20 [(validation.v1.rules).string = { min_length: 1, max_length: 80, complex_sl_text: true, allow_empty: true }];
 }

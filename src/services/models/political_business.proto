@@ -15,11 +15,12 @@ message PoliticalBusinesses {
 }
 
 message PoliticalBusiness {
+  reserved 5;
+  reserved "internal_description";
   string id = 1 [(validation.v1.rules).string.guid = true];
   string political_business_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   map<string, string> official_description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
   map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
-  string internal_description = 5 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true, allow_empty: true }];
   DomainOfInfluence domain_of_influence = 6 [(validation.v1.rules).object.required = true];
   shared.v1.PoliticalBusinessType political_business_type = 7 [(validation.v1.rules).enum.exact_enum = true];
   bool active = 8;
