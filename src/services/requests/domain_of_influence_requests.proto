@@ -38,6 +38,7 @@ message CreateDomainOfInfluenceRequest {
   bool external_printing_center = 18;
   string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
   string name_for_protocol = 20 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  string sap_customer_order_number = 21 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
 }
 
 message GetDomainOfInfluenceRequest {
@@ -118,6 +119,7 @@ message UpdateDomainOfInfluenceForAdminRequest {
   bool external_printing_center = 18;
   string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
   string name_for_protocol = 20 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  string sap_customer_order_number = 21 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
 }
 
 message UpdateDomainOfInfluenceForElectionAdminRequest {
@@ -129,4 +131,5 @@ message UpdateDomainOfInfluenceForElectionAdminRequest {
   repeated models.DomainOfInfluenceParty parties = 6;
   bool external_printing_center = 7;
   string external_printing_center_eai_message_type = 8 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
+  string sap_customer_order_number = 9 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
 }

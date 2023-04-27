@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.69.3`)
+# ✨ Changelog (`v1.69.4`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.69.3
-Previous version ---- v1.67.0
+This version -------- v1.69.4
+Previous version ---- v1.69.3
 Initial version ----- v1.67.0
-Total commits ------- 6
+Total commits ------- 1
 ```
+
+## [v1.69.4] - 2023-04-25
+
+### 🆕 Added
+
+- Added domain of influence sap customer order number
 
 ## [v1.69.3] - 2023-01-17
 

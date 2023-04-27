@@ -58,6 +58,7 @@ message DomainOfInfluenceVotingCardDataUpdated {
   data.DomainOfInfluenceVotingCardPrintDataEventData print_data = 4;
   bool external_printing_center = 5;
   string external_printing_center_eai_message_type = 6;
+  string sap_customer_order_number = 7;
 }
 
 message DomainOfInfluencePlausibilisationConfigurationUpdated {

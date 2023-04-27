@@ -44,6 +44,7 @@ message DomainOfInfluence {
   bool external_printing_center = 22;
   string external_printing_center_eai_message_type = 23 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
   string name_for_protocol = 24 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  string sap_customer_order_number = 25 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
 }
 
 message DomainOfInfluenceCountingCircleEntries {
