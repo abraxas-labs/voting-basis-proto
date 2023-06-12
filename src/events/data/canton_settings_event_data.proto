@@ -26,6 +26,7 @@ message CantonSettingsEventData {
   string voting_documents_e_voting_eai_message_type = 12;
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 13;
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 14;
+  bool electoral_registration_enabled = 15;
 }
 
 message CantonSettingsVotingCardChannelEventData {

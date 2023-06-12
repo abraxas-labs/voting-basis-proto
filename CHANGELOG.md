@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.69.4`)
+# ✨ Changelog (`v1.70.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.69.4
-Previous version ---- v1.69.3
+This version -------- v1.70.0
+Previous version ---- v1.69.4
 Initial version ----- v1.67.0
 Total commits ------- 1
 ```
+
+## [v1.70.0] - 2023-05-01
+
+### 🔄 Changed
+
+- electoral registration on canton settings
 
 ## [v1.69.4] - 2023-04-25
 

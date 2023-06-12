@@ -29,6 +29,7 @@ message CreateCantonSettingsRequest {
   string voting_documents_e_voting_eai_message_type = 11 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true }];
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 13 [(validation.v1.rules).enum = { exact_enum: true }];
+  bool electoral_registration_enabled = 14;
 }
 
 /*
@@ -48,6 +49,7 @@ message UpdateCantonSettingsRequest {
   string voting_documents_e_voting_eai_message_type = 11 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true }];
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 13 [(validation.v1.rules).enum = { exact_enum: true }];
+  bool electoral_registration_enabled = 14;
 }
 
 /*
