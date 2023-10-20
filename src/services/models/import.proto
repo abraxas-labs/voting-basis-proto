@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.models;
 
 import "models/contest.proto";
+import "models/domain_of_influence_party.proto";
 import "models/majority_election.proto";
 import "models/proportional_election.proto";
 import "models/vote.proto";
@@ -31,9 +32,17 @@ message ProportionalElectionImport {
 
 message ProportionalElectionListImport {
   ProportionalElectionList list = 1 [(validation.v1.rules).object.required = true];
-  repeated ProportionalElectionCandidate candidates = 2;
+  repeated ProportionalElectionImportCandidate candidates = 2;
 }
 
 message VoteImport {
   Vote vote = 1 [(validation.v1.rules).object.required = true];
+}
+
+message ProportionalElectionImportCandidate {
+  ProportionalElectionCandidate candidate = 1;
+  // source party short for each language
+  map<string, string> source_party_short = 2;
+  // source party for each language
+  map<string, string> source_party = 3;
 }

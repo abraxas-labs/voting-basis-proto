@@ -10,6 +10,7 @@ import "data/domain_of_influence_event_data.proto";
 import "data/domain_of_influence_party_event_data.proto";
 import "data/domain_of_influence_voting_card_print_data_event_data.proto";
 import "data/domain_of_influence_voting_card_return_address_event_data.proto";
+import "data/domain_of_influence_voting_card_swiss_post_data_event_data.proto";
 import "data/plausibilisation_event_data.proto";
 import "data/event_info.proto";
 
@@ -59,6 +60,7 @@ message DomainOfInfluenceVotingCardDataUpdated {
   bool external_printing_center = 5;
   string external_printing_center_eai_message_type = 6;
   string sap_customer_order_number = 7;
+  data.DomainOfInfluenceVotingCardSwissPostDataEventData swiss_post_data = 8;
 }
 
 message DomainOfInfluencePlausibilisationConfigurationUpdated {

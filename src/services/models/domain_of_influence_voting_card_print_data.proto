@@ -12,4 +12,5 @@ message DomainOfInfluenceVotingCardPrintData {
   shared.v1.VotingCardShippingFranking shipping_away = 1 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.VotingCardShippingFranking shipping_return = 2 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.VotingCardShippingMethod shipping_method = 3 [(validation.v1.rules).enum = { exact_enum: true }];
+  bool shipping_voting_cards_to_delivery_address = 4;
 }

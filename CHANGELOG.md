@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.70.0`)
+# ✨ Changelog (`v1.73.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.70.0
-Previous version ---- v1.69.4
+This version -------- v1.73.0
+Previous version ---- v1.70.0
 Initial version ----- v1.67.0
-Total commits ------- 1
+Total commits ------- 7
 ```
+
+## [v1.73.0] - 2023-08-31
+
+### 🔄 Changed
+
+- political first name of candidate from simple text to complex text
+
+## [v1.72.2] - 2023-08-18
+
+### ❌ Removed
+
+- remove franking licence away number
+
+## [v1.72.1] - 2023-08-17
+
+### 🔄 Changed
+
+- rename swiss post order number to franking licence number away
+
+## [v1.72.0] - 2023-08-10
+
+### 🔄 Changed
+
+- add party mapping on import
+
+## [v1.71.0] - 2023-07-25
+
+### 🔄 Changed
+
+- add swiss post data to domain of influence
+
+## [v1.70.2] - 2023-07-18
+
+### 🆕 Added
+
+- Add domain of influence voting card shipping choice
+
+## [v1.70.1] - 2023-06-13
+
+### 🔄 Changed
+
+- change input validation for doi party short description from simple to complex type
 
 ## [v1.70.0] - 2023-05-01
 

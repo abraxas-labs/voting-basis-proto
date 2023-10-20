@@ -11,4 +11,5 @@ message DomainOfInfluenceVotingCardPrintDataEventData {
   shared.v1.VotingCardShippingFranking shipping_away = 1;
   shared.v1.VotingCardShippingFranking shipping_return = 2;
   shared.v1.VotingCardShippingMethod shipping_method = 3;
+  bool shipping_voting_cards_to_delivery_address = 4;
 }

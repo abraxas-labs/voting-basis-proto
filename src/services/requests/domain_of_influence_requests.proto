@@ -12,6 +12,7 @@ import "models/contact_person.proto";
 import "models/domain_of_influence_party.proto";
 import "models/domain_of_influence_voting_card_print_data.proto";
 import "models/domain_of_influence_voting_card_return_address.proto";
+import "models/domain_of_influence_voting_card_swiss_post_data.proto";
 import "models/export.proto";
 import "models/plausibilisation.proto";
 import "shared/domain_of_influence.proto";
@@ -39,6 +40,7 @@ message CreateDomainOfInfluenceRequest {
   string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
   string name_for_protocol = 20 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   string sap_customer_order_number = 21 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
+  models.DomainOfInfluenceVotingCardSwissPostData swiss_post_data = 22;
 }
 
 message GetDomainOfInfluenceRequest {
@@ -120,6 +122,7 @@ message UpdateDomainOfInfluenceForAdminRequest {
   string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
   string name_for_protocol = 20 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   string sap_customer_order_number = 21 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
+  models.DomainOfInfluenceVotingCardSwissPostData swiss_post_data = 22;
 }
 
 message UpdateDomainOfInfluenceForElectionAdminRequest {
