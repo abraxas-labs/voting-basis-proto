@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -62,9 +62,9 @@ message VoteAfterTestingPhaseUpdated {
 }
 
 message BallotAfterTestingPhaseUpdated {
+  reserved 3;
   data.EventInfo event_info = 1;
   string id = 2;
-  map<string, string> description = 3;
   repeated data.BallotQuestionEventData ballot_questions = 4;
   repeated data.TieBreakQuestionEventData tie_break_questions = 5;
   string vote_id = 6;

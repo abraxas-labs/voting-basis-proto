@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -7,6 +7,7 @@ package abraxas.voting.basis.events.v1.data;
 
 import "data/contact_person_event_data.proto";
 import "google/protobuf/timestamp.proto";
+import "shared/domain_of_influence.proto";
 
 message CountingCircleEventData {
   string id = 1;
@@ -19,6 +20,13 @@ message CountingCircleEventData {
   string code = 8;
   int32 sort_number = 9;
   string name_for_protocol = 10;
+  repeated CountingCircleElectorateEventData electorates = 11;
+  shared.v1.DomainOfInfluenceCanton canton = 12;
+}
+
+message CountingCircleElectorateEventData {
+  string id = 1;
+  repeated shared.v1.DomainOfInfluenceType domain_of_influence_types = 2;
 }
 
 message CountingCirclesMergerEventData {

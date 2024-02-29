@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -36,6 +36,7 @@ message CreateMajorityElectionRequest {
   int32 report_domain_of_influence_level = 21 [(validation.v1.rules).integer = { min_value: 0, max_value: 10}];
   shared.v1.MajorityElectionReviewProcedure review_procedure = 22 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 23;
+  bool enforce_candidate_check_digit_for_counting_circles = 24;
 }
 
 message UpdateMajorityElectionRequest {
@@ -62,6 +63,7 @@ message UpdateMajorityElectionRequest {
   int32 report_domain_of_influence_level = 22 [(validation.v1.rules).integer = { min_value: 0, max_value: 10}];
   shared.v1.MajorityElectionReviewProcedure review_procedure = 23 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 24;
+  bool enforce_candidate_check_digit_for_counting_circles = 25;
 }
 
 message GetMajorityElectionRequest {

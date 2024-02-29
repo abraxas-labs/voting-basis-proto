@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -30,6 +30,11 @@ message CreateCantonSettingsRequest {
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 13 [(validation.v1.rules).enum = { exact_enum: true }];
   bool electoral_registration_enabled = 14;
+  bool multiple_vote_ballots_enabled = 15;
+  bool counting_machine_enabled = 16;
+  bool new_zh_features_enabled = 17;
+  bool proportional_election_use_candidate_check_digit = 18;
+  bool majority_election_use_candidate_check_digit = 19;
 }
 
 /*
@@ -50,6 +55,11 @@ message UpdateCantonSettingsRequest {
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 13 [(validation.v1.rules).enum = { exact_enum: true }];
   bool electoral_registration_enabled = 14;
+  bool multiple_vote_ballots_enabled = 15;
+  bool counting_machine_enabled = 16;
+  bool new_zh_features_enabled = 17;
+  bool proportional_election_use_candidate_check_digit = 18;
+  bool majority_election_use_candidate_check_digit = 19;
 }
 
 /*

@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -30,9 +30,8 @@ message Vote {
 
 message Ballot {
   string id = 1 [(validation.v1.rules).string.guid = true];
-  int32 position = 2 [(validation.v1.rules).integer = { min_value: 1, max_value: 1}];
+  int32 position = 2 [(validation.v1.rules).integer = { min_value: 1, max_value: 50 }];
   shared.v1.BallotType ballot_type = 3 [(validation.v1.rules).enum.exact_enum = true];
-  map<string, string> description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
   repeated BallotQuestion ballot_questions = 5;
   string vote_id = 6 [(validation.v1.rules).string.guid = true];
 

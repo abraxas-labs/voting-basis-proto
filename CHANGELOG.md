@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.73.0`)
+# ✨ Changelog (`v1.81.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.73.0
-Previous version ---- v1.70.0
+This version -------- v1.81.0
+Previous version ---- v1.73.0
 Initial version ----- v1.67.0
-Total commits ------- 7
+Total commits ------- 9
 ```
+
+## [v1.81.0] - 2024-02-16
+
+### :new: Added
+
+- added canton to counting circle
+
+## [v1.80.0] - 2024-02-02
+
+### 🔄 Changed
+
+- double proportional election mandate algorithms
+
+## [v1.79.0] - 2024-01-29
+
+### 🆕 Added
+
+- Add counting circle electorates
+
+## [v1.78.0] - 2024-01-26
+
+### 🆕 Added
+
+- add candidate check digit
+
+## [v1.77.0] - 2024-01-10
+
+### :new: Added
+
+- added permission service
+
+## [v1.76.0] - 2024-01-04
+
+### 🆕 Added
+
+- add new zh features flag
+
+## [v1.75.0] - 2023-12-20
+
+### 🆕 Added
+
+- Add counting machine flag to canton settings
+
+## [v1.74.0] - 2023-12-19
+
+### 🆕 Added
+
+- allow multiple vote ballots
 
 ## [v1.73.0] - 2023-08-31
 

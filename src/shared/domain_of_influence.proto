@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -23,6 +23,8 @@ enum DomainOfInfluenceType {
   DOMAIN_OF_INFLUENCE_TYPE_AN = 10;
 }
 
+/* DomainOfInfluenceCanton is also used outside of DomainOfInfluences.
+   For backwards compatibility, we cannot rename the this to simply Canton. */
 enum DomainOfInfluenceCanton {
   DOMAIN_OF_INFLUENCE_CANTON_UNSPECIFIED = 0;
   DOMAIN_OF_INFLUENCE_CANTON_SG = 1;

@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -10,6 +10,7 @@ import "google/protobuf/wrappers.proto";
 import "models/contact_person.proto";
 import "models/counting_circle.proto";
 import "rules/rules.proto";
+import "shared/domain_of_influence.proto";
 
 message CreateCountingCircleRequest {
   string name = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
@@ -21,6 +22,8 @@ message CreateCountingCircleRequest {
   string code = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
   int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  repeated models.CountingCircleElectorate electorates = 10;
+  shared.v1.DomainOfInfluenceCanton canton = 11 [(validation.v1.rules).enum = { exact_enum: true }];
 }
 
 message GetCountingCircleRequest {
@@ -49,6 +52,8 @@ message UpdateCountingCircleRequest {
   string code = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
   int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  repeated models.CountingCircleElectorate electorates = 11;
+  shared.v1.DomainOfInfluenceCanton canton = 12 [(validation.v1.rules).enum = { exact_enum: true }];
 }
 
 message DeleteCountingCircleRequest {

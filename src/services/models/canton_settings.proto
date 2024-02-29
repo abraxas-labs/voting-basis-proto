@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -34,6 +34,11 @@ message CantonSettings {
 
   // indicates whether voting stimmregister is enabled
   bool electoral_registration_enabled = 15;
+  bool multiple_vote_ballots_enabled = 16;
+  bool counting_machine_enabled = 17;
+  bool new_zh_features_enabled = 18;
+  bool proportional_election_use_candidate_check_digit = 19;
+  bool majority_election_use_candidate_check_digit = 20;
 }
 
 message DomainOfInfluenceCantonDefaults {
@@ -41,6 +46,9 @@ message DomainOfInfluenceCantonDefaults {
   repeated shared.v1.ProportionalElectionMandateAlgorithm proportional_election_mandate_algorithms = 2;
   bool majority_election_invalid_votes = 3;
   repeated shared.v1.PoliticalBusinessUnionType enabled_political_business_union_types = 4;
+  bool multiple_vote_ballots_enabled = 5;
+  bool proportional_election_use_candidate_check_digit = 6;
+  bool majority_election_use_candidate_check_digit = 7;
 }
 
 message CantonSettingsVotingCardChannel {

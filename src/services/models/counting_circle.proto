@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 import "models/contact_person.proto";
 import "models/entity_info.proto";
 import "shared/counting_circle.proto";
+import "shared/domain_of_influence.proto";
 import "rules/rules.proto";
 
 message CountingCircles {
@@ -28,6 +29,8 @@ message CountingCircle {
   string code = 10;
   int32 sort_number = 11;
   string name_for_protocol = 12;
+  repeated CountingCircleElectorate electorates = 13;
+  shared.v1.DomainOfInfluenceCanton canton = 14;
 }
 
 message Authority {
@@ -38,6 +41,10 @@ message Authority {
   string city = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
   string phone = 6 [(validation.v1.rules).string = { phone: true, allow_empty: true }];
   string email = 7 [(validation.v1.rules).string = { email: true, allow_empty: true }];
+}
+
+message CountingCircleElectorate {
+  repeated shared.v1.DomainOfInfluenceType domain_of_influence_types = 1 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message DomainOfInfluenceCountingCircles {
@@ -53,10 +60,11 @@ message DomainOfInfluenceCountingCircle {
   bool contact_person_same_during_event_as_after = 6;
   ContactPerson contact_person_after_event = 7;
   bool inherited = 8;
-  shared.v1.CountingCircleState state = 9; // TODO: state here necessary?
+  shared.v1.CountingCircleState state = 9;
   string code = 10;
   int32 sort_number = 11;
   string name_for_protocol = 12;
+  shared.v1.DomainOfInfluenceCanton canton = 13;
 }
 
 message CountingCirclesMergers {

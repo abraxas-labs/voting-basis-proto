@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -37,6 +37,7 @@ message ProportionalElection {
   int32 ballot_bundle_sample_size = 17 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 18 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 19;
+  bool enforce_candidate_check_digit_for_counting_circles = 20;
 }
 
 message ProportionalElectionLists {
@@ -102,9 +103,10 @@ message ProportionalElectionCandidate {
   bool incumbent = 13;
   string zip_code = 14 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true, allow_empty: true }];
   string locality = 15 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true, allow_empty: true }];
-  int32 position = 16 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
+  int32 position = 16 [(validation.v1.rules).integer = { min_value: 1, max_value: 100 }];
   bool accumulated = 17;
   int32 accumulated_position = 18;
   DomainOfInfluenceParty party = 19;
   string origin = 20 [(validation.v1.rules).string = { min_length: 1, max_length: 80, complex_sl_text: true, allow_empty: true }];
+  int32 check_digit = 21 [(validation.v1.rules).integer = { min_value: 0, max_value: 9}];
 }

@@ -1,4 +1,4 @@
-// (c) Copyright 2022 by Abraxas Informatik AG
+// (c) Copyright 2024 by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -32,6 +32,7 @@ message CreateProportionalElectionRequest {
   int32 ballot_bundle_sample_size = 16 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 17 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 18;
+  bool enforce_candidate_check_digit_for_counting_circles = 19;
 }
 
 message UpdateProportionalElectionRequest {
@@ -55,6 +56,7 @@ message UpdateProportionalElectionRequest {
   int32 ballot_bundle_sample_size = 17 [(validation.v1.rules).integer = { min_value: 0, max_value: 500}];
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 18 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 19;
+  bool enforce_candidate_check_digit_for_counting_circles = 20;
 }
 
 message GetProportionalElectionRequest {
