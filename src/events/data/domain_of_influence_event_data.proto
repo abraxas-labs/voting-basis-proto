@@ -21,6 +21,9 @@ message DomainOfInfluenceEventData {
   string code = 11;
   int32 sort_number = 12;
   string name_for_protocol = 13;
+  bool virtual_top_level = 14;
+  bool view_counting_circle_partial_results = 15;
+  bool electoral_registration_enabled = 16;
 }
 
 message DomainOfInfluenceCountingCircleEntriesEventData {

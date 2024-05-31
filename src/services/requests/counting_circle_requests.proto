@@ -24,6 +24,7 @@ message CreateCountingCircleRequest {
   string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   repeated models.CountingCircleElectorate electorates = 10;
   shared.v1.DomainOfInfluenceCanton canton = 11 [(validation.v1.rules).enum = { exact_enum: true }];
+  bool e_voting = 12;
 }
 
 message GetCountingCircleRequest {
@@ -54,6 +55,7 @@ message UpdateCountingCircleRequest {
   string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   repeated models.CountingCircleElectorate electorates = 11;
   shared.v1.DomainOfInfluenceCanton canton = 12 [(validation.v1.rules).enum = { exact_enum: true }];
+  bool e_voting = 13;
 }
 
 message DeleteCountingCircleRequest {
@@ -80,6 +82,7 @@ message ScheduleCountingCirclesMergerRequest {
   google.protobuf.Timestamp active_from = 7 [(validation.v1.rules).object.required = true];
   int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  bool e_voting = 10;
 }
 
 message UpdateScheduledCountingCirclesMergerRequest {
@@ -93,6 +96,7 @@ message UpdateScheduledCountingCirclesMergerRequest {
   google.protobuf.Timestamp active_from = 8 [(validation.v1.rules).object.required = true];
   int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
+  bool e_voting = 11;
 }
 
 message DeleteScheduledCountingCirclesMergerRequest {

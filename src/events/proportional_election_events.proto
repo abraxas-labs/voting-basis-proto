@@ -10,6 +10,7 @@ import "data/proportional_election_event_data.proto";
 import "data/event_info.proto";
 import "google/protobuf/timestamp.proto";
 import "shared/sex.proto";
+import "shared/proportional_election.proto";
 
 message ProportionalElectionCreated {
   data.EventInfo event_info = 1;
@@ -36,6 +37,12 @@ message ProportionalElectionActiveStateUpdated {
   data.EventInfo event_info = 1;
   string proportional_election_id = 2;
   bool active = 3;
+}
+
+message ProportionalElectionMandateAlgorithmUpdated {
+  data.EventInfo event_info = 1;
+  string proportional_election_id = 2;
+  shared.v1.ProportionalElectionMandateAlgorithm mandate_algorithm = 3;
 }
 
 message ProportionalElectionListCreated {

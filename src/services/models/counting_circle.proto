@@ -31,6 +31,7 @@ message CountingCircle {
   string name_for_protocol = 12;
   repeated CountingCircleElectorate electorates = 13;
   shared.v1.DomainOfInfluenceCanton canton = 14;
+  bool e_voting = 15;
 }
 
 message Authority {
@@ -65,6 +66,7 @@ message DomainOfInfluenceCountingCircle {
   int32 sort_number = 11;
   string name_for_protocol = 12;
   shared.v1.DomainOfInfluenceCanton canton = 13;
+  bool e_voting = 14;
 }
 
 message CountingCirclesMergers {

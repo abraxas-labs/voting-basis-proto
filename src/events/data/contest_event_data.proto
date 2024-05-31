@@ -30,6 +30,7 @@ message PreconfiguredContestDateEventData {
 }
 
 message ContestCountingCircleOptionEventData {
+  option deprecated = true;
   string counting_circle_id = 1;
   bool e_voting = 2;
 }

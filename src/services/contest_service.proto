@@ -22,9 +22,6 @@ service ContestService {
   rpc Archive(requests.ArchiveContestRequest) returns (google.protobuf.Empty);
   rpc PastUnlock(requests.PastUnlockContestRequest) returns (google.protobuf.Empty);
 
-  rpc ListCountingCircleOptions(requests.ListCountingCircleOptionsRequest) returns (models.ContestCountingCircleOptions);
-  rpc UpdateCountingCircleOptions(requests.UpdateCountingCircleOptionsRequest) returns (google.protobuf.Empty);
-
   rpc GetOverviewChanges(requests.GetContestOverviewChangesRequest) returns (stream models.ContestOverviewChangeMessage);
   rpc GetDetailsChanges(requests.GetContestDetailsChangesRequest) returns (stream models.ContestDetailsChangeMessage);
 }

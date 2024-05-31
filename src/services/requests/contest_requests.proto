@@ -96,29 +96,6 @@ message ArchiveContestRequest {
   google.protobuf.Timestamp archive_per = 2;
 }
 
-/*
-  description: Dem Wahlkreis zugewiesene Auszählungskreise für Urnengang abfragen.
-*/
-message ListCountingCircleOptionsRequest {
-  string id = 1 [(validation.v1.rules).string.guid = true];
-}
-
-/*
-  description: Einstellungen zu Auszählungskreisen aktualisieren.
-*/
-message UpdateCountingCircleOptionsRequest {
-  string id = 1 [(validation.v1.rules).string.guid = true];
-  repeated UpdateCountingCircleOptionRequest options = 2;
-}
-
-/*
-  description: Einstellungen zu Auszählungskreis aktualisieren.
-*/
-message UpdateCountingCircleOptionRequest {
-  string counting_circle_id = 1 [(validation.v1.rules).string.guid = true];
-  bool e_voting = 2;
-}
-
 message GetContestOverviewChangesRequest {
 }
 

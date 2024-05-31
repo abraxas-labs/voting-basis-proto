@@ -13,6 +13,7 @@ import "data/domain_of_influence_voting_card_return_address_event_data.proto";
 import "data/domain_of_influence_voting_card_swiss_post_data_event_data.proto";
 import "data/plausibilisation_event_data.proto";
 import "data/event_info.proto";
+import "shared/voting_card_color.proto";
 
 message DomainOfInfluenceCreated {
   data.EventInfo event_info = 1;
@@ -61,6 +62,7 @@ message DomainOfInfluenceVotingCardDataUpdated {
   string external_printing_center_eai_message_type = 6;
   string sap_customer_order_number = 7;
   data.DomainOfInfluenceVotingCardSwissPostDataEventData swiss_post_data = 8;
+  shared.v1.VotingCardColor voting_card_color = 9;
 }
 
 message DomainOfInfluencePlausibilisationConfigurationUpdated {

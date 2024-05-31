@@ -67,16 +67,6 @@ message ContestSummaryEntryDetails {
   int32 contest_entries_count = 2;
 }
 
-message ContestCountingCircleOptions {
-  repeated ContestCountingCircleOption options = 1;
-}
-
-message ContestCountingCircleOption {
-  string contest_id = 1;
-  CountingCircle counting_circle = 2;
-  bool e_voting = 3;
-}
-
 message ContestAvailability {
   shared.v1.ContestDateAvailability availability = 1;
 }

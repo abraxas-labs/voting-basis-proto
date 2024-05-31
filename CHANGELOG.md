@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.81.0`)
+# ✨ Changelog (`v1.93.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,99 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.81.0
-Previous version ---- v1.73.0
+This version -------- v1.93.0
+Previous version ---- v1.81.0
 Initial version ----- v1.67.0
-Total commits ------- 9
+Total commits ------- 14
 ```
+
+## [v1.93.0] - 2024-05-29
+
+### 🆕 Added
+
+- add publish results enabled canton setting
+
+## [v1.92.0] - 2024-05-22
+
+### 🆕 Added
+
+- add ballot question type
+
+## [v1.91.0] - 2024-05-06
+
+### 🆕 Added
+
+- proportional election update mandate algorithm
+
+## [v1.90.0] - 2024-05-03
+
+### 🔄 Changed
+
+- move Stimmregister flag from canton settings to DOI
+
+## [v1.89.0] - 2024-04-19
+
+### 🆕 Added
+
+- add state plausibilised enabled canton setting
+
+## [v1.88.0] - 2024-04-18
+
+### 🆕 Added
+
+- add counting circle result state descriptions
+
+## [v1.87.0] - 2024-04-15
+
+### :new: Added
+
+- added voting card color
+
+## [v1.86.1] - 2024-04-08
+
+### 🔄 Changed
+
+- admin management service contains the return address of dois now
+
+## [v1.86.0] - 2024-04-03
+
+### 🆕 Added
+
+- add evoting flag to counting circle
+
+### ❌ Removed
+
+- remove contest counting circle options
+
+## [v1.85.0] - 2024-03-28
+
+### :new: Added
+
+- added view partial counting circle results flag to domain of influence
+
+## [v1.84.0] - 2024-03-14
+
+### 🆕 Added
+
+- add virtual top level domain of influence
+
+## [v1.83.1] - 2024-03-13
+
+### 🔄 Changed
+
+- update input validation for vote attribute
+
+## [v1.83.0] - 2024-03-11
+
+### 🆕 Added
+
+- add vote result algorithm popular and counting circle majority
+
+## [v1.82.0] - 2024-03-05
+
+### 🆕 Added
+
+- add political assembly
 
 ## [v1.81.0] - 2024-02-16
 

@@ -15,6 +15,7 @@ import "models/export.proto";
 import "models/plausibilisation.proto";
 import "rules/rules.proto";
 import "shared/domain_of_influence.proto";
+import "shared/voting_card_color.proto";
 
 message DomainOfInfluences {
   repeated DomainOfInfluence domain_of_influences = 1;
@@ -47,6 +48,10 @@ message DomainOfInfluence {
   string name_for_protocol = 24 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   string sap_customer_order_number = 25 [(validation.v1.rules).string = { min_length: 1, max_length: 20, numeric: true, allow_empty: true }];
   DomainOfInfluenceVotingCardSwissPostData swiss_post_data = 26;
+  bool virtual_top_level = 27;
+  bool view_counting_circle_partial_results = 28;
+  shared.v1.VotingCardColor voting_card_color = 29;
+  bool electoral_registration_enabled = 30;
 }
 
 message DomainOfInfluenceCountingCircleEntries {

@@ -1,0 +1,19 @@
+// (c) Copyright 2024 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "google/protobuf/empty.proto";
+import "models/political_assembly.proto";
+import "models/id_value.proto";
+import "requests/political_assembly_requests.proto";
+
+service PoliticalAssemblyService {
+  rpc Create(requests.CreatePoliticalAssemblyRequest) returns (models.IdValue);
+  rpc Get(requests.GetPoliticalAssemblyRequest) returns (models.PoliticalAssembly);
+  rpc Update(requests.UpdatePoliticalAssemblyRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeletePoliticalAssemblyRequest) returns (google.protobuf.Empty);
+  rpc List(requests.ListPoliticalAssemblyRequest) returns (models.PoliticalAssemblies);
+}

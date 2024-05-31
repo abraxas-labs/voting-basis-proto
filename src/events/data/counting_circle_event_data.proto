@@ -22,6 +22,7 @@ message CountingCircleEventData {
   string name_for_protocol = 10;
   repeated CountingCircleElectorateEventData electorates = 11;
   shared.v1.DomainOfInfluenceCanton canton = 12;
+  bool e_voting = 13;
 }
 
 message CountingCircleElectorateEventData {

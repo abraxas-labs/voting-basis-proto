@@ -13,3 +13,14 @@ enum CountingCircleState {
   // a counting circle is inactive when it is created by merge but not active yet.
   COUNTING_CIRCLE_STATE_INACTIVE = 4;
 }
+
+enum CountingCircleResultState {
+  COUNTING_CIRCLE_RESULT_STATE_UNSPECIFIED = 0;
+  COUNTING_CIRCLE_RESULT_STATE_INITIAL = 1; // Initial, Erfassung noch nicht gestartet
+  COUNTING_CIRCLE_RESULT_STATE_SUBMISSION_ONGOING = 2; // in Erfassung
+  COUNTING_CIRCLE_RESULT_STATE_READY_FOR_CORRECTION = 3; // zur Korrektur
+  COUNTING_CIRCLE_RESULT_STATE_SUBMISSION_DONE = 4; // Erfassung beendet
+  COUNTING_CIRCLE_RESULT_STATE_CORRECTION_DONE = 5; // Korrektur beendet
+  COUNTING_CIRCLE_RESULT_STATE_AUDITED_TENTATIVELY = 6; // Vorläufig geprüft
+  COUNTING_CIRCLE_RESULT_STATE_PLAUSIBILISED = 7; // Plausibilisiert
+}

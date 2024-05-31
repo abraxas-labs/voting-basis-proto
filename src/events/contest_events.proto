@@ -72,6 +72,7 @@ message ContestArchiveDateUpdated {
 }
 
 message ContestCountingCircleOptionsUpdated {
+  option deprecated = true;
   data.EventInfo event_info = 1;
   string contest_id = 2;
   repeated data.ContestCountingCircleOptionEventData options = 3;

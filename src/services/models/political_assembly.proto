@@ -1,0 +1,23 @@
+// (c) Copyright 2024 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "models/domain_of_influence.proto";
+import "rules/rules.proto";
+
+message PoliticalAssemblies {
+  repeated PoliticalAssembly political_assemblies = 1;
+}
+
+message PoliticalAssembly {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date = 2 [(validation.v1.rules).object.required = true];
+  map<string, string> description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string domain_of_influence_id = 4 [(validation.v1.rules).string.guid = true];
+  DomainOfInfluence domain_of_influence = 5;
+  bool e_voting = 6;
+}

@@ -1,0 +1,48 @@
+// (c) Copyright 2024 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1.requests;
+
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+
+/*
+  description: Versammlung erstellen.
+*/
+message CreatePoliticalAssemblyRequest {
+  google.protobuf.Timestamp date = 1 [(validation.v1.rules).object.required = true];
+  map<string, string> description = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string domain_of_influence_id = 3 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Versammlung aktualisieren.
+*/
+message UpdatePoliticalAssemblyRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp date = 2 [(validation.v1.rules).object.required = true];
+  map<string, string> description = 3 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string domain_of_influence_id = 4 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Versammlung abfragen.
+*/
+message GetPoliticalAssemblyRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Versammlung löschen
+*/
+message DeletePoliticalAssemblyRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+/*
+  description: Versammlungen abfragen.
+*/
+message ListPoliticalAssemblyRequest {
+}

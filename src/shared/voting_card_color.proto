@@ -1,0 +1,18 @@
+// (c) Copyright 2024 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum VotingCardColor {
+  VOTING_CARD_COLOR_UNSPECIFIED = 0;
+  VOTING_CARD_COLOR_BLUE = 1;
+  VOTING_CARD_COLOR_CHAMOIS = 2;
+  VOTING_CARD_COLOR_YELLOW = 3;
+  VOTING_CARD_COLOR_GOLD = 4;
+  VOTING_CARD_COLOR_GREY = 5;
+  VOTING_CARD_COLOR_PINK = 6;
+  VOTING_CARD_COLOR_RED = 7;
+  VOTING_CARD_COLOR_GREEN = 8;
+}

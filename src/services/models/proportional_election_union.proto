@@ -5,6 +5,10 @@ syntax = "proto3";
 
 package abraxas.voting.basis.services.v1.models;
 
+message ProportionalElectionUnions {
+  repeated ProportionalElectionUnion unions = 1;
+}
+
 message ProportionalElectionUnion {
   string id = 1;
   string contest_id = 2;

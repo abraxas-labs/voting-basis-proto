@@ -1,0 +1,25 @@
+// (c) Copyright 2024 by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.events.v1;
+
+import "data/political_assembly_event_data.proto";
+import "data/event_info.proto";
+import "google/protobuf/timestamp.proto";
+
+message PoliticalAssemblyCreated {
+  data.EventInfo event_info = 1;
+  data.PoliticalAssemblyEventData political_assembly = 2;
+}
+
+message PoliticalAssemblyUpdated {
+  data.EventInfo event_info = 1;
+  data.PoliticalAssemblyEventData political_assembly = 2;
+}
+
+message PoliticalAssemblyDeleted {
+  data.EventInfo event_info = 1;
+  string political_assembly_id = 2;
+}

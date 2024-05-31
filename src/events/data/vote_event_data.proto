@@ -42,6 +42,7 @@ message BallotEventData {
 message BallotQuestionEventData {
   int32 number = 1;
   map<string, string> question = 2;
+  shared.v1.BallotQuestionType type = 3;
 }
 
 message TieBreakQuestionEventData {

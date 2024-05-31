@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.requests;
 
 import "rules/rules.proto";
+import "shared/proportional_election.proto";
 
 message CreateProportionalElectionUnionRequest {
   string contest_id = 1 [(validation.v1.rules).string.guid = true];
@@ -36,4 +37,13 @@ message GetProportionalElectionUnionCandidatesRequest {
 
 message GetProportionalElectionUnionListsRequest {
   string proportional_election_union_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListProportionalElectionUnionsRequest {
+  string proportional_election_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateProportionalElectionUnionPoliticalBusinessesRequest {
+  repeated string proportional_election_union_ids = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.ProportionalElectionMandateAlgorithm mandate_algorithm = 2 [(validation.v1.rules).enum.exact_enum = true];
 }

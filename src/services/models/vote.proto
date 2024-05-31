@@ -43,6 +43,7 @@ message Ballot {
 message BallotQuestion {
   int32 number = 1 [(validation.v1.rules).integer = { min_value: 1, max_value: 50}];
   map<string, string> question = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  shared.v1.BallotQuestionType type = 3 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message TieBreakQuestion {
