@@ -1,10 +1,11 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
 
 package abraxas.voting.basis.events.v1.data;
 
+import "google/protobuf/wrappers.proto";
 import "shared/vote.proto";
 
 message VoteEventData {
@@ -24,10 +25,11 @@ message VoteEventData {
   bool enforce_result_entry_for_counting_circles = 14;
   shared.v1.VoteReviewProcedure review_procedure = 15;
   bool enforce_review_procedure_for_counting_circles = 16;
+  shared.v1.VoteType type = 17;
 }
 
 message BallotEventData {
-  reserved 4;
+  reserved 4, 12;
   string id = 1;
   int32 position = 2;
   shared.v1.BallotType ballot_type = 3;
@@ -37,12 +39,18 @@ message BallotEventData {
   // tie break questions are only available for VARIANTS_BALLOT
   bool has_tie_break_questions = 7;
   repeated TieBreakQuestionEventData tie_break_questions = 8;
+
+  // these 3 fields are only relevant when the vote type is VARIANT_QUESTIONS_ON_MULTIPLE_BALLOTS
+  shared.v1.BallotSubType sub_type = 9;
+  map<string, string> official_description = 10;
+  map<string, string> short_description = 11;
 }
 
 message BallotQuestionEventData {
   int32 number = 1;
   map<string, string> question = 2;
   shared.v1.BallotQuestionType type = 3;
+  google.protobuf.Int32Value federal_identification = 4;
 }
 
 message TieBreakQuestionEventData {
@@ -50,4 +58,5 @@ message TieBreakQuestionEventData {
   map<string, string> question = 2;
   int32 question_1_number = 3;
   int32 question_2_number = 4;
+  google.protobuf.Int32Value federal_identification = 5;
 }

@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -19,12 +19,12 @@ message CreateCountingCircleRequest {
   models.ContactPerson contact_person_during_event = 4 [(validation.v1.rules).object.required = true];
   bool contact_person_same_during_event_as_after = 5;
   models.ContactPerson contact_person_after_event = 6;
-  string code = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  string code = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 20, simple_sl_text: true, allow_empty: true }];
   int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   repeated models.CountingCircleElectorate electorates = 10;
   shared.v1.DomainOfInfluenceCanton canton = 11 [(validation.v1.rules).enum = { exact_enum: true }];
-  bool e_voting = 12;
+  google.protobuf.Timestamp e_voting_active_from = 12;
 }
 
 message GetCountingCircleRequest {
@@ -50,12 +50,12 @@ message UpdateCountingCircleRequest {
   models.ContactPerson contact_person_during_event = 5 [(validation.v1.rules).object.required = true];
   bool contact_person_same_during_event_as_after = 6;
   models.ContactPerson contact_person_after_event = 7;
-  string code = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  string code = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 20, simple_sl_text: true, allow_empty: true }];
   int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   repeated models.CountingCircleElectorate electorates = 11;
   shared.v1.DomainOfInfluenceCanton canton = 12 [(validation.v1.rules).enum = { exact_enum: true }];
-  bool e_voting = 13;
+  google.protobuf.Timestamp e_voting_active_from = 13;
 }
 
 message DeleteCountingCircleRequest {
@@ -75,28 +75,28 @@ message ListAssignedCountingCircleSnapshotRequest {
 message ScheduleCountingCirclesMergerRequest {
   string name = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string bfs = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string code = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  string code = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 20, simple_sl_text: true, allow_empty: true }];
   models.Authority responsible_authority = 4 [(validation.v1.rules).object.required = true];
   repeated string merged_counting_circle_ids = 5 [(validation.v1.rules).string.guid = true];
   string copy_from_counting_circle_id = 6 [(validation.v1.rules).string.guid = true];
   google.protobuf.Timestamp active_from = 7 [(validation.v1.rules).object.required = true];
   int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
-  bool e_voting = 10;
+  google.protobuf.Timestamp e_voting_active_from = 10;
 }
 
 message UpdateScheduledCountingCirclesMergerRequest {
   string new_counting_circle_id = 1 [(validation.v1.rules).string.guid = true];
   string name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string bfs = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string code = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  string code = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 20, simple_sl_text: true, allow_empty: true }];
   models.Authority responsible_authority = 5 [(validation.v1.rules).object.required = true];
   repeated string merged_counting_circle_ids = 6 [(validation.v1.rules).string.guid = true];
   string copy_from_counting_circle_id = 7 [(validation.v1.rules).string.guid = true];
   google.protobuf.Timestamp active_from = 8 [(validation.v1.rules).object.required = true];
   int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
-  bool e_voting = 11;
+  google.protobuf.Timestamp e_voting_active_from = 11;
 }
 
 message DeleteScheduledCountingCirclesMergerRequest {
@@ -108,4 +108,7 @@ message ListCountingCirclesMergersRequest {
   // if true, only active mergers are returned (mergers that happend in the past)
   // if false, only scheduled mergers are returned
   google.protobuf.BoolValue merged = 1;
+}
+
+message GetCountingCircleChangesRequest {
 }

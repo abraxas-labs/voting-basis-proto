@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.requests;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "models/entity_order.proto";
 import "shared/ballot_number_generation.proto";
 import "shared/proportional_election.proto";
@@ -33,6 +34,7 @@ message CreateProportionalElectionRequest {
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 17 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 18;
   bool enforce_candidate_check_digit_for_counting_circles = 19;
+  google.protobuf.Int32Value federal_identification = 20;
 }
 
 message UpdateProportionalElectionRequest {
@@ -57,6 +59,7 @@ message UpdateProportionalElectionRequest {
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 18 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 19;
   bool enforce_candidate_check_digit_for_counting_circles = 20;
+  google.protobuf.Int32Value federal_identification = 21;
 }
 
 message GetProportionalElectionRequest {
@@ -83,6 +86,7 @@ message CreateProportionalElectionListRequest {
   int32 blank_row_count = 4 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
   int32 position = 5 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
   map<string, string> description = 6 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string party_id = 7 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
 }
 
 message GetProportionalElectionListRequest {
@@ -101,6 +105,7 @@ message UpdateProportionalElectionListRequest {
   int32 blank_row_count = 5 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
   int32 position = 6 [(validation.v1.rules).integer = { min_value: 1, max_value: 100}];
   map<string, string> description = 7 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
+  string party_id = 8 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
 }
 
 message ReorderProportionalElectionListsRequest {
@@ -157,7 +162,7 @@ message UpdateProportionalElectionListUnionMainListRequest {
 
 message CreateProportionalElectionCandidateRequest {
   string proportional_election_list_id = 1 [(validation.v1.rules).string.guid = true];
-  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
@@ -188,7 +193,7 @@ message GetProportionalElectionCandidatesRequest {
 message UpdateProportionalElectionCandidateRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string proportional_election_list_id = 2 [(validation.v1.rules).string.guid = true];
-  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
@@ -215,4 +220,7 @@ message ReorderProportionalElectionCandidatesRequest {
 
 message DeleteProportionalElectionCandidateRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetProportionalElectionListChangesRequest {
 }

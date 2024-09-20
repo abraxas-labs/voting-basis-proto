@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -23,7 +23,8 @@ message PoliticalBusiness {
   map<string, string> short_description = 4 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
   DomainOfInfluence domain_of_influence = 6 [(validation.v1.rules).object.required = true];
   shared.v1.PoliticalBusinessType political_business_type = 7 [(validation.v1.rules).enum.exact_enum = true];
-  bool active = 8;
+  shared.v1.PoliticalBusinessSubType political_business_sub_type = 8 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  bool active = 9;
 }
 
 message PoliticalBusinessMessage {

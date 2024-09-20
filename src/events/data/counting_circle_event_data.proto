@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -23,6 +23,7 @@ message CountingCircleEventData {
   repeated CountingCircleElectorateEventData electorates = 11;
   shared.v1.DomainOfInfluenceCanton canton = 12;
   bool e_voting = 13;
+  google.protobuf.Timestamp e_voting_active_from = 14;
 }
 
 message CountingCircleElectorateEventData {

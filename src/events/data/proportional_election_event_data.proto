@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.events.v1.data;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "shared/ballot_number_generation.proto";
 import "shared/proportional_election.proto";
 import "shared/sex.proto";
@@ -32,6 +33,7 @@ message ProportionalElectionEventData {
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 18;
   bool enforce_review_procedure_for_counting_circles = 19;
   bool enforce_candidate_check_digit_for_counting_circles = 20;
+  google.protobuf.Int32Value federal_identification = 21;
 }
 
 message ProportionalElectionListEventData {
@@ -42,6 +44,7 @@ message ProportionalElectionListEventData {
   int32 blank_row_count = 5;
   int32 position = 6;
   map<string, string> description = 7;
+  string party_id = 8;
 }
 
 message ProportionalElectionListUnionEventData {

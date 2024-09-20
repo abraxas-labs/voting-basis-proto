@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.models;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "shared/sex.proto";
 import "shared/ballot_number_generation.proto";
 import "shared/majority_election.proto";
@@ -40,6 +41,8 @@ message MajorityElection {
   shared.v1.MajorityElectionReviewProcedure review_procedure = 23 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 24;
   bool enforce_candidate_check_digit_for_counting_circles = 25;
+  bool individual_candidates_disabled = 26;
+  google.protobuf.Int32Value federal_identification = 27;
 }
 
 message MajorityElectionCandidates {
@@ -49,7 +52,7 @@ message MajorityElectionCandidates {
 message MajorityElectionCandidate {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string majority_election_id = 2 [(validation.v1.rules).string.guid = true];
-  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
@@ -90,6 +93,7 @@ message SecondaryMajorityElection {
   shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 7;
   string primary_majority_election_id = 8;
   bool active = 9;
+  bool individual_candidates_disabled = 10;
 }
 
 message SecondaryMajorityElections {

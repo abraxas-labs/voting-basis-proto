@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -8,6 +8,7 @@ package abraxas.voting.basis.services.v1.models;
 import "google/protobuf/timestamp.proto";
 import "models/contact_person.proto";
 import "models/entity_info.proto";
+import "models/entity_state.proto";
 import "shared/counting_circle.proto";
 import "shared/domain_of_influence.proto";
 import "rules/rules.proto";
@@ -32,6 +33,7 @@ message CountingCircle {
   repeated CountingCircleElectorate electorates = 13;
   shared.v1.DomainOfInfluenceCanton canton = 14;
   bool e_voting = 15;
+  google.protobuf.Timestamp e_voting_active_from = 16;
 }
 
 message Authority {
@@ -67,6 +69,7 @@ message DomainOfInfluenceCountingCircle {
   string name_for_protocol = 12;
   shared.v1.DomainOfInfluenceCanton canton = 13;
   bool e_voting = 14;
+  google.protobuf.Timestamp e_voting_active_from = 15;
 }
 
 message CountingCirclesMergers {
@@ -80,4 +83,13 @@ message CountingCirclesMerger {
   string copy_from_counting_circle_id = 4;
   google.protobuf.Timestamp active_from = 5;
   bool merged = 6;
+}
+
+message CountingCircleChangeMessage {
+  CountingCircleMessage counting_circle = 1;
+}
+
+message CountingCircleMessage {
+  CountingCircle data = 1;
+  EntityState new_entity_state = 2;
 }

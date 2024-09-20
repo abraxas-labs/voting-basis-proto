@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -21,7 +21,7 @@ import "rules/rules.proto";
 
 message CreateDomainOfInfluenceRequest {
   string name = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
-  string short_name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string short_name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true, allow_empty: true }];
   string authority_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string secure_connect_id = 4 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
   shared.v1.DomainOfInfluenceType type = 5 [(validation.v1.rules).enum.exact_enum = true];
@@ -30,12 +30,12 @@ message CreateDomainOfInfluenceRequest {
   models.ContactPerson contact_person = 8 [(validation.v1.rules).object.required = true];
   bool responsible_for_voting_cards = 9;
   string bfs = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true, allow_empty: true }];
-  string code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  string code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 20, simple_sl_text: true, allow_empty: true }];
   int32 sort_number = 12 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   repeated models.ExportConfiguration export_configurations = 13;
   models.DomainOfInfluenceVotingCardReturnAddress return_address = 14;
   models.DomainOfInfluenceVotingCardPrintData print_data = 15;
-  models.PlausibilisationConfiguration plausibilisation_configuration = 16 [(validation.v1.rules).object.required = true];
+  models.PlausibilisationConfiguration plausibilisation_configuration = 16;
   repeated models.DomainOfInfluenceParty parties = 17;
   bool external_printing_center = 18;
   string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
@@ -108,7 +108,7 @@ message ListDomainOfInfluencePartiesRequest {
 message UpdateDomainOfInfluenceForAdminRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
-  string short_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string short_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true, allow_empty: true }];
   string authority_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string secure_connect_id = 5 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
   shared.v1.DomainOfInfluenceType type = 6 [(validation.v1.rules).enum.exact_enum = true];
@@ -116,12 +116,12 @@ message UpdateDomainOfInfluenceForAdminRequest {
   models.ContactPerson contact_person = 8 [(validation.v1.rules).object.required = true];
   bool responsible_for_voting_cards = 9;
   string bfs = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true, allow_empty: true }];
-  string code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
+  string code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 20, simple_sl_text: true, allow_empty: true }];
   int32 sort_number = 12 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   repeated models.ExportConfiguration export_configurations = 13;
   models.DomainOfInfluenceVotingCardReturnAddress return_address = 14;
   models.DomainOfInfluenceVotingCardPrintData print_data = 15;
-  models.PlausibilisationConfiguration plausibilisation_configuration = 16 [(validation.v1.rules).object.required = true];
+  models.PlausibilisationConfiguration plausibilisation_configuration = 16;
   repeated models.DomainOfInfluenceParty parties = 17;
   bool external_printing_center = 18;
   string external_printing_center_eai_message_type = 19 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];
@@ -139,7 +139,7 @@ message UpdateDomainOfInfluenceForElectionAdminRequest {
   models.ContactPerson contact_person = 2 [(validation.v1.rules).object.required = true];
   models.DomainOfInfluenceVotingCardReturnAddress return_address = 3;
   models.DomainOfInfluenceVotingCardPrintData print_data = 4;
-  models.PlausibilisationConfiguration plausibilisation_configuration = 5 [(validation.v1.rules).object.required = true];
+  models.PlausibilisationConfiguration plausibilisation_configuration = 5;
   repeated models.DomainOfInfluenceParty parties = 6;
   bool external_printing_center = 7;
   string external_printing_center_eai_message_type = 8 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true, allow_empty: true }];

@@ -1,14 +1,32 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
 
 package abraxas.voting.basis.shared.v1;
 
+enum VoteType {
+  VOTE_TYPE_UNSPECIFIED = 0;
+  VOTE_TYPE_QUESTIONS_ON_SINGLE_BALLOT = 1;
+  VOTE_TYPE_VARIANT_QUESTIONS_ON_MULTIPLE_BALLOTS = 2;
+}
+
 enum BallotType {
   BALLOT_TYPE_UNSPECIFIED = 0;
   BALLOT_TYPE_STANDARD_BALLOT = 1;
   BALLOT_TYPE_VARIANTS_BALLOT = 2;
+}
+
+enum BallotSubType {
+  BALLOT_SUB_TYPE_UNSPECIFIED = 0;
+  BALLOT_SUB_TYPE_MAIN_BALLOT = 1;
+  BALLOT_SUB_TYPE_COUNTER_PROPOSAL_1 = 2;
+  BALLOT_SUB_TYPE_COUNTER_PROPOSAL_2 = 3;
+  BALLOT_SUB_TYPE_VARIANT_1 = 4;
+  BALLOT_SUB_TYPE_VARIANT_2 = 5;
+  BALLOT_SUB_TYPE_TIE_BREAK_1 = 6;
+  BALLOT_SUB_TYPE_TIE_BREAK_2 = 7;
+  BALLOT_SUB_TYPE_TIE_BREAK_3 = 8;
 }
 
 enum VoteResultAlgorithm {

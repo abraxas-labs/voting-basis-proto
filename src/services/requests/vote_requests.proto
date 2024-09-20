@@ -1,10 +1,11 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
 
 package abraxas.voting.basis.services.v1.requests;
 
+import "google/protobuf/wrappers.proto";
 import "models/vote.proto";
 import "shared/vote.proto";
 import "rules/rules.proto";
@@ -25,6 +26,7 @@ message CreateVoteRequest {
   bool enforce_result_entry_for_counting_circles = 13;
   shared.v1.VoteReviewProcedure review_procedure = 14 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 15;
+  shared.v1.VoteType type = 16 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message UpdateVoteRequest {
@@ -44,6 +46,7 @@ message UpdateVoteRequest {
   bool enforce_result_entry_for_counting_circles = 14;
   shared.v1.VoteReviewProcedure review_procedure = 15 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 16;
+  shared.v1.VoteType type = 17 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message UpdateVoteActiveStateRequest {
@@ -68,6 +71,11 @@ message CreateBallotRequest {
   // tie break questions are only available for VARIANTS_BALLOT
   bool has_tie_break_questions = 6;
   repeated models.TieBreakQuestion tie_break_questions = 7;
+
+  // these 3 fields are only relevant when the vote type is VARIANT_QUESTIONS_ON_MULTIPLE_BALLOTS
+  shared.v1.BallotSubType sub_type = 8 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  map<string, string> official_description = 9 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 300, complex_sl_text: true }}}];
 }
 
 message UpdateBallotRequest {
@@ -79,6 +87,11 @@ message UpdateBallotRequest {
   // tie break questions are only available for VARIANTS_BALLOT
   bool has_tie_break_questions = 6;
   repeated models.TieBreakQuestion tie_break_questions = 7;
+
+  // these 3 fields are only relevant when the vote type is VARIANT_QUESTIONS_ON_MULTIPLE_BALLOTS
+  shared.v1.BallotSubType sub_type = 8 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  map<string, string> official_description = 9 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 300, complex_sl_text: true }}}];
 }
 
 message DeleteBallotRequest {

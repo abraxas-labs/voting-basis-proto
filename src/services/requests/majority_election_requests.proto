@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.requests;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "models/entity_order.proto";
 import "models/majority_election.proto";
 import "shared/ballot_number_generation.proto";
@@ -37,6 +38,8 @@ message CreateMajorityElectionRequest {
   shared.v1.MajorityElectionReviewProcedure review_procedure = 22 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 23;
   bool enforce_candidate_check_digit_for_counting_circles = 24;
+  bool individual_candidates_disabled = 25;
+  google.protobuf.Int32Value federal_identification = 26;
 }
 
 message UpdateMajorityElectionRequest {
@@ -64,6 +67,8 @@ message UpdateMajorityElectionRequest {
   shared.v1.MajorityElectionReviewProcedure review_procedure = 23 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 24;
   bool enforce_candidate_check_digit_for_counting_circles = 25;
+  bool individual_candidates_disabled = 26;
+  google.protobuf.Int32Value federal_identification = 27;
 }
 
 message GetMajorityElectionRequest {
@@ -85,7 +90,7 @@ message UpdateMajorityElectionActiveStateRequest {
 
 message CreateMajorityElectionCandidateRequest {
   string majority_election_id = 1 [(validation.v1.rules).string.guid = true];
-  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
@@ -114,7 +119,7 @@ message ListMajorityElectionCandidatesRequest {
 message UpdateMajorityElectionCandidateRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string majority_election_id = 2 [(validation.v1.rules).string.guid = true];
-  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
@@ -152,6 +157,7 @@ message CreateSecondaryMajorityElectionRequest {
   shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 6 [(validation.v1.rules).enum.exact_enum = true];
   string primary_majority_election_id = 7 [(validation.v1.rules).string.guid = true];
   bool active = 8;
+  bool individual_candidates_disabled = 9;
 }
 
 message ListSecondaryMajorityElectionsRequest {
@@ -173,6 +179,7 @@ message UpdateSecondaryMajorityElectionRequest {
   shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 7 [(validation.v1.rules).enum.exact_enum = true];
   string primary_majority_election_id = 8 [(validation.v1.rules).string.guid = true];
   bool active = 9;
+  bool individual_candidates_disabled = 10;
 }
 
 message DeleteSecondaryMajorityElectionRequest {
@@ -195,7 +202,7 @@ message ReorderSecondaryMajorityElectionCandidatesRequest {
 
 message CreateSecondaryMajorityElectionCandidateRequest {
   string secondary_majority_election_id = 1 [(validation.v1.rules).string.guid = true];
-  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
@@ -216,7 +223,7 @@ message CreateSecondaryMajorityElectionCandidateRequest {
 message UpdateSecondaryMajorityElectionCandidateRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string secondary_majority_election_id = 2 [(validation.v1.rules).string.guid = true];
-  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];

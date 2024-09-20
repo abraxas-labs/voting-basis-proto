@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -36,6 +36,11 @@ message CantonSettingsEventData {
   repeated CountingCircleResultStateDescriptionEventData counting_circle_result_state_descriptions = 21;
   bool state_plausibilised_disabled = 22;
   bool publish_results_enabled = 23;
+  bool end_result_finalize_disabled = 24;
+  bool create_contest_on_highest_hierarchical_level_enabled = 25;
+  // hides previous contest and domain of influence plausibilisation fields
+  bool internal_plausibilisation_disabled = 26;
+  bool publish_results_before_audited_tentatively = 27;
 }
 
 message CantonSettingsVotingCardChannelEventData {

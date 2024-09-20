@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.93.0`)
+# ✨ Changelog (`v1.106.2`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,121 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.93.0
-Previous version ---- v1.81.0
+This version -------- v1.106.2
+Previous version ---- v1.93.0
 Initial version ----- v1.67.0
-Total commits ------- 14
+Total commits ------- 20
 ```
+
+## [v1.106.2] - 2024-09-18
+
+### 🔄 Changed
+
+- election candidate number validation
+
+## [v1.106.1] - 2024-09-10
+
+### 🔄 Changed
+
+- federal identification on ballot question
+
+## [v1.106.0] - 2024-09-06
+
+### 🆕 Added
+
+- add federal identification
+
+## [v1.105.1] - 2024-08-28
+
+🔄 Changed
+
+update bug bounty template reference
+patch ci-cd template version, align with new defaults
+
+## [v1.105.0] - 2024-08-28
+
+### 🆕 Added
+
+- optional individual candidates on majority elections
+
+## [v1.104.0] - 2024-08-22
+
+### 🆕 Added
+
+- add counting circle and proportional election list change listener
+
+## [v1.103.0] - 2024-08-13
+
+### 🔄 Changed
+
+- Change validation type of DOI/counting circle code from "alphanumeric whitespace" to "simple single line text"
+
+## [v1.102.0] - 2024-08-13
+
+### 🆕 Added
+
+- add party for proportional election list
+
+## [v1.101.1] - 2024-08-12
+
+### 🔄 Changed
+
+- deprecated sex type undefined
+
+## [v1.101.0] - 2024-08-07
+
+### :new: Added
+
+- added political business sub type
+
+## [v1.100.0] - 2024-07-29
+
+### :new: Added
+
+- added variant ballot on multiple ballots
+
+## [v1.99.0] - 2024-07-25
+
+### 🔄 Changed
+
+- Make DOI short name optional
+- Increase max length of DOI/counting circle code to 20 from 12
+
+## [v1.98.0] - 2024-07-17
+
+### 🔄 Changed
+
+- canton settings with publish results before audited tentatively
+
+## [v1.97.0] - 2024-07-16
+
+### 🆕 Added
+
+- set counting circle e-voting at a specific date
+
+## [v1.96.1] - 2024-06-26
+
+### 🔄 Changed
+
+- plausibilisation configuration should be optional
+
+## [v1.96.0] - 2024-06-26
+
+### 🔄 Changed
+
+- add internal plausibilisation canton settings
+
+## [v1.95.0] - 2024-06-25
+
+### 🆕 Added
+
+- add create contest on highest hierarchical level canton settings
+
+## [v1.94.0] - 2024-06-21
+
+### 🆕 Added
+
+- add political business finalize canton settings
 
 ## [v1.93.0] - 2024-05-29
 
@@ -191,6 +301,68 @@ Total commits ------- 14
 ### 🔄 Changed
 
 - change input validation for doi party short description from simple to complex type
+
+### 🔄 Changed
+
+- electoral registration on canton settings
+
+### 🆕 Added
+
+- Added domain of influence sap customer order number
+
+### 🔄 Changed
+
+- revert removing fields from event data
+
+### ❌ Removed
+
+- remove internal description, invalid votes and individual empty ballots allowed from elections
+
+### 🆕 Added
+
+- add domain of influence canton
+
+### 🆕 Added
+
+- Added event signature
+
+### 🔒 Security
+
+- define input validation rules for service request models.
+
+### 🆕 Added
+
+- add new admin management services
+
+### 🆕 Added
+
+- add new admin management services
+
+### 🆕 Added
+
+- Name for protocol for domain of influence and counting circle
+- Sortnumber for counting circle
+- Protocol sort types for domain of influence and counting circle
+
+### 🆕 Added
+
+- added review procedure and enforce for counting circle property for vote, majority election and proportional election
+
+### 🔄 Changed
+
+- Allow to edit the political business number of a secondary majority election after the testing phase has ended
+
+### 🆕 Added
+
+- Events to notify political businesses and political business unions about a contest merge
+
+### 🆕 Added
+
+- add domain of influence external printing center eai message type
+
+### 🆕 Added
+
+- added voting documents e-voting message type to canton settings
 
 ## [v1.70.0] - 2023-05-01
 

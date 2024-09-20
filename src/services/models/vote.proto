@@ -1,10 +1,11 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
 
 package abraxas.voting.basis.services.v1.models;
 
+import "google/protobuf/wrappers.proto";
 import "shared/vote.proto";
 import "rules/rules.proto";
 
@@ -26,6 +27,7 @@ message Vote {
   bool enforce_result_entry_for_counting_circles = 15;
   shared.v1.VoteReviewProcedure review_procedure = 16 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 17;
+  shared.v1.VoteType type = 18 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message Ballot {
@@ -38,12 +40,18 @@ message Ballot {
   // tie break questions are only available for VARIANTS_BALLOT
   bool has_tie_break_questions = 7;
   repeated TieBreakQuestion tie_break_questions = 8;
+
+  // these 3 fields are only relevant when the vote type is VARIANT_QUESTIONS_ON_MULTIPLE_BALLOTS
+  shared.v1.BallotSubType sub_type = 9 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  map<string, string> official_description = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
+  map<string, string> short_description = 11 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 300, complex_sl_text: true }}}];
 }
 
 message BallotQuestion {
   int32 number = 1 [(validation.v1.rules).integer = { min_value: 1, max_value: 50}];
   map<string, string> question = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
   shared.v1.BallotQuestionType type = 3 [(validation.v1.rules).enum.exact_enum = true];
+  google.protobuf.Int32Value federal_identification = 4;
 }
 
 message TieBreakQuestion {
@@ -51,4 +59,5 @@ message TieBreakQuestion {
   map<string, string> question = 2 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
   int32 question_1_number = 3 [(validation.v1.rules).integer = { min_value: 1, max_value: 50}];
   int32 question_2_number = 4 [(validation.v1.rules).integer = { min_value: 1, max_value: 50}];
+  google.protobuf.Int32Value federal_identification = 5;
 }

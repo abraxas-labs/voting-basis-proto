@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -6,7 +6,9 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.models;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "models/domain_of_influence_party.proto";
+import "models/entity_state.proto";
 import "shared/ballot_number_generation.proto";
 import "shared/proportional_election.proto";
 import "shared/sex.proto";
@@ -38,6 +40,7 @@ message ProportionalElection {
   shared.v1.ProportionalElectionReviewProcedure review_procedure = 18 [(validation.v1.rules).enum.exact_enum = true];
   bool enforce_review_procedure_for_counting_circles = 19;
   bool enforce_candidate_check_digit_for_counting_circles = 20;
+  google.protobuf.Int32Value federal_identification = 21;
 }
 
 message ProportionalElectionLists {
@@ -56,6 +59,7 @@ message ProportionalElectionList {
   bool candidate_count_ok = 9;
   map<string, string> list_union_description = 10  [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
   map<string, string> sub_list_union_description = 11  [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_sl_text: true }}}];
+  DomainOfInfluenceParty party = 12;
 }
 
 message ProportionalElectionListUnions {
@@ -90,7 +94,7 @@ message ProportionalElectionCandidates {
 message ProportionalElectionCandidate {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string proportional_election_list_id = 2 [(validation.v1.rules).string.guid = true];
-  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, alpha_num_white: true }];
+  string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
   string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
@@ -109,4 +113,13 @@ message ProportionalElectionCandidate {
   DomainOfInfluenceParty party = 19;
   string origin = 20 [(validation.v1.rules).string = { min_length: 1, max_length: 80, complex_sl_text: true, allow_empty: true }];
   int32 check_digit = 21 [(validation.v1.rules).integer = { min_value: 0, max_value: 9}];
+}
+
+message ProportionalElectionListChangeMessage {
+  ProportionalElectionListMessage list = 1;
+}
+
+message ProportionalElectionListMessage {
+  ProportionalElectionList data = 1;
+  EntityState new_entity_state = 2;
 }

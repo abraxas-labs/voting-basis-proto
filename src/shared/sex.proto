@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -9,5 +9,5 @@ enum SexType {
   SEX_TYPE_UNSPECIFIED = 0;
   SEX_TYPE_MALE = 1;
   SEX_TYPE_FEMALE = 2;
-  SEX_TYPE_UNDEFINED = 3;
+  SEX_TYPE_UNDEFINED = 3 [deprecated=true];
 }

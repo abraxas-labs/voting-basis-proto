@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -6,7 +6,6 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1.models;
 
 import "models/contest.proto";
-import "models/domain_of_influence_party.proto";
 import "models/majority_election.proto";
 import "models/proportional_election.proto";
 import "models/vote.proto";
