@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.106.2`)
+# ✨ Changelog (`v1.111.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.106.2
-Previous version ---- v1.93.0
+This version -------- v1.111.0
+Previous version ---- v1.106.2
 Initial version ----- v1.67.0
-Total commits ------- 20
+Total commits ------- 8
 ```
+
+## [v1.111.0] - 2024-10-24
+
+### 🆕 Added
+
+- add political business summaries
+
+## [v1.110.0] - 2024-10-17
+
+### 🔄 Changed
+
+- add STISTAT municipality flag to domain of influence
+
+## [v1.109.0] - 2024-10-15
+
+### 🔄 Changed
+
+- allow candicate locality and origin to be optional
+
+## [v1.108.0] - 2024-10-15
+
+### 🆕 Added
+
+- superior authority domain of influence
+
+## [v1.107.3] - 2024-10-11
+
+### 🔄 Changed
+
+- change list union descriptions to simple string
+
+## [v1.107.2] - 2024-10-04
+
+### 🔄 Changed
+
+- update input validation for person name properties from simple to complex single line text.
+
+## [v1.107.1] - 2024-10-03
+
+### ❌ Removed
+
+- remove zh feature flag
+
+## [v1.107.0] - 2024-09-23
+
+### 🔄 Changed
+
+- foreigner and minor voters
 
 ## [v1.106.2] - 2024-09-18
 
@@ -254,49 +302,29 @@ patch ci-cd template version, align with new defaults
 
 - Add counting machine flag to canton settings
 
-## [v1.74.0] - 2023-12-19
-
 ### 🆕 Added
 
 - allow multiple vote ballots
-
-## [v1.73.0] - 2023-08-31
 
 ### 🔄 Changed
 
 - political first name of candidate from simple text to complex text
 
-## [v1.72.2] - 2023-08-18
-
 ### ❌ Removed
 
 - remove franking licence away number
-
-## [v1.72.1] - 2023-08-17
 
 ### 🔄 Changed
 
 - rename swiss post order number to franking licence number away
 
-## [v1.72.0] - 2023-08-10
-
 ### 🔄 Changed
 
 - add party mapping on import
 
-## [v1.71.0] - 2023-07-25
-
-### 🔄 Changed
-
-- add swiss post data to domain of influence
-
-## [v1.70.2] - 2023-07-18
-
 ### 🆕 Added
 
 - Add domain of influence voting card shipping choice
-
-## [v1.70.1] - 2023-06-13
 
 ### 🔄 Changed
 
@@ -363,6 +391,54 @@ patch ci-cd template version, align with new defaults
 ### 🆕 Added
 
 - added voting documents e-voting message type to canton settings
+
+## [v1.74.0] - 2023-12-19
+
+### 🆕 Added
+
+- allow multiple vote ballots
+
+## [v1.73.0] - 2023-08-31
+
+### 🔄 Changed
+
+- political first name of candidate from simple text to complex text
+
+## [v1.72.2] - 2023-08-18
+
+### ❌ Removed
+
+- remove franking licence away number
+
+## [v1.72.1] - 2023-08-17
+
+### 🔄 Changed
+
+- rename swiss post order number to franking licence number away
+
+## [v1.72.0] - 2023-08-10
+
+### 🔄 Changed
+
+- add party mapping on import
+
+## [v1.71.0] - 2023-07-25
+
+### 🔄 Changed
+
+- add swiss post data to domain of influence
+
+## [v1.70.2] - 2023-07-18
+
+### 🆕 Added
+
+- Add domain of influence voting card shipping choice
+
+## [v1.70.1] - 2023-06-13
+
+### 🔄 Changed
+
+- change input validation for doi party short description from simple to complex type
 
 ## [v1.70.0] - 2023-05-01
 

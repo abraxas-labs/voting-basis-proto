@@ -32,19 +32,20 @@ message CantonSettings {
   string voting_documents_e_voting_eai_message_type = 12;
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 13;
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 14;
-  bool multiple_vote_ballots_enabled = 16;
-  bool counting_machine_enabled = 17;
-  bool new_zh_features_enabled = 18;
-  bool proportional_election_use_candidate_check_digit = 19;
-  bool majority_election_use_candidate_check_digit = 20;
-  repeated CountingCircleResultStateDescription counting_circle_result_state_descriptions = 21;
-  bool state_plausibilised_disabled = 22;
-  bool publish_results_enabled = 23;
-  bool end_result_finalize_disabled = 24;
-  bool create_contest_on_highest_hierarchical_level_enabled = 25;
+  bool multiple_vote_ballots_enabled = 15;
+  bool counting_machine_enabled = 16;
+  bool proportional_election_use_candidate_check_digit = 17;
+  bool majority_election_use_candidate_check_digit = 18;
+  repeated CountingCircleResultStateDescription counting_circle_result_state_descriptions = 19;
+  bool state_plausibilised_disabled = 20;
+  bool publish_results_enabled = 21;
+  bool end_result_finalize_disabled = 22;
+  bool create_contest_on_highest_hierarchical_level_enabled = 23;
   // hides previous contest and domain of influence plausibilisation fields
-  bool internal_plausibilisation_disabled = 26;
-  bool publish_results_before_audited_tentatively = 27;
+  bool internal_plausibilisation_disabled = 24;
+  bool publish_results_before_audited_tentatively = 25;
+  bool candidate_locality_required = 26;
+  bool candidate_origin_required = 27;
 }
 
 message DomainOfInfluenceCantonDefaults {
@@ -58,6 +59,8 @@ message DomainOfInfluenceCantonDefaults {
   bool create_contest_on_highest_hierarchical_level_enabled = 8;
   // hides previous contest and domain of influence plausibilisation fields
   bool internal_plausibilisation_disabled = 9;
+  bool candidate_locality_required = 10;
+  bool candidate_origin_required = 11;
 }
 
 message CantonSettingsVotingCardChannel {

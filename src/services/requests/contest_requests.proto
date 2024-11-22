@@ -102,3 +102,10 @@ message GetContestOverviewChangesRequest {
 message GetContestDetailsChangesRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
 }
+
+/*
+  description: Geschäfte eines Urnengangs abfragen.
+*/
+message ListPoliticalBusinessSummariesRequest {
+  string contest_id = 1 [(validation.v1.rules).string.guid = true];
+}

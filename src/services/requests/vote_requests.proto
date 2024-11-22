@@ -5,7 +5,6 @@ syntax = "proto3";
 
 package abraxas.voting.basis.services.v1.requests;
 
-import "google/protobuf/wrappers.proto";
 import "models/vote.proto";
 import "shared/vote.proto";
 import "rules/rules.proto";

@@ -29,19 +29,20 @@ message CreateCantonSettingsRequest {
   string voting_documents_e_voting_eai_message_type = 11 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true }];
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 13 [(validation.v1.rules).enum = { exact_enum: true }];
-  bool multiple_vote_ballots_enabled = 15;
-  bool counting_machine_enabled = 16;
-  bool new_zh_features_enabled = 17;
-  bool proportional_election_use_candidate_check_digit = 18;
-  bool majority_election_use_candidate_check_digit = 19;
-  repeated models.CountingCircleResultStateDescription counting_circle_result_state_descriptions = 20;
-  bool state_plausibilised_disabled = 21;
-  bool publish_results_enabled = 22;
-  bool end_result_finalize_disabled = 23;
-  bool create_contest_on_highest_hierarchical_level_enabled = 24;
+  bool multiple_vote_ballots_enabled = 14;
+  bool counting_machine_enabled = 15;
+  bool proportional_election_use_candidate_check_digit = 16;
+  bool majority_election_use_candidate_check_digit = 17;
+  repeated models.CountingCircleResultStateDescription counting_circle_result_state_descriptions = 18;
+  bool state_plausibilised_disabled = 19;
+  bool publish_results_enabled = 20;
+  bool end_result_finalize_disabled = 21;
+  bool create_contest_on_highest_hierarchical_level_enabled = 22;
   // hides previous contest and domain of influence plausibilisation fields
-  bool internal_plausibilisation_disabled = 25;
-  bool publish_results_before_audited_tentatively = 26;
+  bool internal_plausibilisation_disabled = 23;
+  bool publish_results_before_audited_tentatively = 24;
+  bool candidate_locality_required = 25;
+  bool candidate_origin_required = 26;
 }
 
 /*
@@ -61,19 +62,20 @@ message UpdateCantonSettingsRequest {
   string voting_documents_e_voting_eai_message_type = 11 [(validation.v1.rules).string = { min_length: 7, max_length: 7, numeric: true }];
   shared.v1.ProtocolDomainOfInfluenceSortType protocol_domain_of_influence_sort_type = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   shared.v1.ProtocolCountingCircleSortType protocol_counting_circle_sort_type = 13 [(validation.v1.rules).enum = { exact_enum: true }];
-  bool multiple_vote_ballots_enabled = 15;
-  bool counting_machine_enabled = 16;
-  bool new_zh_features_enabled = 17;
-  bool proportional_election_use_candidate_check_digit = 18;
-  bool majority_election_use_candidate_check_digit = 19;
-  repeated models.CountingCircleResultStateDescription counting_circle_result_state_descriptions = 20;
-  bool state_plausibilised_disabled = 21;
-  bool publish_results_enabled = 22;
-  bool end_result_finalize_disabled = 23;
-  bool create_contest_on_highest_hierarchical_level_enabled = 24;
+  bool multiple_vote_ballots_enabled = 14;
+  bool counting_machine_enabled = 15;
+  bool proportional_election_use_candidate_check_digit = 16;
+  bool majority_election_use_candidate_check_digit = 17;
+  repeated models.CountingCircleResultStateDescription counting_circle_result_state_descriptions = 18;
+  bool state_plausibilised_disabled = 19;
+  bool publish_results_enabled = 20;
+  bool end_result_finalize_disabled = 21;
+  bool create_contest_on_highest_hierarchical_level_enabled = 22;
   // hides previous contest and domain of influence plausibilisation fields
-  bool internal_plausibilisation_disabled = 25;
-  bool publish_results_before_audited_tentatively = 26;
+  bool internal_plausibilisation_disabled = 23;
+  bool publish_results_before_audited_tentatively = 24;
+  bool candidate_locality_required = 25;
+  bool candidate_origin_required = 26;
 }
 
 /*

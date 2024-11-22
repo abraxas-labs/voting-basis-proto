@@ -8,6 +8,7 @@ package abraxas.voting.basis.services.v1;
 import "google/protobuf/empty.proto";
 import "models/contest.proto";
 import "models/id_value.proto";
+import "models/political_business.proto";
 import "requests/contest_requests.proto";
 
 service ContestService {
@@ -21,6 +22,7 @@ service ContestService {
   rpc Delete(requests.DeleteContestRequest) returns (google.protobuf.Empty);
   rpc Archive(requests.ArchiveContestRequest) returns (google.protobuf.Empty);
   rpc PastUnlock(requests.PastUnlockContestRequest) returns (google.protobuf.Empty);
+  rpc ListPoliticalBusinessSummaries(requests.ListPoliticalBusinessSummariesRequest) returns (models.PoliticalBusinessSummaries);
 
   rpc GetOverviewChanges(requests.GetContestOverviewChangesRequest) returns (stream models.ContestOverviewChangeMessage);
   rpc GetDetailsChanges(requests.GetContestDetailsChangesRequest) returns (stream models.ContestDetailsChangeMessage);

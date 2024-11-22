@@ -163,10 +163,10 @@ message UpdateProportionalElectionListUnionMainListRequest {
 message CreateProportionalElectionCandidateRequest {
   string proportional_election_list_id = 1 [(validation.v1.rules).string.guid = true];
   string number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
-  string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
-  string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   string political_first_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
-  string political_last_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   google.protobuf.Timestamp date_of_birth = 7 [(validation.v1.rules).object.required = true];
   shared.v1.SexType sex = 8 [(validation.v1.rules).enum.exact_enum = true];
   map<string, string> occupation = 9 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
@@ -194,10 +194,10 @@ message UpdateProportionalElectionCandidateRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string proportional_election_list_id = 2 [(validation.v1.rules).string.guid = true];
   string number = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 10, alpha_num_white: true }];
-  string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
-  string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
-  string political_last_name = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 100, simple_sl_text: true }];
+  string political_last_name = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   google.protobuf.Timestamp date_of_birth = 8 [(validation.v1.rules).object.required = true];
   shared.v1.SexType sex = 9 [(validation.v1.rules).enum.exact_enum = true];
   map<string, string> occupation = 10[(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];

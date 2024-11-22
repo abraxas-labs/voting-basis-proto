@@ -63,6 +63,7 @@ message DomainOfInfluenceVotingCardDataUpdated {
   string sap_customer_order_number = 7;
   data.DomainOfInfluenceVotingCardSwissPostDataEventData swiss_post_data = 8;
   shared.v1.VotingCardColor voting_card_color = 9;
+  bool stistat_municipality = 10;
 }
 
 message DomainOfInfluencePlausibilisationConfigurationUpdated {

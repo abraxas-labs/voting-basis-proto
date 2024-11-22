@@ -46,6 +46,10 @@ message CreateDomainOfInfluenceRequest {
   bool view_counting_circle_partial_results = 24;
   shared.v1.VotingCardColor voting_card_color = 25 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
   bool electoral_registration_enabled = 26;
+  bool has_foreigner_voters = 27;
+  bool has_minor_voters = 28;
+  string superior_authority_domain_of_influence_id = 29 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  bool stistat_municipality = 30;
 }
 
 message GetDomainOfInfluenceRequest {
@@ -132,6 +136,10 @@ message UpdateDomainOfInfluenceForAdminRequest {
   bool view_counting_circle_partial_results = 24;
   shared.v1.VotingCardColor voting_card_color = 25 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
   bool electoral_registration_enabled = 26;
+  bool has_foreigner_voters = 27;
+  bool has_minor_voters = 28;
+  string superior_authority_domain_of_influence_id = 29 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  bool stistat_municipality = 30;
 }
 
 message UpdateDomainOfInfluenceForElectionAdminRequest {

@@ -24,6 +24,9 @@ message DomainOfInfluenceEventData {
   bool virtual_top_level = 14;
   bool view_counting_circle_partial_results = 15;
   bool electoral_registration_enabled = 16;
+  bool has_foreigner_voters = 17;
+  bool has_minor_voters = 18;
+  string superior_authority_domain_of_influence_id = 19;
 }
 
 message DomainOfInfluenceCountingCircleEntriesEventData {

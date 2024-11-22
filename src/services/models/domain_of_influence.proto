@@ -52,6 +52,10 @@ message DomainOfInfluence {
   bool view_counting_circle_partial_results = 28;
   shared.v1.VotingCardColor voting_card_color = 29;
   bool electoral_registration_enabled = 30;
+  bool has_foreigner_voters = 31;
+  bool has_minor_voters = 32;
+  DomainOfInfluence superior_authority_domain_of_influence = 33;
+  bool stistat_municipality = 34;
 }
 
 message DomainOfInfluenceCountingCircleEntries {
