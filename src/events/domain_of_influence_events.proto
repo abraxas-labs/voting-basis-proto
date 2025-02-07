@@ -64,6 +64,7 @@ message DomainOfInfluenceVotingCardDataUpdated {
   data.DomainOfInfluenceVotingCardSwissPostDataEventData swiss_post_data = 8;
   shared.v1.VotingCardColor voting_card_color = 9;
   bool stistat_municipality = 10;
+  bool voting_card_flat_rate_disabled = 11;
 }
 
 message DomainOfInfluencePlausibilisationConfigurationUpdated {

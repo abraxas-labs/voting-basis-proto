@@ -95,6 +95,7 @@ message SecondaryMajorityElectionDeleted {
   data.EventInfo event_info = 1;
   string secondary_majority_election_id = 2;
   string primary_majority_election_id = 3;
+  bool is_on_separate_ballot = 4;
 }
 
 message SecondaryMajorityElectionActiveStateUpdated {
@@ -102,18 +103,21 @@ message SecondaryMajorityElectionActiveStateUpdated {
   string secondary_majority_election_id = 2;
   bool active = 3;
   string primary_majority_election_id = 4;
+  bool is_on_separate_ballot = 5;
 }
 
 message SecondaryMajorityElectionCandidateCreated {
   data.EventInfo event_info = 1;
   data.MajorityElectionCandidateEventData secondary_majority_election_candidate = 2;
   string primary_majority_election_id = 3;
+  bool is_on_separate_ballot = 4;
 }
 
 message SecondaryMajorityElectionCandidateUpdated {
   data.EventInfo event_info = 1;
   data.MajorityElectionCandidateEventData secondary_majority_election_candidate = 2;
   string primary_majority_election_id = 3;
+  bool is_on_separate_ballot = 4;
 }
 
 message SecondaryMajorityElectionCandidateDeleted {
@@ -121,6 +125,7 @@ message SecondaryMajorityElectionCandidateDeleted {
   string secondary_majority_election_candidate_id = 2;
   string secondary_majority_election_id = 3;
   string primary_majority_election_id = 4;
+  bool is_on_separate_ballot = 5;
 }
 
 message SecondaryMajorityElectionCandidatesReordered {
@@ -128,6 +133,7 @@ message SecondaryMajorityElectionCandidatesReordered {
   string secondary_majority_election_id = 2;
   data.EntityOrdersEventData candidate_orders = 3;
   string primary_majority_election_id = 4;
+  bool is_on_separate_ballot = 5;
 }
 
 message SecondaryMajorityElectionCandidateReferenceCreated {
@@ -145,6 +151,7 @@ message SecondaryMajorityElectionCandidateReferenceDeleted {
   string secondary_majority_election_candidate_reference_id = 2;
   string secondary_majority_election_id = 3;
   string primary_majority_election_id = 4;
+  bool is_on_separate_ballot = 5;
 }
 
 message MajorityElectionAfterTestingPhaseUpdated {
@@ -189,6 +196,7 @@ message SecondaryMajorityElectionAfterTestingPhaseUpdated {
   string internal_description = 5;
   string primary_majority_election_id = 6;
   string political_business_number = 7;
+  bool is_on_separate_ballot = 8;
 }
 
 message SecondaryMajorityElectionCandidateAfterTestingPhaseUpdated {
@@ -210,4 +218,5 @@ message SecondaryMajorityElectionCandidateAfterTestingPhaseUpdated {
   string secondary_majority_election_id = 16;
   string primary_majority_election_id = 17;
   string origin = 18;
+  bool is_on_separate_ballot = 19;
 }

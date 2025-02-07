@@ -57,8 +57,8 @@ message MajorityElectionCandidate {
   string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   string political_first_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   string political_last_name = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
-  google.protobuf.Timestamp date_of_birth = 8 [(validation.v1.rules).object.required = true];
-  shared.v1.SexType sex = 9 [(validation.v1.rules).enum.exact_enum = true];
+  google.protobuf.Timestamp date_of_birth = 8;
+  shared.v1.SexType sex = 9 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
   // "Beruf"
   map<string, string> occupation = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 250, allow_empty: true, complex_sl_text: true }}}];
   // Title of the candidate, ex. "Dr."
@@ -80,6 +80,7 @@ message MajorityElectionCandidateReference {
   string candidate_id = 3;
   bool incumbent = 4;
   int32 position = 5;
+  string number = 6;
 }
 
 message SecondaryMajorityElection {
@@ -90,10 +91,10 @@ message SecondaryMajorityElection {
   map<string, string> official_description = 3;
   map<string, string> short_description = 4;
   int32 number_of_mandates = 6;
-  shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 7;
-  string primary_majority_election_id = 8;
-  bool active = 9;
-  bool individual_candidates_disabled = 10;
+  string primary_majority_election_id = 7;
+  bool active = 8;
+  bool individual_candidates_disabled = 9;
+  bool is_on_separate_ballot = 10;
 }
 
 message SecondaryMajorityElections {

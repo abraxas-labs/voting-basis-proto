@@ -27,6 +27,8 @@ message DomainOfInfluenceEventData {
   bool has_foreigner_voters = 17;
   bool has_minor_voters = 18;
   string superior_authority_domain_of_influence_id = 19;
+  bool publish_results_disabled = 20;
+  bool hide_lower_domain_of_influences_in_reports = 21;
 }
 
 message DomainOfInfluenceCountingCircleEntriesEventData {

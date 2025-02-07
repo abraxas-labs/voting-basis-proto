@@ -38,7 +38,7 @@ message CantonSettings {
   bool majority_election_use_candidate_check_digit = 18;
   repeated CountingCircleResultStateDescription counting_circle_result_state_descriptions = 19;
   bool state_plausibilised_disabled = 20;
-  bool publish_results_enabled = 21;
+  bool manual_publish_results_enabled = 21;
   bool end_result_finalize_disabled = 22;
   bool create_contest_on_highest_hierarchical_level_enabled = 23;
   // hides previous contest and domain of influence plausibilisation fields
@@ -46,6 +46,8 @@ message CantonSettings {
   bool publish_results_before_audited_tentatively = 25;
   bool candidate_locality_required = 26;
   bool candidate_origin_required = 27;
+  bool domain_of_influence_publish_results_option_enabled = 28;
+  bool secondary_majority_election_on_separate_ballot = 29;
 }
 
 message DomainOfInfluenceCantonDefaults {
@@ -61,6 +63,8 @@ message DomainOfInfluenceCantonDefaults {
   bool internal_plausibilisation_disabled = 9;
   bool candidate_locality_required = 10;
   bool candidate_origin_required = 11;
+  bool domain_of_influence_publish_results_option_enabled = 12;
+  bool secondary_majority_election_on_separate_ballot = 13;
 }
 
 message CantonSettingsVotingCardChannel {

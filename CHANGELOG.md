@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.111.0`)
+# ✨ Changelog (`v1.116.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.111.0
-Previous version ---- v1.106.2
+This version -------- v1.116.0
+Previous version ---- v1.111.0
 Initial version ----- v1.67.0
-Total commits ------- 8
+Total commits ------- 9
 ```
+
+## [v1.116.0] - 2025-02-06
+
+### :new: Added
+
+- add hide lower domain of influences in reports field
+
+## [v1.115.0] - 2024-12-13
+
+### 🆕 Added
+
+- add secondary majority election protocols
+
+## [v1.114.0] - 2024-12-11
+
+### 🆕 Added
+
+- domain of influence voting card flat rate owner
+
+## [v1.113.0] - 2024-12-10
+
+### 🔄 Changed
+
+- majority election candidate optional date of birth and optional sex
+
+## [v1.112.1] - 2024-11-28
+
+### 🔄 Changed
+
+- move resolve contest import from grpc to rest
+
+## [v1.112.0] - 2024-11-26
+
+### ❌ Removed
+
+- removed allowed candidates from secondary majority elections
+
+### 🆕 Added
+
+- feat(VOTING-4526): allow overwriting of candidate number for majority election candidate references
+
+### 🆕 Added
+
+- publish results option on domain of influence
 
 ## [v1.111.0] - 2024-10-24
 
@@ -254,49 +298,29 @@ patch ci-cd template version, align with new defaults
 
 - add vote result algorithm popular and counting circle majority
 
-## [v1.82.0] - 2024-03-05
-
 ### 🆕 Added
 
 - add political assembly
-
-## [v1.81.0] - 2024-02-16
 
 ### :new: Added
 
 - added canton to counting circle
 
-## [v1.80.0] - 2024-02-02
-
-### 🔄 Changed
-
-- double proportional election mandate algorithms
-
-## [v1.79.0] - 2024-01-29
-
 ### 🆕 Added
 
 - Add counting circle electorates
-
-## [v1.78.0] - 2024-01-26
 
 ### 🆕 Added
 
 - add candidate check digit
 
-## [v1.77.0] - 2024-01-10
-
 ### :new: Added
 
 - added permission service
 
-## [v1.76.0] - 2024-01-04
-
 ### 🆕 Added
 
 - add new zh features flag
-
-## [v1.75.0] - 2023-12-20
 
 ### 🆕 Added
 
@@ -391,6 +415,54 @@ patch ci-cd template version, align with new defaults
 ### 🆕 Added
 
 - added voting documents e-voting message type to canton settings
+
+## [v1.82.0] - 2024-03-05
+
+### 🆕 Added
+
+- add political assembly
+
+## [v1.81.0] - 2024-02-16
+
+### :new: Added
+
+- added canton to counting circle
+
+## [v1.80.0] - 2024-02-02
+
+### 🔄 Changed
+
+- double proportional election mandate algorithms
+
+## [v1.79.0] - 2024-01-29
+
+### 🆕 Added
+
+- Add counting circle electorates
+
+## [v1.78.0] - 2024-01-26
+
+### 🆕 Added
+
+- add candidate check digit
+
+## [v1.77.0] - 2024-01-10
+
+### :new: Added
+
+- added permission service
+
+## [v1.76.0] - 2024-01-04
+
+### 🆕 Added
+
+- add new zh features flag
+
+## [v1.75.0] - 2023-12-20
+
+### 🆕 Added
+
+- Add counting machine flag to canton settings
 
 ## [v1.74.0] - 2023-12-19
 

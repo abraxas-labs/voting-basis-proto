@@ -35,7 +35,7 @@ message CreateCantonSettingsRequest {
   bool majority_election_use_candidate_check_digit = 17;
   repeated models.CountingCircleResultStateDescription counting_circle_result_state_descriptions = 18;
   bool state_plausibilised_disabled = 19;
-  bool publish_results_enabled = 20;
+  bool manual_publish_results_enabled = 20;
   bool end_result_finalize_disabled = 21;
   bool create_contest_on_highest_hierarchical_level_enabled = 22;
   // hides previous contest and domain of influence plausibilisation fields
@@ -43,6 +43,8 @@ message CreateCantonSettingsRequest {
   bool publish_results_before_audited_tentatively = 24;
   bool candidate_locality_required = 25;
   bool candidate_origin_required = 26;
+  bool domain_of_influence_publish_results_option_enabled = 27;
+  bool secondary_majority_election_on_separate_ballot = 28;
 }
 
 /*
@@ -68,7 +70,7 @@ message UpdateCantonSettingsRequest {
   bool majority_election_use_candidate_check_digit = 17;
   repeated models.CountingCircleResultStateDescription counting_circle_result_state_descriptions = 18;
   bool state_plausibilised_disabled = 19;
-  bool publish_results_enabled = 20;
+  bool manual_publish_results_enabled = 20;
   bool end_result_finalize_disabled = 21;
   bool create_contest_on_highest_hierarchical_level_enabled = 22;
   // hides previous contest and domain of influence plausibilisation fields
@@ -76,6 +78,8 @@ message UpdateCantonSettingsRequest {
   bool publish_results_before_audited_tentatively = 24;
   bool candidate_locality_required = 25;
   bool candidate_origin_required = 26;
+  bool domain_of_influence_publish_results_option_enabled = 27;
+  bool secondary_majority_election_on_separate_ballot = 28;
 }
 
 /*

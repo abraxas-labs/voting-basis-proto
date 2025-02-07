@@ -77,10 +77,14 @@ message SecondaryMajorityElectionEventData {
   // this field is not used anymore, but cannot be deleted because of the basis event signature
   string internal_description = 5;
   int32 number_of_mandates = 6;
-  shared.v1.SecondaryMajorityElectionAllowedCandidates allowed_candidates = 7;
   string primary_majority_election_id = 8;
   bool active = 9;
   bool individual_candidates_disabled = 10;
+  bool is_on_separate_ballot = 11;
+
+  // deprecated
+  reserved "allowed_candidates";
+  reserved 7; // allowed_candidates
 }
 
 message MajorityElectionCandidateReferenceEventData {
@@ -90,6 +94,9 @@ message MajorityElectionCandidateReferenceEventData {
   bool incumbent = 4;
   int32 position = 5;
   string primary_majority_election_id = 6;
+  bool is_on_separate_ballot = 7;
+  string number = 8;
+  int32 check_digit = 9;
 }
 
 message MajorityElectionBallotGroupEventData {

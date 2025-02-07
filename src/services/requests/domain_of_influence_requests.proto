@@ -50,6 +50,9 @@ message CreateDomainOfInfluenceRequest {
   bool has_minor_voters = 28;
   string superior_authority_domain_of_influence_id = 29 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
   bool stistat_municipality = 30;
+  bool publish_results_disabled = 31;
+  bool voting_card_flat_rate_disabled = 32;
+  bool hide_lower_domain_of_influences_in_reports = 33;
 }
 
 message GetDomainOfInfluenceRequest {
@@ -140,6 +143,9 @@ message UpdateDomainOfInfluenceForAdminRequest {
   bool has_minor_voters = 28;
   string superior_authority_domain_of_influence_id = 29 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
   bool stistat_municipality = 30;
+  bool publish_results_disabled = 31;
+  bool voting_card_flat_rate_disabled = 32;
+  bool hide_lower_domain_of_influences_in_reports = 33;
 }
 
 message UpdateDomainOfInfluenceForElectionAdminRequest {

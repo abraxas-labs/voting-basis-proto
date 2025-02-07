@@ -6,11 +6,9 @@ syntax = "proto3";
 package abraxas.voting.basis.services.v1;
 
 import "google/protobuf/empty.proto";
-import "models/import.proto";
 import "requests/import_requests.proto";
 
 service ImportService {
-  rpc ResolveImportFile(requests.ResolveImportFileRequest) returns (models.ContestImport);
   rpc ImportPoliticalBusinesses(requests.ImportPoliticalBusinessesRequest) returns (google.protobuf.Empty);
   rpc ImportContest(requests.ImportContestRequest) returns (google.protobuf.Empty);
   rpc ImportProportionalElectionListsAndCandidates(requests.ImportProportionalElectionListsAndCandidatesRequest) returns (google.protobuf.Empty);

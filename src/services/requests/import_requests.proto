@@ -8,13 +8,7 @@ package abraxas.voting.basis.services.v1.requests;
 import "models/import.proto";
 import "models/majority_election.proto";
 import "models/proportional_election.proto";
-import "shared/import.proto";
 import "rules/rules.proto";
-
-message ResolveImportFileRequest {
-  string file_content = 1;
-  shared.v1.ImportType import_type = 2 [(validation.v1.rules).enum = { exact_enum: true }];
-}
 
 message ImportPoliticalBusinessesRequest {
   string contest_id = 1 [(validation.v1.rules).string.guid = true];
