@@ -48,6 +48,7 @@ message CantonSettings {
   bool candidate_origin_required = 27;
   bool domain_of_influence_publish_results_option_enabled = 28;
   bool secondary_majority_election_on_separate_ballot = 29;
+  bool hide_occupation_title = 30;
 }
 
 message DomainOfInfluenceCantonDefaults {
@@ -65,6 +66,7 @@ message DomainOfInfluenceCantonDefaults {
   bool candidate_origin_required = 11;
   bool domain_of_influence_publish_results_option_enabled = 12;
   bool secondary_majority_election_on_separate_ballot = 13;
+  bool hide_occupation_title = 14;
 }
 
 message CantonSettingsVotingCardChannel {

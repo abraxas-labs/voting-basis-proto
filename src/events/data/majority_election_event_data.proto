@@ -67,6 +67,9 @@ message MajorityElectionCandidateEventData {
   int32 position = 17;
   string origin = 18;
   int32 check_digit = 19;
+  string country = 20;
+  string street = 21;
+  string house_number = 22;
 }
 
 message SecondaryMajorityElectionEventData {
@@ -106,6 +109,8 @@ message MajorityElectionBallotGroupEventData {
   string description = 4;
   int32 position = 5;
   repeated MajorityElectionBallotGroupEntryEventData entries = 6;
+  // Describes whether the blank row count of this event should be considered or not (now set on entry candidates event).
+  bool blank_row_count_unused = 7;
 }
 
 message MajorityElectionBallotGroupEntryEventData {
@@ -124,4 +129,6 @@ message MajorityElectionBallotGroupEntryCandidatesEventData {
   string ballot_group_entry_id = 1;
   repeated string candidate_ids = 2;
   int32 individual_candidates_vote_count = 3;
+  // newly added field, has to be nullable to distinguish it from previous versions (dependent on MajorityElectionBallotGroupEntryEventData)
+  google.protobuf.Int32Value blank_row_count = 4;
 }

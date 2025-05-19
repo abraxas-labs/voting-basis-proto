@@ -6,7 +6,7 @@ syntax = "proto3";
 package abraxas.voting.basis.events.v1.data;
 
 message DomainOfInfluenceVotingCardSwissPostDataEventData {
-  reserved 2;
   string invoice_reference_number = 1;
+  string franking_licence_away_number = 2;
   string franking_licence_return_number = 3;
 }

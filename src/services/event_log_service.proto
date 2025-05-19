@@ -10,4 +10,5 @@ import "requests/event_log_requests.proto";
 
 service EventLogService {
   rpc List(requests.ListEventLogsRequest) returns (models.EventLogsPage);
+  rpc Watch(requests.WatchEventsRequest) returns (stream models.Event);
 }

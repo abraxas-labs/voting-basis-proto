@@ -59,6 +59,10 @@ message DomainOfInfluence {
   bool publish_results_disabled = 35;
   bool voting_card_flat_rate_disabled = 36;
   bool hide_lower_domain_of_influences_in_reports = 37; // If true, domain of influences lower in the hierarchy than this one should not be visible in reports
+  bool electoral_register_multiple_enabled = 38;
+  bool e_collecting_enabled = 39;
+  int32 e_collecting_min_signature_count = 40;
+  int32 e_collecting_max_electronic_signature_percent = 41;
 }
 
 message DomainOfInfluenceCountingCircleEntries {

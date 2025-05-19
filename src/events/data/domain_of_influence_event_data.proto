@@ -29,6 +29,10 @@ message DomainOfInfluenceEventData {
   string superior_authority_domain_of_influence_id = 19;
   bool publish_results_disabled = 20;
   bool hide_lower_domain_of_influences_in_reports = 21;
+  bool electoral_register_multiple_enabled = 22;
+  bool e_collecting_enabled = 23;
+  int32 e_collecting_min_signature_count = 24;
+  int32 e_collecting_max_electronic_signature_percent = 25;
 }
 
 message DomainOfInfluenceCountingCircleEntriesEventData {

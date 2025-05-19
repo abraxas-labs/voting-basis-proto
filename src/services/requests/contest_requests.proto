@@ -7,6 +7,7 @@ package abraxas.voting.basis.services.v1.requests;
 
 import "google/protobuf/timestamp.proto";
 import "shared/contest.proto";
+import "shared/political_business.proto";
 import "rules/rules.proto";
 
 /*
@@ -96,16 +97,18 @@ message ArchiveContestRequest {
   google.protobuf.Timestamp archive_per = 2;
 }
 
-message GetContestOverviewChangesRequest {
-}
-
-message GetContestDetailsChangesRequest {
-  string id = 1 [(validation.v1.rules).string.guid = true];
-}
-
 /*
   description: Geschäfte eines Urnengangs abfragen.
 */
 message ListPoliticalBusinessSummariesRequest {
   string contest_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+
+/*
+  description: Geschäft eines Urnengangs abfragen.
+*/
+message GetPoliticalBusinessSummaryRequest {
+  shared.v1.PoliticalBusinessType political_business_type = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string political_business_id = 2 [(validation.v1.rules).string.guid = true];
 }

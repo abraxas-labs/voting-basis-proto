@@ -45,6 +45,7 @@ message CreateCantonSettingsRequest {
   bool candidate_origin_required = 26;
   bool domain_of_influence_publish_results_option_enabled = 27;
   bool secondary_majority_election_on_separate_ballot = 28;
+  bool hide_occupation_title = 29;
 }
 
 /*
@@ -80,6 +81,7 @@ message UpdateCantonSettingsRequest {
   bool candidate_origin_required = 26;
   bool domain_of_influence_publish_results_option_enabled = 27;
   bool secondary_majority_election_on_separate_ballot = 28;
+  bool hide_occupation_title = 29;
 }
 
 /*

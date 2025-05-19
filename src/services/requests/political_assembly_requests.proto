@@ -7,6 +7,7 @@ package abraxas.voting.basis.services.v1.requests;
 
 import "google/protobuf/timestamp.proto";
 import "rules/rules.proto";
+import "shared/political_assembly.proto";
 
 /*
   description: Versammlung erstellen.
@@ -45,4 +46,16 @@ message DeletePoliticalAssemblyRequest {
   description: Versammlungen abfragen.
 */
 message ListPoliticalAssemblyRequest {
+  shared.v1.PoliticalAssemblyState state = 1 [(validation.v1.rules).enum = { exact_enum: true }];
+}
+
+/*
+  description: Versammlungen archivieren.
+*/
+message ArchivePoliticalAssemblyRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+
+  // if not set it is archived directly.
+  // has to be in future and after the date of the political assembly if set.
+  google.protobuf.Timestamp archive_per = 2;
 }

@@ -15,3 +15,23 @@ message ListEventLogsRequest {
   models.Pageable pageable = 1 [(validation.v1.rules).object.required = true];
 }
 
+/*
+  description: Events beobachten
+*/
+message WatchEventsRequest {
+  /* 
+   * Filters are applied with an OR conjunction.
+   * The idea is that a client can have one open connection,
+   * but watch for as many views as needed.
+   */
+  repeated WatchEventsRequestFilter filters = 1;
+}
+
+message WatchEventsRequestFilter {
+  /* an identifier provided by the client to match returned events to a filter */
+  string id = 1;
+  /* the type of events, e.g. ['abraxas.voting.basis.events.v1.ContestCreated'], required */
+  repeated string types = 2;
+  /* optional contest id to filter events for */
+  string contest_id = 3;
+}

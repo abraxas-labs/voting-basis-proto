@@ -1,0 +1,17 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.shared.v1;
+
+enum PoliticalAssemblyState {
+  // the proto default value, should never be used
+  POLITICAL_ASSEMBLY_STATE_UNSPECIFIED = 0;
+  // political assembly takes place in the future or today.
+  POLITICAL_ASSEMBLY_STATE_ACTIVE = 1;
+  // political assembly has taken place in the past and is locked
+  POLITICAL_ASSEMBLY_STATE_PAST_LOCKED = 2;
+  // political assembly is archived
+  POLITICAL_ASSEMBLY_STATE_ARCHIVED = 3;
+}

@@ -43,8 +43,8 @@ message Ballot {
 
   // these 3 fields are only relevant when the vote type is VARIANT_QUESTIONS_ON_MULTIPLE_BALLOTS
   shared.v1.BallotSubType sub_type = 9 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
-  map<string, string> official_description = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 700, complex_ml_text: true }}}];
-  map<string, string> short_description = 11 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 300, complex_sl_text: true }}}];
+  map<string, string> official_description = 10 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 255, complex_ml_text: true }}}];
+  map<string, string> short_description = 11 [(validation.v1.rules).map = { key: { string: { min_length: 2, max_length: 2, alpha: true }}, value: { string: { min_length: 1, max_length: 100, complex_sl_text: true }}}];
 }
 
 message BallotQuestion {

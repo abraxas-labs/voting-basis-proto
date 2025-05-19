@@ -5,9 +5,11 @@ syntax = "proto3";
 
 package abraxas.voting.basis.services.v1.models;
 
-enum EntityState {
-  ENTITY_STATE_UNSPECIFIED = 0;
-  ENTITY_STATE_ADDED = 1;
-  ENTITY_STATE_MODIFIED = 2;
-  ENTITY_STATE_DELETED = 3;
+message Country {
+  string iso_id = 1;
+  string description = 2;
+}
+
+message Countries {
+  repeated Country countries = 1;
 }

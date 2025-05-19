@@ -23,7 +23,5 @@ service ContestService {
   rpc Archive(requests.ArchiveContestRequest) returns (google.protobuf.Empty);
   rpc PastUnlock(requests.PastUnlockContestRequest) returns (google.protobuf.Empty);
   rpc ListPoliticalBusinessSummaries(requests.ListPoliticalBusinessSummariesRequest) returns (models.PoliticalBusinessSummaries);
-
-  rpc GetOverviewChanges(requests.GetContestOverviewChangesRequest) returns (stream models.ContestOverviewChangeMessage);
-  rpc GetDetailsChanges(requests.GetContestDetailsChangesRequest) returns (stream models.ContestDetailsChangeMessage);
+  rpc GetPoliticalBusinessSummary(requests.GetPoliticalBusinessSummaryRequest) returns (models.PoliticalBusinessSummary);
 }

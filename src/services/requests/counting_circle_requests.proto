@@ -25,6 +25,7 @@ message CreateCountingCircleRequest {
   repeated models.CountingCircleElectorate electorates = 10;
   shared.v1.DomainOfInfluenceCanton canton = 11 [(validation.v1.rules).enum = { exact_enum: true }];
   google.protobuf.Timestamp e_voting_active_from = 12;
+  bool e_counting = 13;
 }
 
 message GetCountingCircleRequest {
@@ -56,6 +57,7 @@ message UpdateCountingCircleRequest {
   repeated models.CountingCircleElectorate electorates = 11;
   shared.v1.DomainOfInfluenceCanton canton = 12 [(validation.v1.rules).enum = { exact_enum: true }];
   google.protobuf.Timestamp e_voting_active_from = 13;
+  bool e_counting = 14;
 }
 
 message DeleteCountingCircleRequest {
@@ -83,6 +85,7 @@ message ScheduleCountingCirclesMergerRequest {
   int32 sort_number = 8 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 9 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   google.protobuf.Timestamp e_voting_active_from = 10;
+  bool e_counting = 11;
 }
 
 message UpdateScheduledCountingCirclesMergerRequest {
@@ -97,6 +100,7 @@ message UpdateScheduledCountingCirclesMergerRequest {
   int32 sort_number = 9 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000}];
   string name_for_protocol = 10 [(validation.v1.rules).string = { max_length: 100, complex_sl_text: true, allow_empty: true }];
   google.protobuf.Timestamp e_voting_active_from = 11;
+  bool e_counting = 12;
 }
 
 message DeleteScheduledCountingCirclesMergerRequest {
@@ -108,7 +112,4 @@ message ListCountingCirclesMergersRequest {
   // if true, only active mergers are returned (mergers that happend in the past)
   // if false, only scheduled mergers are returned
   google.protobuf.BoolValue merged = 1;
-}
-
-message GetCountingCircleChangesRequest {
 }

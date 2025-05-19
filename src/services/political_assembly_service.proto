@@ -16,4 +16,5 @@ service PoliticalAssemblyService {
   rpc Update(requests.UpdatePoliticalAssemblyRequest) returns (google.protobuf.Empty);
   rpc Delete(requests.DeletePoliticalAssemblyRequest) returns (google.protobuf.Empty);
   rpc List(requests.ListPoliticalAssemblyRequest) returns (models.PoliticalAssemblies);
+  rpc Archive(requests.ArchivePoliticalAssemblyRequest) returns (google.protobuf.Empty);
 }

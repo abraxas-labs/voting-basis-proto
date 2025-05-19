@@ -185,6 +185,9 @@ message MajorityElectionCandidateAfterTestingPhaseUpdated {
   string locality = 15;
   string majority_election_id = 16;
   string origin = 17;
+  string country = 18;
+  string street = 19;
+  string house_number = 20;
 }
 
 message SecondaryMajorityElectionAfterTestingPhaseUpdated {
@@ -219,4 +222,7 @@ message SecondaryMajorityElectionCandidateAfterTestingPhaseUpdated {
   string primary_majority_election_id = 17;
   string origin = 18;
   bool is_on_separate_ballot = 19;
+  string country = 20;
+  string street = 21;
+  string house_number = 22;
 }

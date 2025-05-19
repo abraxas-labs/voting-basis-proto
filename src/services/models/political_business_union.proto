@@ -5,7 +5,6 @@ syntax = "proto3";
 
 package abraxas.voting.basis.services.v1.models;
 
-import "models/entity_state.proto";
 import "rules/rules.proto";
 import "shared/political_business_union.proto";
 
@@ -16,9 +15,4 @@ message PoliticalBusinessUnion {
   string secure_connect_id = 4 [(validation.v1.rules).string = { min_length: 18, max_length: 20, numeric: true }];
   shared.v1.PoliticalBusinessUnionType type = 5 [(validation.v1.rules).enum.exact_enum = true];
   repeated string political_business_ids = 6 [(validation.v1.rules).string.guid = true];
-}
-
-message PoliticalBusinessUnionMessage {
-  PoliticalBusinessUnion data = 1;
-  EntityState new_entity_state = 2;
 }

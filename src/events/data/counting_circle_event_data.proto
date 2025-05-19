@@ -24,6 +24,7 @@ message CountingCircleEventData {
   shared.v1.DomainOfInfluenceCanton canton = 12;
   bool e_voting = 13;
   google.protobuf.Timestamp e_voting_active_from = 14;
+  bool e_counting = 15;
 }
 
 message CountingCircleElectorateEventData {

@@ -24,7 +24,6 @@ service ProportionalElectionService {
   rpc UpdateList(requests.UpdateProportionalElectionListRequest) returns (google.protobuf.Empty);
   rpc ReorderLists(requests.ReorderProportionalElectionListsRequest) returns (google.protobuf.Empty);
   rpc DeleteList(requests.DeleteProportionalElectionListRequest) returns (google.protobuf.Empty);
-  rpc GetListChanges(requests.GetProportionalElectionListChangesRequest) returns (stream models.ProportionalElectionListChangeMessage);
 
   rpc CreateListUnion(requests.CreateProportionalElectionListUnionRequest) returns (models.IdValue);
   rpc GetListUnion(requests.GetProportionalElectionListUnionRequest) returns (models.ProportionalElectionListUnion);

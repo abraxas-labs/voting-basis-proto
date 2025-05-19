@@ -8,7 +8,6 @@ package abraxas.voting.basis.services.v1.models;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "models/domain_of_influence_party.proto";
-import "models/entity_state.proto";
 import "shared/ballot_number_generation.proto";
 import "shared/proportional_election.proto";
 import "shared/sex.proto";
@@ -112,14 +111,8 @@ message ProportionalElectionCandidate {
   int32 accumulated_position = 18;
   DomainOfInfluenceParty party = 19;
   string origin = 20 [(validation.v1.rules).string = { min_length: 1, max_length: 80, complex_sl_text: true, allow_empty: true }];
-  int32 check_digit = 21 [(validation.v1.rules).integer = { min_value: 0, max_value: 9}];
-}
-
-message ProportionalElectionListChangeMessage {
-  ProportionalElectionListMessage list = 1;
-}
-
-message ProportionalElectionListMessage {
-  ProportionalElectionList data = 1;
-  EntityState new_entity_state = 2;
+  int32 check_digit = 21 [(validation.v1.rules).integer = { min_value: 0, max_value: 9 }];
+  string country = 22 [(validation.v1.rules).string = { min_length: 2, max_length: 2, alpha: true }];
+  string street = 23 [(validation.v1.rules).string = { min_length: 1, max_length: 60, complex_sl_text: true, allow_empty: true }];
+  string house_number = 24 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
 }

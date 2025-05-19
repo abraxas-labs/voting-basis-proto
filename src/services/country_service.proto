@@ -1,0 +1,13 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.basis.services.v1;
+
+import "models/country.proto";
+import "requests/country_requests.proto";
+
+service CountryService {
+  rpc List(requests.ListCountriesRequest) returns (models.Countries);
+}

@@ -8,6 +8,7 @@ package abraxas.voting.basis.services.v1.models;
 import "google/protobuf/timestamp.proto";
 import "models/domain_of_influence.proto";
 import "rules/rules.proto";
+import "shared/political_assembly.proto";
 
 message PoliticalAssemblies {
   repeated PoliticalAssembly political_assemblies = 1;
@@ -20,4 +21,6 @@ message PoliticalAssembly {
   string domain_of_influence_id = 4 [(validation.v1.rules).string.guid = true];
   DomainOfInfluence domain_of_influence = 5;
   bool e_voting = 6;
+  shared.v1.PoliticalAssemblyState state = 7 [(validation.v1.rules).enum.exact_enum = true];
+  google.protobuf.Timestamp archive_per = 8;
 }

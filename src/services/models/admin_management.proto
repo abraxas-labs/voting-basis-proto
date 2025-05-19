@@ -23,4 +23,7 @@ message PoliticalDomainOfInfluence {
   shared.v1.DomainOfInfluenceType type = 8;
   shared.v1.DomainOfInfluenceCanton canton = 9;
   DomainOfInfluenceVotingCardReturnAddress returnAddress = 10;
+  bool e_collecting_enabled = 11;
+  int32 e_collecting_min_signature_count = 12;
+  int32 e_collecting_max_electronic_signature_percent = 13;
 }

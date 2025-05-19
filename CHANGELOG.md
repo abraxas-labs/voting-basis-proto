@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.116.0`)
+# ✨ Changelog (`v1.124.1`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,91 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.116.0
-Previous version ---- v1.111.0
+This version -------- v1.124.1
+Previous version ---- v1.116.0
 Initial version ----- v1.67.0
-Total commits ------- 9
+Total commits ------- 13
 ```
+
+## [v1.124.1] - 2025-04-01
+
+### 🆕 Added
+
+- PoliticalAssemblyPastLocked
+- PoliticalAssemblyArchived
+- PoliticalAssemblyArchiveDateUpdated
+- enum PoliticalAssemblyState
+- ArchivePoliticalAssemblyRequest
+
+## [v1.124.0] - 2025-03-27
+
+### 🆕 Added
+
+- add domain of influence franking licence away number
+
+## [v1.123.0] - 2025-03-25
+
+### 🆕 Added
+
+- add e-collecting settings on dois
+
+## [v1.122.0] - 2025-03-14
+
+### 🆕 Added
+
+- add country, street and house number to election candidate
+
+## [v1.121.2] - 2025-03-11
+
+### 🔄 Changed
+
+- revert changes in color scheme since enum values must be retained for event replay consistency
+
+## [v1.121.1] - 2025-03-07
+
+delete Colors in VotingCardColor
+
+## [v1.121.0] - 2025-02-28
+
+### 🔄 Changed
+
+- Replace change streams with generic event change stream
+
+## [v1.120.0] - 2025-02-24
+
+### 🆕 Added
+
+- add e-collecting flag
+
+## [v1.119.1] - 2025-02-20
+
+### 🔄 Changed
+
+- add blank row count to majority election ballot group entry step
+
+## [v1.119.0] - 2025-02-18
+
+### 🆕 Added
+
+- enable multiple electoral registers on domain of influence
+
+## [v1.118.0] - 2025-02-14
+
+### :new: Added
+
+- added canton setting to hide the occupation title
+
+## [v1.117.0] - 2025-02-14
+
+### 🆕 Added
+
+- e-counting flag on counting circle
+
+## [v1.116.1] - 2025-02-10
+
+### 🔄 Changed
+
+- fix(VOTING-5377): update max length for short and official descriptions in ballot to align with eCH-0155 v4.0 specification.
 
 ## [v1.116.0] - 2025-02-06
 
@@ -214,352 +294,164 @@ patch ci-cd template version, align with new defaults
 
 ### 🆕 Added
 
-- add political business finalize canton settings
-
-## [v1.93.0] - 2024-05-29
-
-### 🆕 Added
-
-- add publish results enabled canton setting
-
-## [v1.92.0] - 2024-05-22
+- PoliticalAssemblyPastLocked
+- PoliticalAssemblyArchived
+- PoliticalAssemblyArchiveDateUpdated
+- enum PoliticalAssemblyState
+- ArchivePoliticalAssemblyRequest
 
 ### 🆕 Added
 
-- add ballot question type
-
-## [v1.91.0] - 2024-05-06
+- add domain of influence franking licence away number
 
 ### 🆕 Added
 
-- proportional election update mandate algorithm
+- add e-collecting settings on dois
 
-## [v1.90.0] - 2024-05-03
+### 🆕 Added
+
+- add country, street and house number to election candidate
 
 ### 🔄 Changed
 
-- move Stimmregister flag from canton settings to DOI
+- revert changes in color scheme since enum values must be retained for event replay consistency
 
-## [v1.89.0] - 2024-04-19
+delete Colors in VotingCardColor
 
-### 🆕 Added
+### 🔄 Changed
 
-- add state plausibilised enabled canton setting
-
-## [v1.88.0] - 2024-04-18
+- Replace change streams with generic event change stream
 
 ### 🆕 Added
 
-- add counting circle result state descriptions
+- add e-collecting flag
 
-## [v1.87.0] - 2024-04-15
+### 🆕 Added
+
+- enable multiple electoral registers on domain of influence
 
 ### :new: Added
 
-- added voting card color
-
-## [v1.86.1] - 2024-04-08
-
-### 🔄 Changed
-
-- admin management service contains the return address of dois now
-
-## [v1.86.0] - 2024-04-03
+- added canton setting to hide the occupation title
 
 ### 🆕 Added
 
-- add evoting flag to counting circle
+- e-counting flag on counting circle
+
+### 🔄 Changed
+
+- fix(VOTING-5377): update max length for short and official descriptions in ballot to align with eCH-0155 v4.0 specification.
+
+### :new: Added
+
+- add hide lower domain of influences in reports field
+
+### 🆕 Added
+
+- add secondary majority election protocols
+
+### 🆕 Added
+
+- domain of influence voting card flat rate owner
+
+### 🔄 Changed
+
+- majority election candidate optional date of birth and optional sex
+
+### 🔄 Changed
+
+- move resolve contest import from grpc to rest
 
 ### ❌ Removed
 
-- remove contest counting circle options
-
-## [v1.85.0] - 2024-03-28
-
-### :new: Added
-
-- added view partial counting circle results flag to domain of influence
-
-## [v1.84.0] - 2024-03-14
+- removed allowed candidates from secondary majority elections
 
 ### 🆕 Added
 
-- add virtual top level domain of influence
+- feat(VOTING-4526): allow overwriting of candidate number for majority election candidate references
 
-## [v1.83.1] - 2024-03-13
+### 🆕 Added
+
+- publish results option on domain of influence
+
+### 🆕 Added
+
+- add political business summaries
 
 ### 🔄 Changed
 
-- update input validation for vote attribute
-
-## [v1.83.0] - 2024-03-11
+- allow candicate locality and origin to be optional
 
 ### 🆕 Added
 
-- add vote result algorithm popular and counting circle majority
-
-### 🆕 Added
-
-- add political assembly
-
-### :new: Added
-
-- added canton to counting circle
-
-### 🆕 Added
-
-- Add counting circle electorates
-
-### 🆕 Added
-
-- add candidate check digit
-
-### :new: Added
-
-- added permission service
-
-### 🆕 Added
-
-- add new zh features flag
-
-### 🆕 Added
-
-- Add counting machine flag to canton settings
-
-### 🆕 Added
-
-- allow multiple vote ballots
+- superior authority domain of influence
 
 ### 🔄 Changed
 
-- political first name of candidate from simple text to complex text
+- change list union descriptions to simple string
+
+### 🔄 Changed
+
+- update input validation for person name properties from simple to complex single line text.
 
 ### ❌ Removed
 
-- remove franking licence away number
+- remove zh feature flag
 
 ### 🔄 Changed
 
-- rename swiss post order number to franking licence number away
+- election candidate number validation
+
+### 🆕 Added
+
+- add federal identification
+
+🔄 Changed
+
+update bug bounty template reference
+patch ci-cd template version, align with new defaults
+
+### 🆕 Added
+
+- optional individual candidates on majority elections
+
+### 🆕 Added
+
+- add counting circle and proportional election list change listener
 
 ### 🔄 Changed
 
-- add party mapping on import
+- Change validation type of DOI/counting circle code from "alphanumeric whitespace" to "simple single line text"
 
 ### 🆕 Added
 
-- Add domain of influence voting card shipping choice
+- add party for proportional election list
 
 ### 🔄 Changed
 
-- change input validation for doi party short description from simple to complex type
-
-### 🔄 Changed
-
-- electoral registration on canton settings
-
-### 🆕 Added
-
-- Added domain of influence sap customer order number
-
-### 🔄 Changed
-
-- revert removing fields from event data
-
-### ❌ Removed
-
-- remove internal description, invalid votes and individual empty ballots allowed from elections
-
-### 🆕 Added
-
-- add domain of influence canton
-
-### 🆕 Added
-
-- Added event signature
-
-### 🔒 Security
-
-- define input validation rules for service request models.
-
-### 🆕 Added
-
-- add new admin management services
-
-### 🆕 Added
-
-- add new admin management services
-
-### 🆕 Added
-
-- Name for protocol for domain of influence and counting circle
-- Sortnumber for counting circle
-- Protocol sort types for domain of influence and counting circle
-
-### 🆕 Added
-
-- added review procedure and enforce for counting circle property for vote, majority election and proportional election
-
-### 🔄 Changed
-
-- Allow to edit the political business number of a secondary majority election after the testing phase has ended
-
-### 🆕 Added
-
-- Events to notify political businesses and political business unions about a contest merge
-
-### 🆕 Added
-
-- add domain of influence external printing center eai message type
-
-### 🆕 Added
-
-- added voting documents e-voting message type to canton settings
-
-## [v1.82.0] - 2024-03-05
-
-### 🆕 Added
-
-- add political assembly
-
-## [v1.81.0] - 2024-02-16
+- deprecated sex type undefined
 
 ### :new: Added
 
-- added canton to counting circle
-
-## [v1.80.0] - 2024-02-02
-
-### 🔄 Changed
-
-- double proportional election mandate algorithms
-
-## [v1.79.0] - 2024-01-29
-
-### 🆕 Added
-
-- Add counting circle electorates
-
-## [v1.78.0] - 2024-01-26
-
-### 🆕 Added
-
-- add candidate check digit
-
-## [v1.77.0] - 2024-01-10
+- added political business sub type
 
 ### :new: Added
 
-- added permission service
+- added variant ballot on multiple ballots
 
-## [v1.76.0] - 2024-01-04
+### 🔄 Changed
+
+- Make DOI short name optional
+- Increase max length of DOI/counting circle code to 20 from 12
 
 ### 🆕 Added
 
-- add new zh features flag
+- set counting circle e-voting at a specific date
 
-## [v1.75.0] - 2023-12-20
+### 🔄 Changed
+
+- plausibilisation configuration should be optional
 
 ### 🆕 Added
 
-- Add counting machine flag to canton settings
-
-## [v1.74.0] - 2023-12-19
-
-### 🆕 Added
-
-- allow multiple vote ballots
-
-## [v1.73.0] - 2023-08-31
-
-### 🔄 Changed
-
-- political first name of candidate from simple text to complex text
-
-## [v1.72.2] - 2023-08-18
-
-### ❌ Removed
-
-- remove franking licence away number
-
-## [v1.72.1] - 2023-08-17
-
-### 🔄 Changed
-
-- rename swiss post order number to franking licence number away
-
-## [v1.72.0] - 2023-08-10
-
-### 🔄 Changed
-
-- add party mapping on import
-
-## [v1.71.0] - 2023-07-25
-
-### 🔄 Changed
-
-- add swiss post data to domain of influence
-
-## [v1.70.2] - 2023-07-18
-
-### 🆕 Added
-
-- Add domain of influence voting card shipping choice
-
-## [v1.70.1] - 2023-06-13
-
-### 🔄 Changed
-
-- change input validation for doi party short description from simple to complex type
-
-## [v1.70.0] - 2023-05-01
-
-### 🔄 Changed
-
-- electoral registration on canton settings
-
-## [v1.69.4] - 2023-04-25
-
-### 🆕 Added
-
-- Added domain of influence sap customer order number
-
-## [v1.69.3] - 2023-01-17
-
-### 🔄 Changed
-
-- election candidate locality and origin is allowed to be empty
-
-## [v1.69.2] - 2023-01-04
-
-### 🔄 Changed
-
-- revert removing fields from event data
-
-## [v1.69.1] - 2023-01-03
-
-### ❌ Removed
-
-- remove internal description, invalid votes and individual empty ballots allowed from elections
-
-## [v1.69.0] - 2022-12-21
-
-### 🔄 Changed
-
-- add export provider
-
-## [v1.68.1] - 2022-12-16
-
-### 🆕 Added
-
-- add domain of influence canton
-
-## [v1.68.0] - 2022-12-02
-
-### 🔄 Changed
-
-- add origin for election candidates
-
-## [v1.67.0] - 2022-11-28
-
-### 🎉 Initial release for Bug Bounty
+- add create contest on highest hierarchical level canton settings

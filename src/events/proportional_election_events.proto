@@ -163,4 +163,7 @@ message ProportionalElectionCandidateAfterTestingPhaseUpdated {
   string proportional_election_id = 15;
   string proportional_election_list_id = 16;
   string origin = 17;
+  string country = 18;
+  string street = 19;
+  string house_number = 20;
 }

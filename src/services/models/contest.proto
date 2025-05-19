@@ -7,8 +7,6 @@ package abraxas.voting.basis.services.v1.models;
 
 import "google/protobuf/timestamp.proto";
 import "models/domain_of_influence.proto";
-import "models/entity_state.proto";
-import "models/election_group.proto";
 import "models/political_business.proto";
 import "models/political_business_union.proto";
 import "shared/contest.proto";
@@ -68,19 +66,4 @@ message ContestSummaryEntryDetails {
 
 message ContestAvailability {
   shared.v1.ContestDateAvailability availability = 1;
-}
-
-message ContestOverviewChangeMessage {
-  ContestMessage contest = 1;
-}
-
-message ContestDetailsChangeMessage {
-  PoliticalBusinessMessage political_business = 1;
-  PoliticalBusinessUnionMessage political_business_union = 2;
-  ElectionGroupMessage election_group = 3;
-}
-
-message ContestMessage {
-  Contest data = 1;
-  EntityState new_entity_state = 2;
 }

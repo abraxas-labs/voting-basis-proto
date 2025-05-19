@@ -53,6 +53,10 @@ message CreateDomainOfInfluenceRequest {
   bool publish_results_disabled = 31;
   bool voting_card_flat_rate_disabled = 32;
   bool hide_lower_domain_of_influences_in_reports = 33;
+  bool electoral_register_multiple_enabled = 34;
+  bool e_collecting_enabled = 35;
+  int32 e_collecting_min_signature_count = 36 [(validation.v1.rules).integer = { min_value: 0, max_value: 100000 }];
+  int32 e_collecting_max_electronic_signature_percent = 37 [(validation.v1.rules).integer = { min_value: 0, max_value: 100 }];
 }
 
 message GetDomainOfInfluenceRequest {
@@ -146,6 +150,10 @@ message UpdateDomainOfInfluenceForAdminRequest {
   bool publish_results_disabled = 31;
   bool voting_card_flat_rate_disabled = 32;
   bool hide_lower_domain_of_influences_in_reports = 33;
+  bool electoral_register_multiple_enabled = 34;
+  bool e_collecting_enabled = 35;
+  int32 e_collecting_min_signature_count = 36 [(validation.v1.rules).integer = { min_value: 0, max_value: 100000 }];
+  int32 e_collecting_max_electronic_signature_percent = 37 [(validation.v1.rules).integer = { min_value: 0, max_value: 100 }];
 }
 
 message UpdateDomainOfInfluenceForElectionAdminRequest {

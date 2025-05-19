@@ -87,4 +87,7 @@ message ProportionalElectionCandidateEventData {
   string proportional_election_id = 20;
   string origin = 21;
   int32 check_digit = 22;
+  string country = 23;
+  string street = 24;
+  string house_number = 25;
 }

@@ -72,6 +72,9 @@ message MajorityElectionCandidate {
   int32 position = 17 [(validation.v1.rules).integer = { min_value: 1, max_value: 100 }];
   string origin = 18 [(validation.v1.rules).string = { min_length: 1, max_length: 80, complex_sl_text: true, allow_empty: true }];
   int32 check_digit = 19 [(validation.v1.rules).integer = { min_value: 0, max_value: 9 }];
+  string country = 20 [(validation.v1.rules).string = { min_length: 2, max_length: 2, alpha: true }];
+  string street = 21 [(validation.v1.rules).string = { min_length: 1, max_length: 60, complex_sl_text: true, allow_empty: true }];
+  string house_number = 22 [(validation.v1.rules).string = { min_length: 1, max_length: 12, alpha_num_white: true, allow_empty: true }];
 }
 
 message MajorityElectionCandidateReference {
@@ -142,4 +145,5 @@ message MajorityElectionBallotGroupEntryCandidates {
   string ballot_group_entry_id = 1 [(validation.v1.rules).string.guid = true];
   repeated string candidate_ids = 2 [(validation.v1.rules).string.guid = true];
   int32 individual_candidates_vote_count = 3 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
+  int32 blank_row_count = 4 [(validation.v1.rules).integer = { min_value: 0, max_value: 100}];
 }

@@ -44,6 +44,7 @@ message CantonSettingsEventData {
   bool candidate_origin_required = 29;
   bool domain_of_influence_publish_results_option_enabled = 30;
   bool secondary_majority_election_on_separate_ballot = 31;
+  bool hide_occupation_title = 32;
 }
 
 message CantonSettingsVotingCardChannelEventData {
